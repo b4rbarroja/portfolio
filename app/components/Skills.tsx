@@ -10,6 +10,15 @@ export default function Skills() {
       id="skills"
       className={` mb-10 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-6 ${outfit.className}`}
     >
+      <div className="flex justify-center items-center flex-col text-center">
+        <h2 className="text-2xl md:text-3xl font-semibold text-white">
+          Technology Stack
+        </h2>
+        <p className="text-gray-400 mt-2 text-sm">
+          Tools and technologies I work with
+        </p>
+      </div>
+
       <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 sm:gap-x-14 sm:gap-y-10 md:gap-x-16 md:gap-y-12">
         <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
           <Image

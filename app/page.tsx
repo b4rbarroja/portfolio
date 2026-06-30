@@ -2,6 +2,8 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Container from "./components/Container";
 import Skills from "./components/Skills";
+import Services from "./components/Services";
+
 export default function Home() {
   return (
     <main className="relative overflow-hidden bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
@@ -17,6 +19,11 @@ export default function Home() {
       {/* Hero */}
       <Container>
         <Hero />
+      </Container>
+
+      {/* Services */}
+      <Container>
+        <Services />
       </Container>
 
       {/* Skills */}

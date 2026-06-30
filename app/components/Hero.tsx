@@ -10,22 +10,22 @@ const outfit = Outfit({
 
 const orbitIcons = [
   { src: "/html.png", angle: 0 },
-  { src: "/css.png", angle: 45 },
-  { src: "/tailwind2.png", angle: 90 },
-  { src: "/react.png", angle: 135 },
-  { src: "/next.png", angle: 180 },
-  { src: "/node.png", angle: 225 },
-  { src: "/prisma.png", angle: 270 },
-  { src: "/postgres.png", angle: 315 },
-  { src: "/ts.png", angle: 315 },
+  { src: "/css.png", angle: 40 },
+  { src: "/tailwind2.png", angle: 80 },
+  { src: "/react.png", angle: 120 },
+  { src: "/next.png", angle: 160 },
+  { src: "/node.png", angle: 200 },
+  { src: "/prisma.png", angle: 240 },
+  { src: "/postgres.png", angle: 280 },
+  { src: "/ts.png", angle: 320 },
 ];
 
 export default function Hero() {
   return (
     <section
-      className={`relative min-h-[calc(100vh-80px)] flex items-start text-white ${outfit.className}`}
+      className={`relative flex items-start text-white ${outfit.className}`}
     >
-      <div className="w-full px-6 md:px-12 lg:px-20 pt-10 pb-12">
+      <div className="w-full px-6 md:px-12 lg:px-20 pt-16 pb-16">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           {/* Left */}
           <div className="w-full lg:w-1/2 text-center lg:text-left">
