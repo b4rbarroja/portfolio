@@ -17,7 +17,7 @@ export default function CustomCursor() {
         transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
       }}
       className="fixed top-0 left-0 pointer-events-none z-[9999]
-                 transition-transform duration-100 ease-linear will-change-transform
+                 transition-transform duration-[30ms] ease-linear will-change-transform
                  -translate-x-1/2 -translate-y-1/2"
     >
       <svg
