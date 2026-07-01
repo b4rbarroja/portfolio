@@ -8,7 +8,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className={` mb-10 bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-6 ${outfit.className}`}
+      className={` bg-white/[0.03] mb-25 backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-6 ${outfit.className}`}
     >
       <div className="flex justify-center items-center flex-col text-center">
         <h2 className="text-2xl md:text-3xl font-semibold text-white">

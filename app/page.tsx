@@ -3,6 +3,11 @@ import Hero from "./components/Hero";
 import Container from "./components/Container";
 import Skills from "./components/Skills";
 import Services from "./components/Services";
+import About from "./components/About";
+import Projects from "./components/Projects";
+import Reviews from "./components/Reviews";
+import Blogs from "./components/Blogs";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -30,6 +35,28 @@ export default function Home() {
       <Container>
         <Skills />
       </Container>
+
+      <Container>
+        <About />
+      </Container>
+
+      {/* Projects */}
+      <Container>
+        <Projects />
+      </Container>
+
+      {/* Reviews */}
+      <Container>
+        <Reviews />
+      </Container>
+
+      {/* Blogs */}
+      <Container>
+        <Blogs />
+      </Container>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
