@@ -19,7 +19,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
     <header
-      className={`sticky top-0 z-50 bg-[#020617] backdrop-blur-md border-b border-white/5 ${outfit.className}`}
+      className={` bg-[#020617] backdrop-blur-md border-b border-white/5 ${outfit.className}`}
     >
       <div className="w-full px-6 md:px-12 lg:px-20">
         <div className="flex items-center justify-between py-2 md:py-3">
