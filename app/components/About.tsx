@@ -7,7 +7,7 @@ const outfit = Outfit({
 });
 export default function HeroSection() {
   return (
-    <div className={`flex items-center ${outfit.className}`}>
+    <div id="about" className={`flex items-center ${outfit.className}`}>
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left side - Text content */}
         <div>

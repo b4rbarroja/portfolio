@@ -1,11 +1,19 @@
 import { Outfit } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
-const quickLinks = ["Home", "About", "Projects", "Services", "Blog", "Contact"];
+const quickLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/#about" },
+  { name: "Projects", href: "/projects" },
+  { name: "Services", href: "/#services" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
 const services = [
   "Web Development",
   "E-commerce",
@@ -89,13 +97,13 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
                     className="text-gray-400 text-sm hover:text-white active:text-white transition-colors hover:translate-x-1 inline-block"
                   >
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
