@@ -29,7 +29,14 @@ export default function Hero() {
       <div className="w-full pt-8 md:pt-12 pb-16">
         <div className="flex justify-center md:hidden mb-6">
           <Link href="#">
-            <Image src="/jabr2.png" alt="Logo" width={180} height={60} className="w-auto h-14 object-contain" priority />
+            <Image
+              src="/jabr2.png"
+              alt="Logo"
+              width={180}
+              height={60}
+              className="w-auto h-14 object-contain"
+              priority
+            />
           </Link>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 xl:gap-24">
@@ -57,13 +64,17 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
-              <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
-                Start Project →
-              </button>
+              <Link href="/contact">
+                <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
+                  Start Project →
+                </button>
+              </Link>
 
-              <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 active:bg-white active:text-black active:border-white">
-                See Projects →
-              </button>
+              <Link href="/projects">
+                <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 active:bg-white active:text-black active:border-white">
+                  See Projects →
+                </button>
+              </Link>
             </div>
 
             <div className="flex items-center justify-center md:justify-start gap-2 mt-6 text-yellow-400">
