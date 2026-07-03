@@ -1,4 +1,6 @@
+import { LineChart } from "lucide-react";
 import { Outfit } from "next/font/google";
+import Link from "next/link";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
@@ -95,9 +97,11 @@ export default function Articles() {
               Have a project in mind? Let&apos;s build something amazing
               together.
             </p>
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 active:from-blue-600 active:to-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit transition-all">
-              Start a Project →
-            </button>
+            <Link href="/contact">
+              <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 active:from-blue-600 active:to-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit transition-all">
+                Start a Project →
+              </button>
+            </Link>
           </div>
         </div>
       </div>

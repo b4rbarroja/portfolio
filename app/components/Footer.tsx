@@ -71,7 +71,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:m7mdjbr@gmail.com"
+                href="mailto:m7mdjbr1426@gmail.com"
                 aria-label="Email"
                 className="text-gray-400 hover:text-white active:text-white transition-colors bg-white/5 hover:bg-white/10 p-2.5 rounded-full"
               >
@@ -117,12 +117,12 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <a
-                    href="#"
+                  <Link
+                    href={`/projects`}
                     className="text-gray-400 text-sm hover:text-white active:text-white transition-colors hover:translate-x-1 inline-block"
                   >
                     {service}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -147,7 +147,7 @@ export default function Footer() {
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                m7mdjbr1425@gmail.com
+                m7mdjbr1426@gmail.com
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <svg
