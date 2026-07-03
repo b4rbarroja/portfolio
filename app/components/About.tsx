@@ -1,14 +1,13 @@
 import React from "react";
 import { Outfit } from "next/font/google";
+import Link from "next/link";
 const outfit = Outfit({
   weight: ["400", "600"],
   subsets: ["latin"],
 });
 export default function HeroSection() {
   return (
-    <div
-      className={`flex items-center ${outfit.className}`}
-    >
+    <div className={`flex items-center ${outfit.className}`}>
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left side - Text content */}
         <div>
@@ -24,9 +23,11 @@ export default function HeroSection() {
             I&apos;m always learning and exploring new technologies to stay at
             the top of the game.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
-            More About Me →
-          </button>{" "}
+          <Link href="/contact">
+            <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
+              Contact Me →
+            </button>
+          </Link>
         </div>
 
         {/* Right side - Code editor card */}

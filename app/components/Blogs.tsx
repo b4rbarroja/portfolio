@@ -34,7 +34,9 @@ const articles = [
 
 export default function Articles() {
   return (
-    <section className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}>
+    <section
+      className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}
+    >
       <div className="w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
@@ -45,7 +47,7 @@ export default function Articles() {
             <p className="text-gray-400 mt-1">Thoughts, tutorials and notes</p>
           </div>
           <a
-            href="#"
+            href="/blog"
             className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
           >
             View All Articles →

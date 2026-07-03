@@ -50,7 +50,7 @@ export default function Projects() {
             </p>
           </div>
           <a
-            href="#"
+            href="/projects"
             className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
           >
             View All Projects →
