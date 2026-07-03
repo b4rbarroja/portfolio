@@ -31,14 +31,14 @@ export default function Sidebar() {
       }
       setOpen(false);
     },
-    []
+    [],
   );
 
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-4 left-4 z-50 lg:hidden text-white p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/10 transition-all duration-200 hover:bg-white/20 active:scale-90"
+        className="fixed top-4 left-4 z-50 lg:hidden text-white p-2.5 rounded-lg bg-white/15 backdrop-blur-md border border-white/20 shadow-lg shadow-black/30 transition-all duration-200 hover:bg-white/25 active:scale-90"
         aria-label="Open menu"
       >
         <Menu size={24} />
@@ -55,7 +55,11 @@ export default function Sidebar() {
         >
           <X size={22} />
         </button>
-        <Link href="#" onClick={handleClick} className="flex justify-center w-full px-6">
+        <Link
+          href="#"
+          onClick={handleClick}
+          className="flex justify-center w-full px-6"
+        >
           <Image
             src="/jabr2.png"
             alt="Logo"
@@ -81,12 +85,14 @@ export default function Sidebar() {
             </Link>
           ))}
         </nav>
-        <button
-          onClick={handleClick}
-          className="bg-gradient-to-r from-blue-600 to-blue-400 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
-        >
-          Let&rsquo;s Talk →
-        </button>
+        <Link href="/contact">
+          <button
+            onClick={handleClick}
+            className="bg-gradient-to-r from-blue-600 to-blue-400 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+          >
+            Let&rsquo;s Talk →
+          </button>
+        </Link>
       </aside>
       {open && (
         <div

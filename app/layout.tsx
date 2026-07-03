@@ -25,12 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      dir="ltr"
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+      <html
+        dir="ltr"
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable} h-full w-full antialiased`}
+      >
+      <body className="min-h-full w-full flex flex-col overflow-x-hidden">
         <Sidebar />
         <div className="lg:pl-64 flex-1 flex flex-col">
           {children}
