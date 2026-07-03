@@ -43,7 +43,7 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="bg-[#0d1420] border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-colors"
+              className="bg-[#0d1420] border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 active:border-white/20 active:-translate-y-0.5"
             >
               {/* Quote mark */}
               <span className="text-blue-400 text-4xl font-bold leading-none">

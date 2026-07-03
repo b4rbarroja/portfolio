@@ -46,7 +46,7 @@ export default function Articles() {
           </div>
           <a
             href="#"
-            className="text-blue-400 font-medium text-sm hover:text-blue-300 transition-colors whitespace-nowrap"
+            className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
           >
             View All Articles →
           </a>
@@ -58,7 +58,7 @@ export default function Articles() {
           {articles.map((article) => (
             <div
               key={article.title}
-              className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 "
+              className="rounded-2xl overflow-hidden border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 "
             >
               {/* Image with category badge */}
               <div className="relative w-full h-40">
@@ -73,11 +73,11 @@ export default function Articles() {
               </div>
 
               {/* Content */}
-              <div className="bg-white p-5">
-                <h3 className="text-[#1a1d29] font-semibold text-base leading-snug mb-3">
+              <div className="bg-[#0d1420] p-5">
+                <h3 className="text-white font-semibold text-base leading-snug mb-3">
                   {article.title}
                 </h3>
-                <p className="text-[#9ca3af] text-xs">
+                <p className="text-gray-400 text-xs">
                   {article.date} &middot; {article.readTime}
                 </p>
               </div>
@@ -85,15 +85,15 @@ export default function Articles() {
           ))}
 
           {/* CTA card */}
-          <div className="bg-white rounded-2xl p-6 flex flex-col justify-center relative overflow-hidden">
-            <h3 className="text-[#1a1d29] font-bold text-lg mb-3">
+          <div className="bg-[#0d1420] border border-white/10 rounded-2xl p-6 flex flex-col justify-center relative overflow-hidden">
+            <h3 className="text-white font-bold text-lg mb-3">
               Let&apos;s work together
             </h3>
-            <p className="text-[#6b7280] text-sm leading-relaxed mb-6">
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Have a project in mind? Let&apos;s build something amazing
               together.
             </p>
-            <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit transition-all">
+            <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 active:from-blue-600 active:to-blue-700 text-white text-sm font-medium px-5 py-2.5 rounded-full w-fit transition-all">
               Start a Project →
             </button>
           </div>

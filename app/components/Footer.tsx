@@ -20,24 +20,24 @@ export default function Footer() {
       className={`bg-[#0a0e1a] border-t border-white/10 px-6 md:px-16 pt-14 pb-6 ${outfit.className}`}
     >
       <div className="w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {/* Logo + description + socials */}
-          <div>
+          <div className="lg:col-span-1">
             <Image
               src="/jabr2.png"
               alt="JABR Logo"
               width={764}
               height={240}
-              className="h-16 w-auto mb-4"
+              className="h-14 w-auto mb-4"
             />
-            <p className="text-gray-400 text-sm leading-relaxed mb-5">
+            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
               Building digital products that make a difference.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <a
-                href="#"
+                href="https://github.com/m7mdjbr"
                 aria-label="GitHub"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white active:text-white transition-colors bg-white/5 hover:bg-white/10 p-2.5 rounded-full"
               >
                 <svg
                   width="18"
@@ -49,9 +49,9 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/m7mdjbr/"
                 aria-label="LinkedIn"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white active:text-white transition-colors bg-white/5 hover:bg-white/10 p-2.5 rounded-full"
               >
                 <svg
                   width="18"
@@ -63,23 +63,9 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
-                aria-label="Twitter"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z" />
-                </svg>
-              </a>
-              <a
-                href="#"
+                href="mailto:m7mdjbr@gmail.com"
                 aria-label="Email"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white active:text-white transition-colors bg-white/5 hover:bg-white/10 p-2.5 rounded-full"
               >
                 <svg
                   width="18"
@@ -98,15 +84,15 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">
+            <h3 className="text-white font-semibold text-sm mb-4 tracking-wide">
               Quick Links
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link}>
                   <a
                     href="#"
-                    className="text-gray-400 text-sm hover:text-white transition-colors"
+                    className="text-gray-400 text-sm hover:text-white active:text-white transition-colors hover:translate-x-1 inline-block"
                   >
                     {link}
                   </a>
@@ -117,13 +103,15 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">Services</h3>
-            <ul className="space-y-2.5">
+            <h3 className="text-white font-semibold text-sm mb-4 tracking-wide">
+              Services
+            </h3>
+            <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
                   <a
                     href="#"
-                    className="text-gray-400 text-sm hover:text-white transition-colors"
+                    className="text-gray-400 text-sm hover:text-white active:text-white transition-colors hover:translate-x-1 inline-block"
                   >
                     {service}
                   </a>
@@ -134,11 +122,11 @@ export default function Footer() {
 
           {/* Get In Touch */}
           <div>
-            <h3 className="text-white font-semibold text-sm mb-4">
+            <h3 className="text-white font-semibold text-sm mb-4 tracking-wide">
               Get In Touch
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2.5 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <svg
                   width="16"
                   height="16"
@@ -151,9 +139,9 @@ export default function Footer() {
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                hello@jabr.dev
+                m7mdjbr1425@gmail.com
               </li>
-              <li className="flex items-center gap-2.5 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <svg
                   width="16"
                   height="16"
@@ -165,9 +153,9 @@ export default function Footer() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                +20 123 456 7890
+                +20 100 656 0891
               </li>
-              <li className="flex items-center gap-2.5 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <svg
                   width="16"
                   height="16"
@@ -180,15 +168,18 @@ export default function Footer() {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                Cairo, Egypt
+                Menofia, Egypt
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 pt-6 text-center">
-          <p className="text-gray-500 text-xs">All rights reserved</p>
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-gray-500 text-xs">
+            &copy; {new Date().getFullYear()} JABR. All rights reserved.
+          </p>
+          <p className="text-gray-500 text-xs">Designed & Built by JABR</p>
         </div>
       </div>
     </footer>

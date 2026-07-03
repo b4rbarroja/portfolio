@@ -23,12 +23,12 @@ const orbitIcons = [
 export default function Hero() {
   return (
     <section
-      className={`relative flex items-start text-white ${outfit.className}`}
+      className={`relative flex items-start text-white  ${outfit.className}`}
     >
-      <div className="w-full px-6 md:px-12 lg:px-20 pt-5 pb-16">
+      <div className="w-full px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           {/* Left */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <div className="w-full lg:w-1/2 text-center  lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
               <span className="relative flex h-3 w-3">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 blur-[2px] animate-ping"></span>
@@ -51,11 +51,11 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-8 justify-center lg:justify-start">
-              <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95">
+              <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
                 Start Project →
               </button>
 
-              <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95">
+              <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 active:bg-white active:text-black active:border-white">
                 See Projects →
               </button>
             </div>

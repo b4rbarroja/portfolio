@@ -34,7 +34,10 @@ const projects = [
 ];
 export default function Projects() {
   return (
-    <section className={` px-6 md:px-16 py-16 ${outfit.className}`}>
+    <section
+      id="projects"
+      className={` px-6 md:px-16 py-16 ${outfit.className}`}
+    >
       <div className="w-full max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
@@ -48,7 +51,7 @@ export default function Projects() {
           </div>
           <a
             href="#"
-            className="text-blue-400 font-medium text-sm hover:text-blue-300 transition-colors whitespace-nowrap"
+            className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
           >
             View All Projects →
           </a>
@@ -58,7 +61,7 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] border border-white/5 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 "
+              className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] border border-white/5 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 "
             >
               {/* Image with category badge */}
               <div className="relative w-full h-44">
@@ -72,11 +75,11 @@ export default function Projects() {
                 </span>
               </div>
               {/* Content */}
-              <div className="bg-white p-5">
-                <h3 className="text-[#1a1d29] font-semibold text-lg mb-2">
+              <div className="bg-[#0d1420] p-5">
+                <h3 className="text-white font-semibold text-lg mb-2">
                   {project.title}
                 </h3>
-                <p className="text-[#6b7280] text-sm mb-4 leading-relaxed">
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   {project.description}
                 </p>
                 {/* Tags */}
@@ -84,7 +87,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs text-[#4b5563] bg-[#f3f4f6] px-3 py-1.5 rounded-full"
+                      className="text-xs text-gray-300 bg-white/10 px-3 py-1.5 rounded-full"
                     >
                       {tag}
                     </span>

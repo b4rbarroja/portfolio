@@ -16,11 +16,6 @@ export default function Home() {
       <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
       <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
 
-      {/* Navbar */}
-      <Container>
-        <Navbar />
-      </Container>
-
       {/* Hero */}
       <Container>
         <Hero />
@@ -54,9 +49,6 @@ export default function Home() {
       <Container>
         <Blogs />
       </Container>
-
-      {/* Footer */}
-      <Footer />
     </main>
   );
 }

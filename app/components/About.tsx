@@ -24,7 +24,7 @@ export default function HeroSection() {
             I&apos;m always learning and exploring new technologies to stay at
             the top of the game.
           </p>
-          <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95">
+          <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
             More About Me →
           </button>{" "}
         </div>

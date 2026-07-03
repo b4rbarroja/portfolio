@@ -54,7 +54,7 @@ export default function Services() {
         {services.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
-            className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 rounded-2xl flex flex-col items-start gap-4 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1"
+            className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 rounded-2xl flex flex-col items-start gap-4 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5"
           >
             <div className="bg-gradient-to-r from-blue-600 to-cyan-400 p-3 rounded-xl">
               <Icon className="w-6 h-6 text-white" />
