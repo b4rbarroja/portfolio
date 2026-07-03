@@ -31,7 +31,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className={`px-6 md:px-16 py-16 ${outfit.className}`}>
+    <section className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}>
       <div className="w-full max-w-7xl mx-auto">
         {/* Header */}
         <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">

@@ -1,8 +1,10 @@
 import { Outfit } from "next/font/google";
+
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
+
 const projects = [
   {
     title: "EcomZone",
@@ -31,50 +33,63 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
+  {
+    title: "DevPort",
+    category: "Portfolio",
+    description:
+      "A sleek developer portfolio template with blog and CMS integration.",
+    tags: ["Next.js", "MDX", "Tailwind"],
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+  },
+  {
+    title: "ChatBox",
+    category: "Real-time",
+    description:
+      "A real-time messaging app with rooms, typing indicators, and file sharing.",
+    tags: ["Socket.io", "React", "Node.js"],
+    image:
+      "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&h=400&fit=crop",
+  },
+  {
+    title: "FitTrack",
+    category: "Health",
+    description:
+      "A fitness tracking app with workout plans, progress charts, and meal logging.",
+    tags: ["React Native", "Express", "MongoDB"],
+    image:
+      "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&h=400&fit=crop",
+  },
 ];
-export default function Projects() {
+
+export default function ProjectsPage() {
   return (
-    <section
-      id="projects"
-      className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}
-    >
-      <div className="w-full max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Featured Projects
-            </h2>
-            <p className="text-gray-400 mt-1">
-              Some of the projects I&apos;ve built
-            </p>
-          </div>
-          <a
-            href="#"
-            className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
-          >
-            View All Projects →
-          </a>
+    <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
+      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
+      <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
+
+      <section className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}>
+        <div className="mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold text-white">Projects</h1>
+          <p className="text-gray-400 mt-1">Some of the things I&apos;ve built</p>
         </div>
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <div
               key={project.title}
-              className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] border border-white/5 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 "
+              className="group rounded-2xl overflow-hidden border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5"
             >
-              {/* Image with category badge */}
-              <div className="relative w-full h-44">
+              <div className="relative w-full h-44 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute bottom-3 left-3 bg-white/95 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
                   {project.category}
                 </span>
               </div>
-              {/* Content */}
               <div className="bg-[#0d1420] p-5">
                 <h3 className="text-white font-semibold text-lg mb-2">
                   {project.title}
@@ -82,7 +97,6 @@ export default function Projects() {
                 <p className="text-gray-400 text-sm mb-4 leading-relaxed">
                   {project.description}
                 </p>
-                {/* Tags */}
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
@@ -97,7 +111,7 @@ export default function Projects() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }

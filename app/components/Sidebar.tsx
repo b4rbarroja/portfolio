@@ -11,9 +11,9 @@ const outfit = Outfit({
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Blog", href: "/blog" },
+  { name: "Projects", href: "/projects" },
   { name: "Services", href: "/#services" },
-  { name: "Projects", href: "/#projects" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -22,10 +22,10 @@ export default function Sidebar() {
   const handleNav = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       if (href.startsWith("/#")) {
-        e.preventDefault();
         const id = href.slice(2);
         const el = document.getElementById(id);
         if (el) {
+          e.preventDefault();
           el.scrollIntoView({ behavior: "smooth" });
         }
       }
@@ -55,8 +55,15 @@ export default function Sidebar() {
         >
           <X size={22} />
         </button>
-        <Link href="#" onClick={handleClick}>
-          <Image src="/jabr2.png" alt="Logo" width={110} height={40} />
+        <Link href="#" onClick={handleClick} className="flex justify-center w-full px-6">
+          <Image
+            src="/jabr2.png"
+            alt="Logo"
+            width={130}
+            height={48}
+            className="w-auto h-12 object-contain"
+            priority
+          />
         </Link>
         <nav className="flex flex-col items-center gap-6 text-gray-300">
           {navLinks.map(({ name, href }) => (

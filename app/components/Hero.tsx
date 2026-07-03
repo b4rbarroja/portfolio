@@ -27,9 +27,9 @@ export default function Hero() {
       className={`relative flex items-start text-white ${outfit.className}`}
     >
       <div className="w-full pt-8 md:pt-12 pb-16">
-        <div className="flex justify-center md:hidden mb-5">
+        <div className="flex justify-center md:hidden mb-6">
           <Link href="#">
-            <Image src="/jabr2.png" alt="Logo" width={200} height={200} />
+            <Image src="/jabr2.png" alt="Logo" width={180} height={60} className="w-auto h-14 object-contain" priority />
           </Link>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 xl:gap-24">
@@ -43,7 +43,7 @@ export default function Hero() {
               <p className="text-green-400 text-sm">Available for freelance</p>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight">
               Building Digital{" "}
               <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
                 Products
@@ -93,7 +93,7 @@ export default function Hero() {
 
           {/* Right */}
           <div className="w-full md:w-1/2 flex justify-center">
-            <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[460px] aspect-square flex items-center justify-center">
+            <div className="relative w-full max-w-[220px] sm:max-w-[340px] lg:max-w-[460px] aspect-square flex items-center justify-center">
               <div className="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full z-0" />
 
               <Image
@@ -113,7 +113,7 @@ export default function Hero() {
                     style={{ transform: `rotate(${icon.angle}deg)` }}
                   >
                     <div
-                      className="absolute top-0 left-1/2 bg-white/5 backdrop-blur-sm rounded-full p-1 sm:p-1.5 lg:p-2 border border-white/10"
+                      className="absolute top-0 left-1/2 bg-white/5 backdrop-blur-sm rounded-full p-0.5 sm:p-1 md:p-1.5 lg:p-2 border border-white/10"
                       style={{
                         transform: `translate(-50%, -50%) rotate(-${icon.angle}deg)`,
                       }}
@@ -121,7 +121,7 @@ export default function Hero() {
                       <img
                         src={icon.src}
                         alt=""
-                        className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8"
+                        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"
                       />
                     </div>
                   </div>

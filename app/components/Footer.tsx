@@ -17,7 +17,7 @@ const services = [
 export default function Footer() {
   return (
     <footer
-      className={`bg-[#0a0e1a] border-t border-white/10 px-6 md:px-16 pt-14 pb-6 ${outfit.className}`}
+      className={`bg-[#0a0e1a] border-t border-white/10 px-4 sm:px-6 md:px-16 pt-10 sm:pt-14 pb-6 ${outfit.className}`}
     >
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">

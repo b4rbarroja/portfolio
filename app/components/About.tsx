@@ -7,16 +7,16 @@ const outfit = Outfit({
 export default function HeroSection() {
   return (
     <div
-      className={`flex items-center px-6 md:px-16 pt-4 pb-12 ${outfit.className}`}
+      className={`flex items-center ${outfit.className}`}
     >
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
         {/* Left side - Text content */}
         <div>
           <div className="flex gap-2.5 items-center flex-row pb-5 font-bold">
             <p className="relative inline-flex h-2 w-2 rounded-full bg-blue-600"></p>
             <p>About me</p>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
             I&apos;m a Developer who loves clean code and great designs.
           </h1>
           <p className="text-gray-400 text-base md:text-lg mb-8 max-w-lg">
@@ -39,7 +39,7 @@ export default function HeroSection() {
           </div>
 
           {/* Code content */}
-          <pre className="p-6 text-sm md:text-[15px] leading-7 font-mono overflow-x-auto">
+          <pre className="p-4 sm:p-6 text-[11px] sm:text-sm md:text-[15px] leading-5 sm:leading-7 font-mono overflow-x-auto">
             <code>
               <span className="text-purple-400">const</span>{" "}
               <span className="text-yellow-300">Developer</span>{" "}
