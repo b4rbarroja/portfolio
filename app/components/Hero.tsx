@@ -26,18 +26,8 @@ export default function Hero() {
     <section
       className={`relative flex items-start text-white ${outfit.className}`}
     >
-      <div className="w-full pt-8 md:pt-12 pb-16">
+      <div className="w-full pt-5 md:pt-11 pb-16">
         <div className="flex justify-center md:hidden mb-6">
-          <Link href="#">
-            <Image
-              src="/jabr2.png"
-              alt="Logo"
-              width={180}
-              height={60}
-              className="w-auto h-14 object-contain"
-              priority
-            />
-          </Link>
         </div>
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 xl:gap-24">
           {/* Left */}
@@ -103,7 +93,7 @@ export default function Hero() {
           </div>
 
           {/* Right */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="w-full md:w-1/2 flex justify-center sm:pt-10">
             <div className="relative w-full max-w-[220px] sm:max-w-[340px] lg:max-w-[460px] aspect-square flex items-center justify-center">
               <div className="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full z-0" />
 

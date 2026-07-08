@@ -39,7 +39,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className={`flex flex-col justify-center items-center py-12 sm:py-16 ${outfit.className}`}
+      className={`flex flex-col justify-center items-center py-12 sm:pt-1 ${outfit.className}`}
     >
       <div className="flex justify-center items-center flex-col text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-semibold text-white">
