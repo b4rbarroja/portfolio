@@ -93,7 +93,7 @@ export default function Hero() {
           </div>
 
           {/* Right */}
-          <div className="w-full md:w-1/2 flex justify-center sm:pt-10">
+          <div className="w-full md:w-1/2 flex justify-center pt-7 sm:pt-10">
             <div className="relative w-full max-w-[220px] sm:max-w-[340px] lg:max-w-[460px] aspect-square flex items-center justify-center">
               <div className="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full z-0" />
 
