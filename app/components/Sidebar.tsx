@@ -44,7 +44,7 @@ export default function Sidebar() {
         <Menu size={24} />
       </button>
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-[#020617] via-[#0B1120] to-[#020617] border-r border-white/5 flex flex-col items-center py-8 gap-10 transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-linear-to-b from-[#020617] via-[#0B1120] to-[#020617] border-r border-white/5 flex flex-col items-center py-8 gap-10 transition-transform duration-300 lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         } ${outfit.className}`}
       >
@@ -77,7 +77,7 @@ export default function Sidebar() {
               onClick={(e) => handleNav(e, href)}
               className="relative cursor-pointer hover:text-white active:text-white transition
                 after:content-[''] after:absolute after:left-0 after:bottom-[-6px]
-                after:w-0 after:h-[2px] after:bg-gradient-to-r after:from-blue-500 after:to-cyan-400
+                after:w-0 after:h-[2px] after:bg-linear-to-r after:from-blue-500 after:to-cyan-400
                 after:transition-all after:duration-300
                 hover:after:w-full active:after:w-full"
             >
@@ -88,7 +88,7 @@ export default function Sidebar() {
         <Link href="/contact">
           <button
             onClick={handleClick}
-            className="bg-gradient-to-r from-blue-600 to-blue-400 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+            className="bg-linear-to-r from-blue-600 to-blue-400 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
           >
             Let&rsquo;s Talk →
           </button>
