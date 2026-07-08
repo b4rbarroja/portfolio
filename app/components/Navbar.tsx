@@ -29,7 +29,7 @@ export default function Navbar() {
       <header className={`sticky top-0 z-40 w-full bg-[#020617]/75 border-b border-white/10 backdrop-blur-xl ${outfit.className}`}>
         <div className="mx-auto flex h-16 items-center justify-between px-4 sm:px-6 md:px-12 lg:px-20">
           <Link href="/" className="flex items-center gap-3">
-            <span className="font-bold text-xl text-white">Jabr-Dev</span>
+            <span className="font-bold text-xl text-white">Jabr.dev</span>
           </Link>
 
           <button
