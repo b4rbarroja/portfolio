@@ -30,7 +30,7 @@ export default function ContactPage() {
                         <path d="M22 6l-10 7L2 6" />
                       </svg>
                     </div>
-                    <span className="break-all">m7mdjbr1425@gmail.com</span>
+                    <span className="break-all">m7mdjbr1426@gmail.com</span>
                   </li>
                   <li className="flex items-center gap-3 text-gray-400 text-sm">
                     <div className="bg-white/5 p-2.5 rounded-lg shrink-0">
