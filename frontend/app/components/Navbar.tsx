@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Outfit } from "next/font/google";
 import Sidebar from "./Sidebar";
@@ -26,10 +25,10 @@ export default function Navbar() {
 
   return (
     <>
-      <header className={`sticky top-0 z-40 w-full bg-[#020617]/75 border-b border-white/10 backdrop-blur-xl ${outfit.className}`}>
+      <header className={`sticky top-0 z-40 w-full bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] border-b border-white/10 ${outfit.className}`}>
         <div className="mx-auto flex h-16 items-center justify-between px-4 sm:px-6 md:px-12 lg:px-20">
           <Link href="/" className="flex items-center gap-3">
-            <span className="font-bold text-xl text-white">Jabr.dev</span>
+            <span className="text-xl font-bold tracking-tight font-mono text-white">&lt;JabrDev /&gt;</span>
           </Link>
 
           <button

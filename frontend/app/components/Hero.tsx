@@ -56,13 +56,13 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
               <Link href="/contact">
                 <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
-                  Start Project →
+                  Start Project
                 </button>
               </Link>
 
               <Link href="/projects">
                 <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 active:bg-white active:text-black active:border-white">
-                  See Projects →
+                  See Projects 
                 </button>
               </Link>
             </div>
