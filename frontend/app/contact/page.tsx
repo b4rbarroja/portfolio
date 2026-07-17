@@ -78,7 +78,7 @@ export default function ContactPage() {
                     </svg>
                   </a>
                   <a
-                    href="mailto:m7mdjbr1425@gmail.com"
+                    href="mailto:m7mdjbr1426@gmail.com"
                     aria-label="Email"
                     className="text-gray-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-3 rounded-full"
                   >
