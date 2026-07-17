@@ -8,9 +8,9 @@ import Sidebar from "./Sidebar";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Blog", href: "/blog" },
-  { name: "Projects", href: "/projects" },
   { name: "Services", href: "/#services" },
+  { name: "Projects", href: "/projects" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 const outfit = Outfit({
