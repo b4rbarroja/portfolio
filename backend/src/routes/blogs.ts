@@ -6,6 +6,7 @@ import {
   getSingleBlog,
   updateBlog,
 } from "../controllers/blog.controller.ts";
+import authMiddleware from "../middleware/authMiddleware.ts"
 
 const router = Router();
 
@@ -20,12 +21,12 @@ router.get("/", getBlogs);
 router.get<SlugParams>("/:slug", getSingleBlog);
 
 // POST create blog
-router.post("/", createBlog);
+router.post("/",authMiddleware, createBlog);
 
 // PUT update blog
-router.put<SlugParams>("/:slug", updateBlog);
+router.put<SlugParams>("/:slug",authMiddleware, updateBlog);
 
 // DELETE blog
-router.delete<SlugParams>("/:slug", deleteBlog);
+router.delete<SlugParams>("/:slug",authMiddleware, deleteBlog);
 
 export default router;

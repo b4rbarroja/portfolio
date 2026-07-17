@@ -4,6 +4,7 @@ import {
   deleteContact,
   getContacts,
 } from "../controllers/contact.controller.ts";
+import authMiddleware from "../middleware/authMiddleware.ts"
 
 const router = Router();
 
@@ -12,12 +13,12 @@ type ContactParams = {
 };
 
 // GET all contacts
-router.get("/", getContacts);
+router.get("/", authMiddleware ,getContacts);
 
 // POST create contact
-router.post("/", createContact);
+router.post("/",createContact);
 
 // DELETE contact
-router.delete<ContactParams>("/:id", deleteContact);
+router.delete<ContactParams>("/:id", authMiddleware,deleteContact);
 
 export default router;
