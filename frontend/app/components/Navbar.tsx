@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Outfit } from "next/font/google";
 import Sidebar from "./Sidebar";
+import LanguageToggle from "./LanguageToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -49,6 +50,7 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
+            <LanguageToggle />
             <Link
               href="/contact"
               className="rounded-full bg-linear-to-r from-blue-600 to-cyan-400 px-4 py-2 text-sm font-medium text-white shadow-[0_0_20px_rgba(59,130,246,0.25)] transition hover:shadow-[0_0_26px_rgba(59,130,246,0.35)] hover:scale-[1.02]"

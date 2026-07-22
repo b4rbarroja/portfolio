@@ -4,6 +4,7 @@ import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
+import LanguageToggle from "./LanguageToggle";
 
 const outfit = Outfit({
   weight: ["400", "500"],
@@ -87,6 +88,7 @@ export default function Sidebar({
             Let&rsquo;s Talk →
           </button>
         </Link>
+        <LanguageToggle />
       </aside>
       {open && (
         <div className="fixed inset-0 z-40 bg-black/50 lg:hidden" onClick={onClose} />

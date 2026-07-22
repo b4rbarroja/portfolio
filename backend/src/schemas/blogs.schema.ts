@@ -17,10 +17,6 @@ export const blogSchema = z.object({
     .string()
     .min(10, "Short description is too short"),
 
-  content: z
-    .string()
-    .min(50, "Content is too short"),
-
   image: z
     .string()
     .url("Image must be a valid URL")
@@ -30,12 +26,7 @@ export const blogSchema = z.object({
     .string()
     .min(2, "Type is required"),
 
-  readingTime: z
-    .number()
-    .int()
-    .positive(),
-
-  featured: z
+  published: z
     .boolean()
     .optional(),
 });

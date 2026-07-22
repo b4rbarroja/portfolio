@@ -46,20 +46,27 @@ export const createBlog = async (
   req: Request,
   res: Response
 ) => {
-  const result = blogSchema.safeParse(req.body);
+  try {
+    const result = blogSchema.safeParse(req.body);
 
-  if (!result.success) {
-    return res.status(400).json({
-      message: "Invalid data",
-      errors: result.error.issues,
+    if (!result.success) {
+      return res.status(400).json({
+        message: "بيانات غير صالحة",
+        errors: result.error.issues,
+      });
+    }
+
+    const blog = await prisma.blog.create({
+      data: result.data,
+    });
+
+    res.status(201).json(blog);
+  } catch (error) {
+    console.error("Error creating blog:", error);
+    res.status(500).json({
+      message: "حدث خطأ أثناء إنشاء المقال",
     });
   }
-
-  const blog = await prisma.blog.create({
-    data: result.data,
-  });
-
-  res.status(201).json(blog);
 };
 
 // PUT update blog
