@@ -14,9 +14,13 @@ export const getBlogs = async (
   req: Request,
   res: Response
 ) => {
-  const blogs = await prisma.blog.findMany();
-
-  res.json(blogs);
+  try {
+    const blogs = await prisma.blog.findMany();
+    res.json(blogs);
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ message: "Failed to fetch blogs" });
+  }
 };
 
 // GET single blog
@@ -24,21 +28,26 @@ export const getSingleBlog = async (
   req: Request<SlugParams>,
   res: Response
 ) => {
-  const { slug } = req.params;
+  try {
+    const { slug } = req.params;
 
-  const blog = await prisma.blog.findUnique({
-    where: {
-      slug,
-    },
-  });
-
-  if (!blog) {
-    return res.status(404).json({
-      message: "Blog not found",
+    const blog = await prisma.blog.findUnique({
+      where: {
+        slug,
+      },
     });
-  }
 
-  res.json(blog);
+    if (!blog) {
+      return res.status(404).json({
+        message: "Blog not found",
+      });
+    }
+
+    res.json(blog);
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    res.status(500).json({ message: "Failed to fetch blog" });
+  }
 };
 
 // POST create blog
@@ -74,25 +83,30 @@ export const updateBlog = async (
   req: Request<SlugParams>,
   res: Response
 ) => {
-  const { slug } = req.params;
+  try {
+    const { slug } = req.params;
 
-  const result = updateBlogSchema.safeParse(req.body);
+    const result = updateBlogSchema.safeParse(req.body);
 
-  if (!result.success) {
-    return res.status(400).json({
-      message: "Invalid data",
-      errors: result.error.issues,
+    if (!result.success) {
+      return res.status(400).json({
+        message: "Invalid data",
+        errors: result.error.issues,
+      });
+    }
+
+    const blog = await prisma.blog.update({
+      where: {
+        slug,
+      },
+      data: result.data,
     });
+
+    res.json(blog);
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    res.status(500).json({ message: "Failed to update blog" });
   }
-
-  const blog = await prisma.blog.update({
-    where: {
-      slug,
-    },
-    data: result.data,
-  });
-
-  res.json(blog);
 };
 
 // DELETE blog
@@ -100,16 +114,21 @@ export const deleteBlog = async (
   req: Request<SlugParams>,
   res: Response
 ) => {
-  const { slug } = req.params;
+  try {
+    const { slug } = req.params;
 
-  const blog = await prisma.blog.delete({
-    where: {
-      slug,
-    },
-  });
+    const blog = await prisma.blog.delete({
+      where: {
+        slug,
+      },
+    });
 
-  res.json({
-    message: "Blog deleted successfully",
-    blog,
-  });
+    res.json({
+      message: "Blog deleted successfully",
+      blog,
+    });
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+    res.status(500).json({ message: "Failed to delete blog" });
+  }
 };

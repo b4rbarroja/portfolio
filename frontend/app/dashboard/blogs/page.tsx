@@ -33,10 +33,16 @@ export default function BlogsPage() {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/blogs");
+        if (!res.ok) {
+          console.error("Failed to fetch blogs: HTTP", res.status);
+          setBlogs([]);
+          return;
+        }
         const data = await res.json();
-        setBlogs(data);
+        setBlogs(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+        setBlogs([]);
       }
     };
 
@@ -137,13 +143,15 @@ export default function BlogsPage() {
       });
 
       if (!res.ok) {
-        alert("فشل حذف المقال من السيرفر");
+        const data = await res.json().catch(() => ({}));
+        alert(data?.message || "فشل حذف المقال من السيرفر");
         return;
       }
 
       setBlogs((prev) => prev.filter((blog) => blog.slug !== slug));
     } catch (error) {
-      alert(error);
+      console.error("Error deleting blog:", error);
+      alert("حدث خطأ في الاتصال بالسيرفر أثناء الحذف");
     }
   };
 

@@ -30,11 +30,14 @@ export default function BlogPage() {
   useEffect(() => {
     fetch("/api/blogs", { cache: "no-store" })
       .then((res) => {
-        if (!res.ok) return [];
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data) => setBlogs(Array.isArray(data) ? data : []))
-      .catch(() => setBlogs([]));
+      .catch((err) => {
+        console.error("Failed to fetch blogs:", err);
+        setBlogs([]);
+      });
   }, []);
 
   return (
