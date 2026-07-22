@@ -9,14 +9,14 @@
       "entrypoint": "src/index.ts"
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/$1"
+      "src": "/api/(.*)",
+      "dest": "backend"
     },
     {
-      "source": "/(.*)",
-      "destination": "/frontend/$1"
+      "src": "/(.*)",
+      "dest": "frontend"
     }
   ]
 }
