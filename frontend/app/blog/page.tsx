@@ -28,7 +28,7 @@ export default function BlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/blogs", { cache: "no-store" })
+    fetch("/api/blogs", { cache: "no-store" })
       .then((res) => {
         if (!res.ok) return [];
         return res.json();

@@ -38,7 +38,7 @@ export default function BlogPost({
     const fetchPost = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/blogs/${encodeURIComponent(slug)}`,
+          `/api/blogs/${encodeURIComponent(slug)}`,
         );
         if (!res.ok) {
           setPost(null);

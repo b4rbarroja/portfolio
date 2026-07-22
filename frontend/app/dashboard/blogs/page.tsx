@@ -32,7 +32,7 @@ export default function BlogsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/blogs");
+        const res = await fetch("/api/blogs");
         const data = await res.json();
         setBlogs(data);
       } catch (error) {
@@ -60,7 +60,7 @@ export default function BlogsPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/blogs", {
+      const res = await fetch("/api/blogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export default function BlogsPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/blogs/${encodeURIComponent(slug)}`,
+        `/api/blogs/${encodeURIComponent(slug)}`,
         {
           method: "DELETE",
           headers: {
@@ -132,7 +132,7 @@ export default function BlogsPage() {
 
   const handleDelete = async (slug: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${slug}`, {
+      const res = await fetch(`/api/blogs/${slug}`, {
         method: "DELETE",
       });
 

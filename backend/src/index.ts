@@ -9,18 +9,15 @@ import blogRoutes from "./routes/blogs.ts";
 import authROutes from "./routes/auth.ts";
 
 const app: Express = express();
-const PORT = process.env.PORT;
 app.use(cors());
 
 app.use(express.json());
 
 app.use("/api/auth", authROutes);
-app.use("/projects", projectsRouter);
-app.use("/blogs", blogRoutes);
-app.use("/contact", contactRoutes);
+app.use("/api/projects", projectsRouter);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/contact", contactRoutes);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log("listening rn bro");
-});
+export default app;
