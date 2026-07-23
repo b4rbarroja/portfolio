@@ -17,7 +17,6 @@ interface Blog {
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  // 📝 State خاص ببيانات النموذج (Form Data)
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -110,15 +109,12 @@ export default function BlogsPage() {
     if (!isConfirmed) return;
 
     try {
-      const res = await fetch(
-        `/api/blogs/${encodeURIComponent(slug)}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       const data = await res.json();
 
