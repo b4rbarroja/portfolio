@@ -20,9 +20,11 @@ app.use("/api/contact", contactRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
-});
 export default app;
+
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}

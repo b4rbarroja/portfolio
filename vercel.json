@@ -6,7 +6,12 @@
     },
     {
       "src": "backend/src/index.ts",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "backend/prisma/**"
+        ]
+      }
     }
   ],
   "routes": [
