@@ -37,9 +37,7 @@ export default function ProjectPage({
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:5000/api/projects/${encodeURIComponent(slug)}`,
-        );
+        const res = await fetch(`/api/projects/${encodeURIComponent(slug)}`);
         if (!res.ok) {
           setProject(null);
           return;

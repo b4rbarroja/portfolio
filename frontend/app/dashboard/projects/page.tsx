@@ -34,7 +34,7 @@ export default function DashboardProjectsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/projects");
+        const res = await fetch("/api/projects");
         if (!res.ok) {
           console.error("Failed to fetch projects: HTTP", res.status);
           setProjects([]);
@@ -68,7 +68,7 @@ export default function DashboardProjectsPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/projects", {
+      const res = await fetch("/api/projects", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,9 +111,7 @@ export default function DashboardProjectsPage() {
     if (!isConfirmed) return;
 
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/projects/${encodeURIComponent(slug)}`,
-        {
+      const res = await fetch(`/api/projects/${encodeURIComponent(slug)}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

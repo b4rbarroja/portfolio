@@ -29,7 +29,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/projects");
+        const res = await fetch("/api/projects");
         if (!res.ok) {
           console.error("Failed to fetch projects: HTTP", res.status);
           setProjects([]);
