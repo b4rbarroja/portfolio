@@ -18,6 +18,13 @@
     {
       "src": "/api/(.*)",
       "dest": "backend/src/index.ts"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
