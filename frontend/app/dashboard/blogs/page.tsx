@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
+import { authFetch } from "@/app/lib/authFetch";
 
 interface Blog {
   id: string;
@@ -31,7 +32,7 @@ export default function BlogsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/blogs");
+        const res = await authFetch("/api/blogs");
         if (!res.ok) {
           console.error("Failed to fetch blogs: HTTP", res.status);
           setBlogs([]);
@@ -65,7 +66,7 @@ export default function BlogsPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/blogs", {
+      const res = await authFetch("/api/blogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +110,7 @@ export default function BlogsPage() {
     if (!isConfirmed) return;
 
     try {
-      const res = await fetch(`/api/blogs/${encodeURIComponent(slug)}`, {
+      const res = await authFetch(`/api/blogs/${encodeURIComponent(slug)}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +135,7 @@ export default function BlogsPage() {
 
   const handleDelete = async (slug: string) => {
     try {
-      const res = await fetch(`/api/blogs/${slug}`, {
+      const res = await authFetch(`/api/blogs/${slug}`, {
         method: "DELETE",
       });
 

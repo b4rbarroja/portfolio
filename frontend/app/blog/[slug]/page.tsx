@@ -4,8 +4,8 @@ import { use, useEffect, useState } from "react";
 import { Outfit } from "next/font/google";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { useLanguage } from "../../contexts/LanguageContext";
 import { posts as localPosts } from "../../data/posts";
+import { authFetch } from "@/app/lib/authFetch";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
@@ -29,7 +29,6 @@ export default function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const { lang, dir } = useLanguage();
 
   const [post, setPost] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,9 +36,7 @@ export default function BlogPost({
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(
-          `/api/blogs/${encodeURIComponent(slug)}`,
-        );
+        const res = await authFetch(`/api/blogs/${encodeURIComponent(slug)}`);
         if (!res.ok) {
           setPost(null);
           return;
@@ -60,9 +57,7 @@ export default function BlogPost({
   if (loading) {
     return (
       <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen flex items-center justify-center">
-        <p className="text-gray-400">
-          {lang === "en" ? "Loading article..." : "جاري تحميل المقال..."}
-        </p>
+        <p className="text-gray-400">Loading article...</p>
       </main>
     );
   }
@@ -76,19 +71,15 @@ export default function BlogPost({
         <section
           className={`relative min-h-screen flex flex-col items-center justify-center px-6 ${outfit.className}`}
         >
-          <h1 className="text-4xl font-bold text-white mb-4">
-            {lang === "en" ? "Post Not Found" : "المقال غير موجود"}
-          </h1>
+          <h1 className="text-4xl font-bold text-white mb-4">Post Not Found</h1>
           <p className="text-gray-400 mb-8">
-            {lang === "en"
-              ? "The blog post you are looking for does not exist."
-              : "المقال الذي تبحث عنه غير موجود."}
+            The blog post you are looking for does not exist.
           </p>
           <Link
             href="/blog"
             className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
           >
-            {lang === "en" ? "← Back to Blog" : "→ العودة إلى المدونة"}
+            ← Back to Blog
           </Link>
         </section>
       </main>
@@ -102,29 +93,26 @@ export default function BlogPost({
 
       <section
         className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}
-        dir={dir}
       >
         <article className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 text-gray-400 text-sm mb-4">
             <span className="bg-white/10 text-blue-400 text-xs font-medium px-3 py-1 rounded-full">
-              {local?.category?.[lang] || post.type}
+              {local?.category || post.type}
             </span>
             <span>
               {post.createdAt
-                ? new Date(post.createdAt).toLocaleDateString(lang === "ar" ? "ar-SA" : "en-US", {
+                ? new Date(post.createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
                   })
                 : ""}
             </span>
-            {local?.readTime?.[lang] && (
-              <span>&middot; {local.readTime[lang]}</span>
-            )}
+            {local?.readTime && <span>&middot; {local.readTime}</span>}
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            {local?.title?.[lang] || post.title}
+            {local?.title || post.title}
           </h1>
 
           <div className="mb-10">
@@ -133,7 +121,7 @@ export default function BlogPost({
               className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium"
             >
               <ArrowLeft size={16} />
-              {lang === "en" ? "Back to Blog" : "العودة إلى المدونة"}
+              Back to Blog
             </Link>
           </div>
 
@@ -141,18 +129,15 @@ export default function BlogPost({
             <div className="rounded-2xl overflow-hidden mb-10 border border-white/5">
               <img
                 src={post.image}
-                alt={local?.title?.[lang] || post.title}
+                alt={local?.title || post.title}
                 className="w-full h-auto object-cover"
               />
             </div>
           )}
 
-          <div
-            className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line"
-            dir={dir}
-          >
-            {local?.content?.[lang]
-              ? local.content[lang].map((p, i) => <p key={i}>{p}</p>)
+          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
+            {local?.content
+              ? local.content.map((p, i) => <p key={i}>{p}</p>)
               : post.description}
           </div>
         </article>

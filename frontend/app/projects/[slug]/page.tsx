@@ -4,6 +4,7 @@ import { use, useEffect, useState } from "react";
 import { Outfit } from "next/font/google";
 import Link from "next/link";
 import { ArrowLeft, Globe } from "lucide-react";
+import { authFetch } from "@/app/lib/authFetch";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
@@ -37,7 +38,7 @@ export default function ProjectPage({
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`/api/projects/${encodeURIComponent(slug)}`);
+        const res = await authFetch(`/api/projects/${encodeURIComponent(slug)}`);
         if (!res.ok) {
           setProject(null);
           return;

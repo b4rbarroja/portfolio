@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, FormEvent } from "react";
+import { authFetch } from "@/app/lib/authFetch";
 
 interface Project {
   id: string;
@@ -34,7 +35,7 @@ export default function DashboardProjectsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/projects");
+        const res = await authFetch("/api/projects");
         if (!res.ok) {
           console.error("Failed to fetch projects: HTTP", res.status);
           setProjects([]);
@@ -68,7 +69,7 @@ export default function DashboardProjectsPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/projects", {
+      const res = await authFetch("/api/projects", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,13 +112,12 @@ export default function DashboardProjectsPage() {
     if (!isConfirmed) return;
 
     try {
-      const res = await fetch(`/api/projects/${encodeURIComponent(slug)}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const res = await authFetch(`/api/projects/${encodeURIComponent(slug)}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       const data = await res.json();
 
@@ -158,7 +158,9 @@ export default function DashboardProjectsPage() {
         </p>
 
         <section className="mt-10 rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md">
-          <h2 className="mb-6 text-xl font-bold text-white">إضافة مشروع جديد</h2>
+          <h2 className="mb-6 text-xl font-bold text-white">
+            إضافة مشروع جديد
+          </h2>
 
           <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
             <div>

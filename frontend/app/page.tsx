@@ -6,7 +6,6 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Reviews from "./components/Reviews";
 import Blogs from "./components/Blogs";
-import Footer from "./components/Footer";
 
 export default function Home() {
   return (

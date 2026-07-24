@@ -2,9 +2,9 @@
 
 import { Outfit } from "next/font/google";
 import Link from "next/link";
-import { useLanguage } from "../contexts/LanguageContext";
 import { posts as localPosts } from "../data/posts";
 import { useEffect, useState } from "react";
+import { authFetch } from "@/app/lib/authFetch";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
@@ -24,11 +24,10 @@ interface Blog {
 }
 
 export default function BlogPage() {
-  const { lang, dir } = useLanguage();
   const [blogs, setBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
-    fetch("/api/blogs", { cache: "no-store" })
+    authFetch("/api/blogs", { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
@@ -47,20 +46,15 @@ export default function BlogPage() {
 
       <section
         className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}
-        dir={dir}
       >
         <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            {lang === "en" ? "Blog" : "المدونة"}
-          </h1>
-          <p className="text-gray-400 mt-1">
-            {lang === "en" ? "Thoughts, tutorials and notes" : "أفكار، دروس وملاحظات"}
-          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white">Blog</h1>
+          <p className="text-gray-400 mt-1">Thoughts, tutorials and notes</p>
         </div>
 
         {blogs.length === 0 ? (
           <div className="text-center py-20 text-gray-500">
-            {lang === "en" ? "Not Found rn babe" : "غير موجود حالياً"}
+            Not Found rn babe
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -72,28 +66,33 @@ export default function BlogPage() {
                     <div className="relative w-full h-44 overflow-hidden bg-white/5">
                       <img
                         src={blog.image || "/placeholder.png"}
-                        alt={local?.title?.[lang] || blog.title}
+                        alt={local?.title || blog.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <span className="absolute bottom-3 left-3 bg-white/95 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
-                        {local?.category?.[lang] || blog.type}
+                        {local?.category || blog.type}
                       </span>
                     </div>
 
                     <div className="bg-[#0d1420] p-5 flex-1 flex flex-col">
                       <h3 className="text-white font-semibold text-base leading-snug mb-2 line-clamp-2">
-                        {local?.title?.[lang] || blog.title}
+                        {local?.title || blog.title}
                       </h3>
                       <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
-                        {local?.excerpt?.[lang] || blog.descriptionShort || blog.description}
+                        {local?.excerpt ||
+                          blog.descriptionShort ||
+                          blog.description}
                       </p>
                       <p className="text-gray-500 text-xs mt-auto">
                         {blog.createdAt
-                          ? new Date(blog.createdAt).toLocaleDateString(lang === "ar" ? "ar-SA" : "en-US", {
-                              year: "numeric",
-                              month: "short",
-                              day: "numeric",
-                            })
+                          ? new Date(blog.createdAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              },
+                            )
                           : ""}
                       </p>
                     </div>

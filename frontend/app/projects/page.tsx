@@ -3,6 +3,7 @@
 import { Outfit } from "next/font/google";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { authFetch } from "@/app/lib/authFetch";
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -29,7 +30,7 @@ export default function ProjectsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/projects");
+        const res = await authFetch("/api/projects");
         if (!res.ok) {
           console.error("Failed to fetch projects: HTTP", res.status);
           setProjects([]);
