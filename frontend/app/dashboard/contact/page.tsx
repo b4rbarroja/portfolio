@@ -37,7 +37,7 @@ export default function MessagesPage() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await authFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`);
+        const res = await authFetch("/api/contact");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         setMessages(data);
@@ -57,7 +57,7 @@ export default function MessagesPage() {
     if (!confirmed) return;
 
     try {
-      const res = await authFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/${id}`, {
+      const res = await authFetch(`/api/contact/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);

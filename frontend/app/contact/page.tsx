@@ -21,7 +21,7 @@ export default function ContactPage() {
     e.preventDefault();
     try {
       console.log(form);
-      const res = await authFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
+      const res = await authFetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
