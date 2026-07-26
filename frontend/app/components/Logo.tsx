@@ -11,7 +11,7 @@ export default function Logo({ className = "" }: LogoProps) {
       alt="Logo"
       width={417}
       height={297}
-      className={`h-10 md:h-14 w-auto ${className}`}
+      className={`h-14 md:h-14 w-auto ${className}`}
       priority
     />
   );
