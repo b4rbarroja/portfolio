@@ -1,8 +1,8 @@
 "use client";
 import { useCallback } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "الرئيسية", href: "/" },
@@ -49,15 +49,7 @@ export default function Sidebar({
           <X size={22} />
         </button>
         <Link href="#" onClick={onClose} className="flex justify-center w-full px-6">
-          <Image
-            src="/logoJabr.png"
-            alt="جبر"
-            width={160}
-            height={96}
-            className="w-auto h-24 object-contain"
-            priority
-            quality={100}
-          />
+          <Logo className="text-4xl" />
         </Link>
         <nav className="nav-text flex flex-col items-center gap-6 text-black/60">
           {navLinks.map(({ name, href }) => (

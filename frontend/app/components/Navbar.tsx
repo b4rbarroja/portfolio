@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import Container from "./Container";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "الرئيسية", href: "/" },
@@ -26,15 +26,7 @@ export default function Navbar() {
       >
         <Container className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/logoJabr.png"
-              alt="جبر"
-              width={120}
-              height={80}
-              className="w-auto h-20 object-contain"
-              priority
-              quality={100}
-            />
+            <Logo />
           </Link>
 
           <nav className="nav-text hidden lg:flex items-center gap-8 text-sm text-black">

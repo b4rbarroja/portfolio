@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Reem_Kufi } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -8,6 +8,12 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   weight: ["400", "500", "600", "700"],
   subsets: ["arabic"],
   variable: "--font-primary",
+});
+
+const reemKufi = Reem_Kufi({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["arabic"],
+  variable: "--font-logo",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +31,7 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       suppressHydrationWarning
-      className={`${ibmPlexSansArabic.variable} h-full w-full antialiased`}
+      className={`${ibmPlexSansArabic.variable} ${reemKufi.variable} h-full w-full antialiased`}
     >
       <body className="min-h-full w-full flex flex-col overflow-x-hidden bg-surface font-sans">
         <div className="flex-1 flex flex-col">

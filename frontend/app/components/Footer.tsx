@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
+import Logo from "./Logo";
 
 const quickLinks = [
   { name: "الرئيسية", href: "/" },
@@ -44,14 +44,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-3 text-black">
-              <Image
-                src="/logoJabr.png"
-                alt="جبر"
-                width={120}
-                height={80}
-                className="w-auto h-20 object-contain"
-                quality={100}
-              />
+              <Logo />
             </div>
             <p className="text-black/50 text-sm leading-relaxed mb-6 max-w-xs" >
               {t.tagline}
