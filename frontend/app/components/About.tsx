@@ -49,8 +49,7 @@ export default function About() {
           <Reveal delay={100}>
             <h1 className="text-4xl md:text-6xl font-bold text-black mb-6 leading-tight">
               {t.titleLine1}
-              <br />
-              {t.titleLine2}
+
             </h1>
           </Reveal>
 
