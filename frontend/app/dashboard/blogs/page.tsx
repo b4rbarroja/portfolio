@@ -75,9 +75,7 @@ export default function BlogsPage() {
     try {
       const payload = {
         ...formData,
-        content: formData.content
-          ? JSON.stringify(formData.content.split("\n").filter(Boolean))
-          : undefined,
+        content: formData.content || undefined,
       };
 
       const res = await authFetch("/api/blogs", {
@@ -303,14 +301,14 @@ export default function BlogsPage() {
 
             <div className="sm:col-span-2">
               <label className="mb-2 block text-xs text-black/60">
-                المحتوى (Content) - كل سطر فقرة منفصلة
+                المحتوى (Content) - يدعم Markdown
               </label>
               <textarea 
                 name="content"
-                rows={6}
+                rows={10}
                 value={formData.content}
                 onChange={handleChange}
-                placeholder="اكتب محتوى المقال هنا... كل سطر يمثل فقرة منفصلة"
+                placeholder="اكتب محتوى المقال هنا... يمكنك استخدام Markdown للتنسيق"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
               />
             </div>

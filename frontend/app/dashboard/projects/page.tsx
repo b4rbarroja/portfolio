@@ -318,42 +318,42 @@ export default function DashboardProjectsPage() {
 
             <div className="sm:col-span-2">
               <label className="mb-2 block text-xs text-black/60">
-                الوصف المطول (Full Description)
+                الوصف المطول (Full Description) - يدعم Markdown
               </label>
               <textarea 
                 name="fullDescription"
-                rows={4}
+                rows={6}
                 value={formData.fullDescription}
                 onChange={handleChange}
-                placeholder="وصف تفصيلي طويل للمشروع..."
+                placeholder="وصف تفصيلي طويل للمشروع... يمكنك استخدام Markdown للتنسيق"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
               />
             </div>
 
             <div className="sm:col-span-2">
               <label className="mb-2 block text-xs text-black/60">
-                المشكلة (Problem)
+                المشكلة (Problem) - تدعم Markdown
               </label>
               <textarea 
                 name="problem"
-                rows={3}
+                rows={5}
                 value={formData.problem}
                 onChange={handleChange}
-                placeholder="ما المشكلة التي يحلها هذا المشروع؟"
+                placeholder="ما المشكلة التي يحلها هذا المشروع؟ يمكنك استخدام Markdown"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
               />
             </div>
 
             <div className="sm:col-span-2">
               <label className="mb-2 block text-xs text-black/60">
-                الحل (Solution)
+                الحل (Solution) - يدعم Markdown
               </label>
               <textarea 
                 name="solution"
-                rows={3}
+                rows={5}
                 value={formData.solution}
                 onChange={handleChange}
-                placeholder="كيف قام المشروع بحل المشكلة؟"
+                placeholder="كيف قام المشروع بحل المشكلة؟ يمكنك استخدام Markdown"
                 className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
               />
             </div>

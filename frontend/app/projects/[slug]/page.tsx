@@ -3,6 +3,8 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Globe, Code2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Container from "@/app/components/Container";
 
 interface Project {
@@ -153,9 +155,11 @@ export default function ProjectPage({
                 <span className="text-black/30">✦</span>
                 <span>عن المشروع</span>
               </h2>
-              <p className="text-black/60 text-base md:text-lg leading-relaxed" >
-                {project.fullDescription}
-              </p>
+              <div className="prose prose-lg max-w-none text-black/60">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {project.fullDescription}
+                </ReactMarkdown>
+              </div>
             </div>
           )}
 
@@ -166,9 +170,11 @@ export default function ProjectPage({
                   <span className="text-black/30">✦</span>
                   <span>المشكلة</span>
                 </h2>
-                <p className="text-black/60 leading-relaxed" >
-                  {project.problem}
-                </p>
+                <div className="prose prose-lg max-w-none text-black/60">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {project.problem}
+                  </ReactMarkdown>
+                </div>
               </div>
             )}
             {project.solution && (
@@ -177,9 +183,11 @@ export default function ProjectPage({
                   <span className="text-black/30">✦</span>
                   <span>الحل</span>
                 </h2>
-                <p className="text-black/60 leading-relaxed" >
-                  {project.solution}
-                </p>
+                <div className="prose prose-lg max-w-none text-black/60">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {project.solution}
+                  </ReactMarkdown>
+                </div>
               </div>
             )}
           </div>

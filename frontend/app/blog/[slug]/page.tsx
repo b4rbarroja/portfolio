@@ -3,6 +3,8 @@
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Container from "@/app/components/Container";
 
 interface Blog {
@@ -36,13 +38,14 @@ const t = {
   author: "جبر",
 };
 
-function parseContent(content?: string): string[] {
-  if (!content) return [];
+function parseContent(content?: string): string {
+  if (!content) return "";
   try {
     const parsed = JSON.parse(content);
-    return Array.isArray(parsed) ? parsed : [content];
+    if (Array.isArray(parsed)) return parsed.join("\n\n");
+    return content;
   } catch {
-    return [];
+    return content;
   }
 }
 
@@ -153,11 +156,11 @@ export default function BlogPost({
           )}
 
           <div className="max-w-3xl mx-auto">
-            <div className="body-text space-y-6 text-black/60 text-base md:text-lg">
-              {content.length > 0 ? (
-                content.map((paragraph, i) => (
-                  <p key={i} >{paragraph}</p>
-                ))
+            <div className="prose prose-lg max-w-none text-black/60">
+              {content ? (
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {content}
+                </ReactMarkdown>
               ) : (
                 <p >{post.description}</p>
               )}
