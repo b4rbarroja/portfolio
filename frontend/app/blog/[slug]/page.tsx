@@ -115,7 +115,7 @@ export default function BlogPost({
 
   return (
     <main className="relative min-h-screen">
-      <article className={`py-16 sm:py-20 lg:py-24`}>
+      <article className={`py-16 sm:py-20 lg:py-24`} dir="auto">
         <Container>
           <div className="mb-8 max-w-3xl mx-auto">
             <Link

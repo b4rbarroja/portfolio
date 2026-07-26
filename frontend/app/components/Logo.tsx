@@ -4,8 +4,12 @@ interface LogoProps {
 
 export default function Logo({ className = "" }: LogoProps) {
   return (
-    <span className={`logo-font text-4xl font-bold tracking-tight ${className}`}>
-      جبر
+    <span className={`inline-flex items-center ${className}`}>
+      <img
+        src="/jabr2-cropped.png"
+        alt="جبر"
+        className="h-10 w-auto brightness-0"
+      />
     </span>
   );
 }
