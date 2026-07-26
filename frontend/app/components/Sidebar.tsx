@@ -79,7 +79,7 @@ export default function Sidebar({
             onClick={onClose}
             className="btn-text bg-black text-white px-5 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
           >
-            Let&rsquo;s Talk →
+            تواصل معي
           </button>
         </Link>
       </aside>
