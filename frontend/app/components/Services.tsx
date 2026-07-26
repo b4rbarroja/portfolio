@@ -37,8 +37,8 @@ export default function Services() {
       <Container>
         <Reveal>
           <div className="flex justify-center items-center flex-col text-center mb-14 w-full max-w-3xl">
-            <span className="text-black/30 text-2xl mb-2">+</span>
-            <h2 className="text-6xl font-bold text-black mb-4" >
+            <span className="text-black/30 text-sm md:text-base mb-2">+</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4" >
               ما أقدمه
             </h2>
             <div className="w-full border-t border-dashed border-black/10" />
@@ -51,8 +51,8 @@ export default function Services() {
                 <div className="w-20 h-20 rounded-full border border-black/10 flex items-center justify-center">
                   <Icon className="w-9 h-9 text-black" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-3xl font-semibold text-black" >{title}</h3>
-                <p className="text-black/50 text-xl leading-relaxed" >
+                <h3 className="text-xl md:text-2xl font-semibold text-black" >{title}</h3>
+                <p className="text-black/50 text-sm md:text-base leading-relaxed" >
                   {description}
                 </p>
               </div>

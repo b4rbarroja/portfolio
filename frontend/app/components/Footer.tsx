@@ -46,7 +46,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-3 text-black">
               <Logo />
             </div>
-            <p className="text-black/50 text-lg leading-relaxed mb-6 max-w-xs">
+            <p className="text-black/50 text-base md:text-lg leading-relaxed mb-6 max-w-xs">
               {t.tagline}
             </p>
             <div className="flex items-center gap-3">
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-black font-semibold text-lg mb-4 tracking-wide">
+            <h3 className="text-black font-semibold text-base md:text-lg mb-4 tracking-wide">
               {t.quickLinksTitle}
             </h3>
             <ul className="space-y-3">
@@ -100,7 +100,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-black font-semibold text-lg mb-4 tracking-wide">
+            <h3 className="text-black font-semibold text-base md:text-lg mb-4 tracking-wide">
               {t.servicesTitle}
             </h3>
             <ul className="space-y-3">
@@ -118,7 +118,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-black font-semibold text-lg mb-4 tracking-wide">
+            <h3 className="text-black font-semibold text-base md:text-lg mb-4 tracking-wide">
               {t.contactTitle}
             </h3>
             <ul className="space-y-3">

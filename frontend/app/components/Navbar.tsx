@@ -25,12 +25,12 @@ export default function Navbar() {
           <Link href="/" className="flex items-center">
             <Logo />
           </Link>
-          <nav className="hidden lg:flex items-center gap-9 text-black text-xl">
+          <nav className="hidden lg:flex items-center gap-9 text-black text-sm md:text-base">
             {navLinks.map((link, idx) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative transition hover:text-black/70 text-xl ${
+                className={`relative transition hover:text-black/70 text-sm md:text-base ${
                   idx === 0 ? "text-black" : "text-black/70"
                 }`}
               >
@@ -44,7 +44,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-8 py-3.5 text-black shadow-sm transition hover:bg-black hover:text-white text-xl"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-8 py-3.5 text-black shadow-sm transition hover:bg-black hover:text-white text-sm md:text-base"
             >
               تحدث معي
               <span className="rotate-45">↑</span>

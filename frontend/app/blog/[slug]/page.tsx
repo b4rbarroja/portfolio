@@ -92,15 +92,15 @@ export default function BlogPost({
           className={`min-h-screen flex flex-col items-center justify-center px-6`}
         >
           <span className="text-black/20 text-6xl mb-6">✦</span>
-          <h1 className="text-4xl font-bold text-black mb-4" >
+          <h1 className="text-3xl md:text-4xl font-bold text-black mb-4" >
             المقال غير موجود
           </h1>
-          <p className="text-black/40 mb-8" >
+          <p className="text-black/40 text-base md:text-lg mb-8" >
             المقال الذي تبحث عنه غير موجود.
           </p>
           <Link
             href="/blog"
-            className="text-lg bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+            className="text-sm md:text-base bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
 
 >
             <span>←</span>
@@ -120,14 +120,14 @@ export default function BlogPost({
           <div className="mb-8 max-w-3xl mx-auto">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm md:text-base font-medium mb-6"
 
             >
               <ArrowLeft size={16} />
               <span>{t.backToBlog}</span>
             </Link>
 
-            <div className="flex flex-wrap items-center gap-3 text-black/40 text-sm mb-3">
+            <div className="flex flex-wrap items-center gap-3 text-black/40 text-sm md:text-base mb-3">
               <span className="border border-black/10 text-black/60 text-xs font-medium px-3 py-1 rounded-full bg-white" >
                 {categoryMap[post.type] || post.type}
               </span>
@@ -135,11 +135,11 @@ export default function BlogPost({
               {post.readTime && <span>&middot; {post.readTime} {t.readTime}</span>}
             </div>
 
-            <h1 className="text-5xl font-bold text-black mb-4" >
+            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4" >
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-2 text-black/40 text-sm" >
+            <div className="flex items-center gap-2 text-black/40 text-sm md:text-base" >
               <span>{t.by}</span>
               <span className="font-medium text-black/60">{t.author}</span>
             </div>
@@ -169,16 +169,16 @@ export default function BlogPost({
 
           {nextPost && (
             <div className="border-t border-black/10 pt-12 mt-16 max-w-3xl mx-auto">
-              <p className="text-black/30 text-sm mb-4" >{t.nextArticle}</p>
+              <p className="text-black/30 text-sm md:text-base mb-4" >{t.nextArticle}</p>
               <Link
                 href={`/blog/${nextPost.slug}`}
                 className="group flex items-center justify-between rounded-2xl border border-black/10 p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 bg-white"
               >
                 <div>
-                  <h3 className="text-black font-bold text-xl" >
+                  <h3 className="text-black font-bold text-xl md:text-2xl" >
                     {nextPost.title}
                   </h3>
-                  <p className="text-black/50 text-sm mt-1 line-clamp-2" >
+                  <p className="text-black/50 text-sm md:text-base mt-1 line-clamp-2" >
                     {nextPost.excerpt || nextPost.descriptionShort || nextPost.description}
                   </p>
                 </div>

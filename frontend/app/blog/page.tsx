@@ -54,16 +54,16 @@ export default function BlogPage() {
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
             <div>
-              <p className="text-black/40 text-sm mb-1" >{t.label}</p>
-              <h1 className="text-5xl font-bold text-black flex items-center gap-2" >
+              <p className="text-black/40 text-sm md:text-base mb-1" >{t.label}</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-black flex items-center gap-2" >
                 <span>{t.title}</span>
                 <span className="text-black/30">✦</span>
               </h1>
-              <p className="text-black/50 mt-2" >{t.subtitle}</p>
+              <p className="text-black/50 text-base md:text-lg mt-2" >{t.subtitle}</p>
             </div>
             <Link
               href="/"
-              className="text-black font-medium text-sm hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+              className="text-black font-medium text-sm md:text-base hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
  
             >
               <span>←</span>
@@ -96,10 +96,10 @@ export default function BlogPage() {
                     </span>
                   </div>
                   <div className="p-5">
-                    <h2 className="text-black font-semibold text-base leading-snug mb-2 line-clamp-2" >
+                    <h2 className="text-black font-semibold text-xl md:text-2xl leading-snug mb-2 line-clamp-2" >
                       {post.title}
                     </h2>
-                    <p className="text-black/60 text-sm leading-relaxed mb-4 line-clamp-3" >
+                    <p className="text-black/60 text-sm md:text-base leading-relaxed mb-4 line-clamp-3" >
                       {post.excerpt || post.descriptionShort || post.description}
                     </p>
                     <div className="flex items-center justify-between text-black/40 text-xs">

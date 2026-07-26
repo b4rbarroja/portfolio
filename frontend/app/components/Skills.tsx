@@ -24,11 +24,11 @@ export default function Skills() {
       <Container className="flex flex-col justify-center items-center gap-10">
         <Reveal>
           <div className="flex justify-center items-center flex-col text-center gap-3 max-w-lg">
-            <span className="text-black/30 text-2xl">✦</span>
-            <h2 className="text-6xl font-bold text-black">
+            <span className="text-black/30 text-sm md:text-base">✦</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black">
               التقنيات التي أستخدمها
             </h2>
-            <p className="text-black/50 text-lg">
+            <p className="text-black/50 text-base md:text-lg">
               أدوات وتقنيات حديثة أستخدمها لبناء حلول رقمية عالية الجودة.
             </p>
             <div className="w-10 border-t border-dashed border-black/10 mt-1" />
@@ -55,10 +55,10 @@ export default function Skills() {
                       className="w-9 h-9 sm:w-10 sm:h-10"
                     />
                     <div className="flex flex-col gap-1">
-                      <p className="text-black font-semibold text-2xl">
+                      <p className="text-black font-semibold text-xl md:text-2xl">
                         {skill.name}
                       </p>
-                      <p className="text-black/40 text-xl">{skill.desc}</p>
+                      <p className="text-black/40 text-sm md:text-base">{skill.desc}</p>
                     </div>
                   </div>
                 </div>

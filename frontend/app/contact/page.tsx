@@ -37,17 +37,17 @@ export default function ContactPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <p className="text-black/40 text-lg mb-1">✦ تواصل</p>
-              <h1 className="text-6xl font-bold text-black mb-2">
+              <p className="text-black/40 text-sm md:text-base mb-1">✦ تواصل</p>
+              <h1 className="text-4xl md:text-6xl font-bold text-black mb-2">
                 تواصل معي
               </h1>
-              <p className="text-black/50 text-xl mb-8 max-w-md">
+              <p className="text-black/50 text-base md:text-lg mb-8 max-w-md">
                 عندك فكرة مشروع أو استفسار؟ املأ الفورم وسأعود إليك في أقرب وقت.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-5 max-w-lg">
                 <div>
-                  <label className="block text-lg text-black/40 mb-1.5">
+                  <label className="block text-sm md:text-base text-black/40 mb-1.5">
                     الاسم
                   </label>
                   <input
@@ -63,7 +63,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-lg text-black/40 mb-1.5">
+                  <label className="block text-sm md:text-base text-black/40 mb-1.5">
                     البريد الإلكتروني
                   </label>
                   <input
@@ -79,7 +79,7 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-lg text-black/40 mb-1.5">
+                  <label className="block text-sm md:text-base text-black/40 mb-1.5">
                     الرسالة
                   </label>
                   <textarea
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === "loading" || status === "success"}
-                  className="text-xl bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="text-sm md:text-base bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === "loading" && <span>جاري الإرسال...</span>}
                   {status === "success" && <span>✓ تم الإرسال!</span>}
@@ -115,40 +115,40 @@ export default function ContactPage() {
             <div className="lg:pt-16">
               <div className="border border-black/10 rounded-2xl p-8 bg-white space-y-8">
                 <div>
-                  <h3 className="text-black font-semibold text-lg mb-3 flex items-center gap-2">
+                  <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
                     <span className="text-black/30">✦</span>
                     <span>البريد الإلكتروني</span>
                   </h3>
                   <a
                     href="mailto:m7mdjbr1426@gmail.com"
-                    className="text-black/60 hover:text-black transition-colors text-lg"
+                    className="text-black/60 hover:text-black transition-colors text-base md:text-lg"
                   >
                     m7mdjbr1426@gmail.com
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-black font-semibold text-lg mb-3 flex items-center gap-2">
+                  <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
                     <span className="text-black/30">✦</span>
                     <span>الهاتف</span>
                   </h3>
-                  <p className="text-black/60 text-lg">
+                  <p className="text-black/60 text-base md:text-lg">
                     ٠٨٩١ ٦٥٦ ١٠٠ ٢٠+
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-black font-semibold text-lg mb-3 flex items-center gap-2">
+                  <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
                     <span className="text-black/30">✦</span>
                     <span>الموقع</span>
                   </h3>
-                  <p className="text-black/60 text-lg">
+                  <p className="text-black/60 text-base md:text-lg">
                     منوفية، مصر
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-black font-semibold text-lg mb-3 flex items-center gap-2">
+                  <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
                     <span className="text-black/30">✦</span>
                     <span>روابط التواصل</span>
                   </h3>

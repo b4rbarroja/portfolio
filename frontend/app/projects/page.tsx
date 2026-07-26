@@ -51,16 +51,16 @@ export default function ProjectsPage() {
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
             <div>
-              <p className="text-black/40 text-sm mb-1" >✦ أعمالي</p>
-              <h1 className="text-5xl font-bold text-black flex items-center gap-2" >
+              <p className="text-black/40 text-sm md:text-base mb-1" >✦ أعمالي</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-black flex items-center gap-2" >
                 <span>جميع المشاريع</span>
                 <span className="text-black/30">✦</span>
               </h1>
-              <p className="text-black/50 mt-2" >بعض من المشاريع التي قمت ببنائها</p>
+              <p className="text-black/50 text-base md:text-lg mt-2" >بعض من المشاريع التي قمت ببنائها</p>
             </div>
             <Link
               href="/"
-              className="text-black font-medium text-sm hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+              className="text-black font-medium text-sm md:text-base hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
  
             >
               <span>←</span>
@@ -90,10 +90,10 @@ export default function ProjectsPage() {
                     />
                   </div>
                   <div className="p-5">
-                    <h2 className="text-black font-semibold text-lg mb-2" >
+                    <h2 className="text-black font-semibold text-xl md:text-2xl mb-2" >
                       {project.title}
                     </h2>
-                    <p className="text-black/50 text-sm mb-4 leading-relaxed line-clamp-2" >
+                    <p className="text-black/50 text-sm md:text-base mb-4 leading-relaxed line-clamp-2" >
                       {project.descriptionShort || project.description}
                     </p>
                     <div className="flex flex-wrap justify-end gap-2">

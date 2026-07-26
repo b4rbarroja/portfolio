@@ -51,16 +51,16 @@ export default function Projects() {
         <Reveal>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
             <div>
-              <p className="text-black/40 text-xl mb-1">{arabicText.sectionLabel}</p>
-              <h2 className="text-7xl font-bold text-black flex items-center gap-2">
+              <p className="text-black/40 text-sm md:text-base mb-1">{arabicText.sectionLabel}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-black flex items-center gap-2">
                 <span>{arabicText.title}</span>
                 <span className="text-black/30">✦</span>
               </h2>
-              <p className="text-black/50 text-2xl mt-1">{arabicText.subtitle}</p>
+              <p className="text-black/50 text-base md:text-lg mt-1">{arabicText.subtitle}</p>
             </div>
             <Link
               href="/projects"
-              className="text-black font-medium text-xl hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+              className="text-black font-medium text-sm md:text-base hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
             >
               <span>{arabicText.viewAll}</span>
             </Link>
@@ -89,8 +89,8 @@ export default function Projects() {
                     />
                   </div>
                   <div className="bg-white p-5">
-                    <h3 className="text-black font-semibold text-3xl mb-2">{project.title}</h3>
-                    <p className="text-black/50 text-lg mb-4 leading-relaxed">
+                    <h3 className="text-black font-semibold text-xl md:text-2xl mb-2">{project.title}</h3>
+                    <p className="text-black/50 text-sm md:text-base mb-4 leading-relaxed">
                       {project.descriptionShort || project.description}
                     </p>
                     <div className="flex items-center justify-between">

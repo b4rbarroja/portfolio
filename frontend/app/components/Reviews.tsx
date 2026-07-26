@@ -51,11 +51,11 @@ export default function Testimonials() {
       <Container>
         <Reveal>
           <div className="flex flex-col items-center text-center mb-12 gap-2">
-            <span className="text-black/30 text-lg">✦</span>
-            <h2 className="text-5xl font-bold text-black" >
+            <span className="text-black/30 text-sm md:text-base">✦</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-black" >
               ما يقوله العملاء
             </h2>
-            <p className="text-black/50" >آراء العملاء الذين عملت معهم</p>
+            <p className="text-black/50 text-base md:text-lg" >آراء العملاء الذين عملت معهم</p>
           </div>
         </Reveal>
 
@@ -73,10 +73,10 @@ export default function Testimonials() {
             {testimonials.map((t, index) => (
               <Reveal key={t.name} delay={index * 100}>
                 <div className="rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5">
-                  <span className="text-black/20 text-4xl font-bold leading-none">
+                  <span className="text-black/20 text-2xl font-bold leading-none">
                     &rdquo;
                   </span>
-                  <p className="text-black/70 text-sm leading-relaxed mt-2 mb-6" >
+                  <p className="text-black/70 text-sm md:text-base leading-relaxed mt-2 mb-6" >
                     {t.quote}
                   </p>
                   <div className="flex items-center gap-3">
@@ -84,10 +84,10 @@ export default function Testimonials() {
                       {t.initials}
                     </div>
                     <div>
-                      <p className="text-black text-sm font-semibold" >
+                      <p className="text-black text-sm md:text-base font-semibold" >
                         {t.name}
                       </p>
-                      <p className="text-black/40 text-xs" >{t.role}</p>
+                      <p className="text-black/40 text-xs md:text-sm" >{t.role}</p>
                     </div>
                   </div>
                 </div>

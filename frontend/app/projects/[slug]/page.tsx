@@ -77,13 +77,13 @@ export default function ProjectPage({
           className={`min-h-screen flex flex-col items-center justify-center px-6`}
         >
           <span className="text-black/20 text-6xl mb-6">✦</span>
-          <h1 className="text-4xl font-bold text-black mb-4" >
+          <h1 className="text-3xl md:text-4xl font-bold text-black mb-4" >
             المشروع غير موجود
           </h1>
-          <p className="text-black/40 mb-8" >المشروع الذي تبحث عنه غير موجود.</p>
+          <p className="text-black/40 text-base md:text-lg mb-8" >المشروع الذي تبحث عنه غير موجود.</p>
           <Link
             href="/projects"
-            className="text-lg bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+            className="text-sm md:text-base bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
 
 >
             <span>←</span>
@@ -103,18 +103,18 @@ export default function ProjectPage({
           <div className="mb-8">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm font-medium mb-6"
- 
+              className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm md:text-base font-medium mb-6"
+
             >
               <ArrowLeft size={16} />
               <span>العودة إلى المشاريع</span>
             </Link>
 
-            <h1 className="text-5xl font-bold text-black mb-4" >
+            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4" >
               {project.title}
             </h1>
 
-            <p className="text-black/50 text-lg max-w-2xl" >
+            <p className="text-black/50 text-base md:text-lg max-w-2xl" >
               {project.description}
             </p>
           </div>
@@ -131,7 +131,7 @@ export default function ProjectPage({
 
           {tags.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2" >
+              <h2 className="text-xl md:text-2xl font-bold text-black mb-4 flex items-center gap-2" >
                 <span className="text-black/30">✦</span>
                 <span>التقنيات المستخدمة</span>
               </h2>
@@ -151,7 +151,7 @@ export default function ProjectPage({
 
           {project.fullDescription && (
             <div className="mb-12 max-w-3xl">
-              <h2 className="text-lg font-bold text-black mb-4 flex items-center gap-2" >
+              <h2 className="text-xl md:text-2xl font-bold text-black mb-4 flex items-center gap-2" >
                 <span className="text-black/30">✦</span>
                 <span>عن المشروع</span>
               </h2>
@@ -166,7 +166,7 @@ export default function ProjectPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {project.problem && (
               <div className="border border-black/10 rounded-2xl p-6 bg-white">
-                <h2 className="text-lg font-bold text-black mb-3 flex items-center gap-2" >
+                <h2 className="text-xl md:text-2xl font-bold text-black mb-3 flex items-center gap-2" >
                   <span className="text-black/30">✦</span>
                   <span>المشكلة</span>
                 </h2>
@@ -179,7 +179,7 @@ export default function ProjectPage({
             )}
             {project.solution && (
               <div className="border border-black/10 rounded-2xl p-6 bg-white">
-                <h2 className="text-lg font-bold text-black mb-3 flex items-center gap-2" >
+                <h2 className="text-xl md:text-2xl font-bold text-black mb-3 flex items-center gap-2" >
                   <span className="text-black/30">✦</span>
                   <span>الحل</span>
                 </h2>
@@ -198,8 +198,8 @@ export default function ProjectPage({
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
- 
+                className="text-sm md:text-base bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+
               >
                 <Globe size={18} />
                 <span>المشروع المباشر</span>
@@ -211,8 +211,8 @@ export default function ProjectPage({
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg border border-black/10 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 flex items-center gap-2"
- 
+                className="text-sm md:text-base border border-black/10 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 flex items-center gap-2"
+
               >
                 <Code2 size={18} />
                 <span>الكود المصدري</span>
@@ -222,16 +222,16 @@ export default function ProjectPage({
 
           {nextProject && (
             <div className="border-t border-black/10 pt-12">
-              <p className="text-black/30 text-sm mb-4" >✦ المشروع التالي</p>
+              <p className="text-black/30 text-sm md:text-base mb-4" >✦ المشروع التالي</p>
               <Link
                 href={`/projects/${nextProject.slug}`}
                 className="group flex items-center justify-between rounded-2xl border border-black/10 p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 bg-white"
               >
                 <div>
-                  <h3 className="text-black font-bold text-xl" >
+                  <h3 className="text-black font-bold text-xl md:text-2xl" >
                     {nextProject.title}
                   </h3>
-                  <p className="text-black/50 text-sm mt-1" >
+                  <p className="text-black/50 text-sm md:text-base mt-1" >
                     {nextProject.descriptionShort || nextProject.description}
                   </p>
                 </div>
