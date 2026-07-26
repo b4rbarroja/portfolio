@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "./Container";
+import { Reveal } from "./Reveal";
 
 const testimonials = [
   {
@@ -48,13 +49,15 @@ export default function Testimonials() {
       className={`py-16 sm:py-20 lg:py-24`}
     >
       <Container>
-        <div className="flex flex-col items-center text-center mb-12 gap-2">
-          <span className="text-black/30 text-lg">✦</span>
-          <h2 className="text-5xl font-bold text-black" >
-            ما يقوله العملاء
-          </h2>
-          <p className="text-black/50" >آراء العملاء الذين عملت معهم</p>
-        </div>
+        <Reveal>
+          <div className="flex flex-col items-center text-center mb-12 gap-2">
+            <span className="text-black/30 text-lg">✦</span>
+            <h2 className="text-5xl font-bold text-black" >
+              ما يقوله العملاء
+            </h2>
+            <p className="text-black/50" >آراء العملاء الذين عملت معهم</p>
+          </div>
+        </Reveal>
 
         <div className="relative flex items-center gap-4">
           <button
@@ -67,29 +70,28 @@ export default function Testimonials() {
           </button>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5"
-              >
-                <span className="text-black/20 text-4xl font-bold leading-none">
-                  &rdquo;
-                </span>
-                <p className="text-black/70 text-sm leading-relaxed mt-2 mb-6" >
-                  {t.quote}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white text-xs font-semibold">
-                    {t.initials}
-                  </div>
-                  <div>
-                    <p className="text-black text-sm font-semibold" >
-                      {t.name}
-                    </p>
-                    <p className="text-black/40 text-xs" >{t.role}</p>
+            {testimonials.map((t, index) => (
+              <Reveal key={t.name} delay={index * 100}>
+                <div className="rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5">
+                  <span className="text-black/20 text-4xl font-bold leading-none">
+                    &rdquo;
+                  </span>
+                  <p className="text-black/70 text-sm leading-relaxed mt-2 mb-6" >
+                    {t.quote}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white text-xs font-semibold">
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="text-black text-sm font-semibold" >
+                        {t.name}
+                      </p>
+                      <p className="text-black/40 text-xs" >{t.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 

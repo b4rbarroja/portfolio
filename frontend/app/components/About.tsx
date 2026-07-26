@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Code2, User, Zap } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 const t = {
   label: "عني",
@@ -25,50 +26,60 @@ export default function About() {
     >
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10 items-center">
         <div className="order-2 lg:order-1 text-center lg:text-right">
-          <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-4xl">
-            <span>{t.label}</span>
-            <span className="text-black/40">✦</span>
-          </div>
-
-          <h1 className="text-6xl md:text-7xl font-bold text-black mb-6 leading-tight">
-            {t.titleLine1}
-            <br />
-            {t.titleLine2}
-          </h1>
-
-          <p className="text-black/50 text-xl md:text-2xl mb-8 max-w-lg mx-auto lg:mx-0">
-            {t.paragraph}
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-12">
-            <Link href="/contact">
-              <button className="text-xl bg-black text-white px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-                <span>{t.contactBtn}</span>
-
-              </button>
-            </Link>
-            <Link
-              href="/projects"
-              className="text-black font-medium text-xl underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all"
-            >
-              {t.viewWork}
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
-            <div className="flex flex-col items-center lg:items-end gap-2">
-              <h2 className="text-4xl font-bold text-black">+5</h2>
-              <p className="text-black/40 text-xl">{t.stat1}</p>
+          <Reveal delay={0}>
+            <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-4xl">
+              <span>{t.label}</span>
+              <span className="text-black/40">✦</span>
             </div>
-            <div className="flex flex-col items-center lg:items-end gap-2">
-              <h2 className="text-4xl font-bold text-black">-</h2>
-              <p className="text-black/40 text-xl">{t.stat2}</p>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <h1 className="text-6xl md:text-7xl font-bold text-black mb-6 leading-tight">
+              {t.titleLine1}
+              <br />
+              {t.titleLine2}
+            </h1>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <p className="text-black/50 text-xl md:text-2xl mb-8 max-w-lg mx-auto lg:mx-0">
+              {t.paragraph}
+            </p>
+          </Reveal>
+
+          <Reveal delay={300}>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-12">
+              <Link href="/contact">
+                <button className="text-xl bg-black text-white px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                  <span>{t.contactBtn}</span>
+
+                </button>
+              </Link>
+              <Link
+                href="/projects"
+                className="text-black font-medium text-xl underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all"
+              >
+                {t.viewWork}
+              </Link>
             </div>
-            <div className="flex flex-col items-center lg:items-end gap-2">
-              <h2 className="text-4xl font-bold text-black">100%</h2>
-              <p className="text-black/40 text-xl">{t.stat3}</p>
+          </Reveal>
+
+          <Reveal delay={400}>
+            <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+              <div className="flex flex-col items-center lg:items-end gap-2">
+                <h2 className="text-4xl font-bold text-black">+5</h2>
+                <p className="text-black/40 text-xl">{t.stat1}</p>
+              </div>
+              <div className="flex flex-col items-center lg:items-end gap-2">
+                <h2 className="text-4xl font-bold text-black">-</h2>
+                <p className="text-black/40 text-xl">{t.stat2}</p>
+              </div>
+              <div className="flex flex-col items-center lg:items-end gap-2">
+                <h2 className="text-4xl font-bold text-black">100%</h2>
+                <p className="text-black/40 text-xl">{t.stat3}</p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="order-1 lg:order-2 relative flex justify-center lg:justify-start">
@@ -79,64 +90,66 @@ export default function About() {
             ))}
           </div>
 
-          <div className="relative w-full max-w-[480px]">
-            <svg
-              viewBox="0 0 480 420"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-auto"
-            >
-              <circle cx="240" cy="210" r="180" fill="black" fillOpacity="0.03" />
-              <circle cx="240" cy="210" r="180" stroke="black" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 6" />
-
-              <rect x="90" y="80" width="300" height="200" rx="14" stroke="black" strokeWidth="2.5" />
-              <line x1="90" y1="118" x2="390" y2="118" stroke="black" strokeWidth="2.5" />
-              <circle cx="108" cy="99" r="4" fill="black" />
-              <circle cx="122" cy="99" r="4" fill="black" fillOpacity="0.4" />
-              <circle cx="136" cy="99" r="4" fill="black" fillOpacity="0.2" />
-
-              <text
-                x="240"
-                y="215"
-                textAnchor="middle"
-                fontFamily="monospace"
-                fontSize="56"
-                fontWeight="700"
-                fill="black"
+          <Reveal delay={200} duration={800}>
+            <div className="relative w-full max-w-[480px]">
+              <svg
+                viewBox="0 0 480 420"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-auto"
               >
-                {"</>"}
-              </text>
+                <circle cx="240" cy="210" r="180" fill="black" fillOpacity="0.03" />
+                <circle cx="240" cy="210" r="180" stroke="black" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 6" />
 
-              <line x1="115" y1="145" x2="175" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-              <line x1="115" y1="245" x2="150" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-              <line x1="305" y1="145" x2="365" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-              <line x1="330" y1="245" x2="365" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
+                <rect x="90" y="80" width="300" height="200" rx="14" stroke="black" strokeWidth="2.5" />
+                <line x1="90" y1="118" x2="390" y2="118" stroke="black" strokeWidth="2.5" />
+                <circle cx="108" cy="99" r="4" fill="black" />
+                <circle cx="122" cy="99" r="4" fill="black" fillOpacity="0.4" />
+                <circle cx="136" cy="99" r="4" fill="black" fillOpacity="0.2" />
 
-              <path d="M60 280 L420 280 L400 300 L80 300 Z" stroke="black" strokeWidth="2.5" strokeLinejoin="round" />
-              <line x1="215" y1="290" x2="265" y2="290" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
+                <text
+                  x="240"
+                  y="215"
+                  textAnchor="middle"
+                  fontFamily="monospace"
+                  fontSize="56"
+                  fontWeight="700"
+                  fill="black"
+                >
+                  {"</>"}
+                </text>
 
-              <g>
-                <rect x="20" y="150" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
-                <text x="43" y="179" textAnchor="middle" fontFamily="monospace" fontWeight="700" fontSize="16" fill="black">{"{ }"}</text>
-              </g>
-              <g>
-                <rect x="405" y="60" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
-                <path d="M420 83 l7 -7 M420 83 l7 7 M436 76 l7 7 M436 90 l-7 -7" stroke="black" strokeWidth="2" strokeLinecap="round" />
-              </g>
-              <g>
-                <circle cx="425" cy="330" r="24" stroke="black" strokeWidth="2" />
-                <path d="M418 330 l5 5 l10 -10" stroke="black" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              </g>
+                <line x1="115" y1="145" x2="175" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
+                <line x1="115" y1="245" x2="150" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
+                <line x1="305" y1="145" x2="365" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
+                <line x1="330" y1="245" x2="365" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
 
-              <path d="M35 60 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z" fill="black" fillOpacity="0.15" />
-              <path d="M455 220 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z" fill="black" fillOpacity="0.2" />
-            </svg>
+                <path d="M60 280 L420 280 L400 300 L80 300 Z" stroke="black" strokeWidth="2.5" strokeLinejoin="round" />
+                <line x1="215" y1="290" x2="265" y2="290" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
 
-            <div className="absolute -bottom-4 right-1/2 translate-x-1/2 lg:right-8 lg:translate-x-0 bg-black rounded-full px-5 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
-              <Code2 className="w-4 h-4 text-white" strokeWidth={2} />
-              <span className="text-white text-lg sm:text-base font-medium">{t.badge}</span>
+                <g>
+                  <rect x="20" y="150" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
+                  <text x="43" y="179" textAnchor="middle" fontFamily="monospace" fontWeight="700" fontSize="16" fill="black">{"{ }"}</text>
+                </g>
+                <g>
+                  <rect x="405" y="60" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
+                  <path d="M420 83 l7 -7 M420 83 l7 7 M436 76 l7 7 M436 90 l-7 -7" stroke="black" strokeWidth="2" strokeLinecap="round" />
+                </g>
+                <g>
+                  <circle cx="425" cy="330" r="24" stroke="black" strokeWidth="2" />
+                  <path d="M418 330 l5 5 l10 -10" stroke="black" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                </g>
+
+                <path d="M35 60 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z" fill="black" fillOpacity="0.15" />
+                <path d="M455 220 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z" fill="black" fillOpacity="0.2" />
+              </svg>
+
+              <div className="absolute -bottom-4 right-1/2 translate-x-1/2 lg:right-8 lg:translate-x-0 bg-black rounded-full px-5 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
+                <Code2 className="w-4 h-4 text-white" strokeWidth={2} />
+                <span className="text-white text-lg sm:text-base font-medium">{t.badge}</span>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

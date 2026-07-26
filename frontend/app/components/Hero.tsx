@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Container from "./Container";
+import { Reveal } from "./Reveal";
 
 const orbitIcons = [
   { src: "/react.png", top: "-8%", left: "-10%", size: 64, delay: "0s" },
@@ -120,56 +121,68 @@ export default function Hero() {
       <Container className="py-16 sm:py-20 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-1 lg:order-1">
-            <div className="flex items-center gap-2 mb-5 text-black/40 text-2xl">
-              <span>✦</span>
-              <span>مطور ويب متكامل</span>
-            </div>
-
-            <h1 className="text-7xl md:text-8xl font-bold max-w-xl leading-tight">
-              أبني منتجات رقمية
-              <br />
-              <span className="relative inline-block">
-                تدفع الأعمال إلى الأمام.
-              </span>
-            </h1>
-
-            <p className="text-2xl mt-8 text-black/60 max-w-lg">
-              أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
-              تساعد العلامات التجارية على النمو.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mt-10">
-              <Link href="/projects">
-                <button className="text-xl bg-black text-white px-11 py-5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-
-                  استعرض المشاريع
-                </button>
-              </Link>
-              <Link href="/contact">
-                <button className="text-xl border border-black/15 px-11 py-5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
-                  تحدث عن مشروعك
-                </button>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-3 gap-8 mt-14">
-              <div>
-                <h2 className="text-4xl font-bold">100%</h2>
-                <p className="text-black/50 text-xl">التزام بالجودة</p>
+            <Reveal delay={0}>
+              <div className="flex items-center gap-2 mb-5 text-black/40 text-2xl">
+                <span>✦</span>
+                <span>مطور ويب متكامل</span>
               </div>
-              <div>
-                <h2 className="text-4xl font-bold">-</h2>
-                <p className="text-black/50 text-xl">سنوات خبرة</p>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <h1 className="text-7xl md:text-8xl font-bold max-w-xl leading-tight">
+                أبني منتجات رقمية
+                <br />
+                <span className="relative inline-block">
+                  تدفع الأعمال إلى الأمام.
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <p className="text-2xl mt-8 text-black/60 max-w-lg">
+                أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
+                تساعد العلامات التجارية على النمو.
+              </p>
+            </Reveal>
+
+            <Reveal delay={300}>
+              <div className="flex flex-wrap gap-4 mt-10">
+                <Link href="/projects">
+                  <button className="text-xl bg-black text-white px-11 py-5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+
+                    استعرض المشاريع
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button className="text-xl border border-black/15 px-11 py-5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
+                    تحدث عن مشروعك
+                  </button>
+                </Link>
               </div>
-              <div>
-                <h2 className="text-4xl font-bold">+5</h2>
-                <p className="text-black/50 text-xl">مشروع مكتمل</p>
+            </Reveal>
+
+            <Reveal delay={400}>
+              <div className="grid grid-cols-3 gap-8 mt-14">
+                <div>
+                  <h2 className="text-4xl font-bold">100%</h2>
+                  <p className="text-black/50 text-xl">التزام بالجودة</p>
+                </div>
+                <div>
+                  <h2 className="text-4xl font-bold">-</h2>
+                  <p className="text-black/50 text-xl">سنوات خبرة</p>
+                </div>
+                <div>
+                  <h2 className="text-4xl font-bold">+5</h2>
+                  <p className="text-black/50 text-xl">مشروع مكتمل</p>
+                </div>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           <div className="order-2 lg:order-2">
-            <HeroVisual />
+            <Reveal delay={150} duration={800}>
+              <HeroVisual />
+            </Reveal>
           </div>
         </div>
       </Container>
