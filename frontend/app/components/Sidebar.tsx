@@ -51,13 +51,13 @@ export default function Sidebar({
         <Link href="#" onClick={onClose} className="flex justify-center w-full px-6">
           <Logo />
         </Link>
-        <nav className="nav-text flex flex-col items-center gap-6 text-black/60">
+        <nav className="flex flex-col items-center gap-6 text-black/60 text-lg">
           {navLinks.map(({ name, href }) => (
             <Link
               key={name}
               href={href}
               onClick={(e) => handleNav(e, href)}
-              className="relative cursor-pointer hover:text-black active:text-black transition
+              className="relative cursor-pointer hover:text-black active:text-black transition text-lg
                 after:content-[''] after:absolute after:left-0 after:bottom-[-6px]
                 after:w-0 after:h-[2px] after:bg-black
                 after:transition-all after:duration-300
@@ -70,7 +70,7 @@ export default function Sidebar({
         <Link href="/contact">
           <button
             onClick={onClose}
-            className="btn-text bg-black text-white px-5 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+            className="text-lg bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
           >
             تواصل معي
           </button>

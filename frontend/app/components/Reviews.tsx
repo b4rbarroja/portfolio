@@ -50,7 +50,7 @@ export default function Testimonials() {
       <Container>
         <div className="flex flex-col items-center text-center mb-12 gap-2">
           <span className="text-black/30 text-lg">✦</span>
-          <h2 className="section-title text-2xl md:text-4xl text-black" >
+          <h2 className="text-5xl font-bold text-black" >
             ما يقوله العملاء
           </h2>
           <p className="text-black/50" >آراء العملاء الذين عملت معهم</p>

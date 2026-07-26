@@ -60,7 +60,7 @@ export default function LoginPage() {
     <main className="relative min-h-screen flex items-center justify-center px-4">
       <div className={`w-full max-w-sm`}>
         <div className="flex items-center justify-center gap-3 mb-8">
-          <h1 className="section-title text-2xl text-black" >Sign in</h1>
+          <h1 className="text-5xl font-bold text-black" >Sign in</h1>
         </div>
 
         <form
@@ -97,7 +97,7 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="btn-text w-full flex items-center justify-center gap-2 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-colors"
+            className="text-lg w-full flex items-center justify-center gap-2 bg-black hover:bg-black/80 text-white px-6 py-3 rounded-xl transition-colors"
  
           >
             <LogIn className="w-4 h-4" />

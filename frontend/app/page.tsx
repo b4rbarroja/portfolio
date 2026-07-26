@@ -3,7 +3,6 @@ import Skills from "./components/Skills";
 import Services from "./components/Services";
 import About from "./components/About";
 import Projects from "./components/Projects";
-import Reviews from "./components/Reviews";
 import Blogs from "./components/Blogs";
 
 export default function Home() {

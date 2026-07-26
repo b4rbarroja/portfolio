@@ -100,7 +100,7 @@ export default function BlogPost({
           </p>
           <Link
             href="/blog"
-            className="btn-text bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+            className="text-lg bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
 
 >
             <span>←</span>
@@ -135,7 +135,7 @@ export default function BlogPost({
               {post.readTime && <span>&middot; {post.readTime} {t.readTime}</span>}
             </div>
 
-            <h1 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black mb-4" >
+            <h1 className="text-5xl font-bold text-black mb-4" >
               {post.title}
             </h1>
 

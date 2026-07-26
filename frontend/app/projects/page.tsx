@@ -52,11 +52,11 @@ export default function ProjectsPage() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
             <div>
               <p className="text-black/40 text-sm mb-1" >✦ أعمالي</p>
-              <h1 className="section-title text-3xl md:text-5xl text-black flex items-center gap-2" >
+              <h1 className="text-5xl font-bold text-black flex items-center gap-2" >
                 <span>جميع المشاريع</span>
                 <span className="text-black/30">✦</span>
               </h1>
-              <p className="body-text text-black/50 mt-2" >بعض من المشاريع التي قمت ببنائها</p>
+              <p className="text-black/50 mt-2" >بعض من المشاريع التي قمت ببنائها</p>
             </div>
             <Link
               href="/"

@@ -48,16 +48,16 @@ export default function Projects() {
       <Container>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
           <div>
-            <p className="text-black/40 text-sm mb-1" >{arabicText.sectionLabel}</p>
-            <h2 className="section-title text-2xl md:text-4xl text-black flex items-center gap-2" >
+            <p className="text-black/40 text-xl mb-1">{arabicText.sectionLabel}</p>
+            <h2 className="text-7xl font-bold text-black flex items-center gap-2">
               <span>{arabicText.title}</span>
               <span className="text-black/30">✦</span>
             </h2>
-            <p className="text-black/50 mt-1" >{arabicText.subtitle}</p>
+            <p className="text-black/50 text-2xl mt-1">{arabicText.subtitle}</p>
           </div>
           <a
             href="/projects"
-            className="text-black font-medium text-sm hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+            className="text-black font-medium text-xl hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
           >
             <span className="rotate-180">←</span>
             <span>{arabicText.viewAll}</span>
@@ -86,8 +86,8 @@ export default function Projects() {
                   />
                 </div>
                 <div className="bg-white p-5">
-                  <h3 className="text-black font-semibold text-lg mb-2" >{project.title}</h3>
-                  <p className="text-black/50 text-sm mb-4 leading-relaxed" >
+                  <h3 className="text-black font-semibold text-3xl mb-2">{project.title}</h3>
+                  <p className="text-black/50 text-lg mb-4 leading-relaxed">
                     {project.descriptionShort || project.description}
                   </p>
                   <div className="flex items-center justify-between">
@@ -96,8 +96,7 @@ export default function Projects() {
                       {parseTags(project.tags).slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs text-black/60 bg-black/5 px-3 py-1.5 rounded-full"
- 
+                          className="text-base text-black/60 bg-black/5 px-3 py-1.5 rounded-full"
                         >
                           {tag}
                         </span>

@@ -83,7 +83,7 @@ export default function ProjectPage({
           <p className="text-black/40 mb-8" >المشروع الذي تبحث عنه غير موجود.</p>
           <Link
             href="/projects"
-            className="btn-text bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+            className="text-lg bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
 
 >
             <span>←</span>
@@ -110,11 +110,11 @@ export default function ProjectPage({
               <span>العودة إلى المشاريع</span>
             </Link>
 
-            <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black mb-4" >
+            <h1 className="text-5xl font-bold text-black mb-4" >
               {project.title}
             </h1>
 
-            <p className="body-text text-black/50 text-lg max-w-2xl" >
+            <p className="text-black/50 text-lg max-w-2xl" >
               {project.description}
             </p>
           </div>
@@ -198,7 +198,7 @@ export default function ProjectPage({
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+                className="text-lg bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
  
               >
                 <Globe size={18} />
@@ -211,7 +211,7 @@ export default function ProjectPage({
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-text border border-black/10 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 flex items-center gap-2"
+                className="text-lg border border-black/10 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 flex items-center gap-2"
  
               >
                 <Code2 size={18} />

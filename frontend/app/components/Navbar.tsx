@@ -5,7 +5,6 @@ import Link from "next/link";
 import Sidebar from "./Sidebar";
 import Container from "./Container";
 import Logo from "./Logo";
-
 const navLinks = [
   { name: "الرئيسية", href: "/" },
   { name: "الخدمات", href: "/#services" },
@@ -13,31 +12,27 @@ const navLinks = [
   { name: "المدونة", href: "/blog" },
   { name: "تواصل معي", href: "/contact" },
 ];
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen((prev) => !prev);
   const closeMenu = () => setOpen(false);
-
   return (
     <>
       <header
         className={`sticky top-0 z-40 w-full backdrop-blur-md border-b border-black/10`}
       >
-        <Container className="flex h-20 items-center justify-between">
+        <Container className="flex h-24 items-center justify-between">
           <Link href="/" className="flex items-center">
             <Logo />
           </Link>
-
-          <nav className="nav-text hidden lg:flex items-center gap-8 text-sm text-black">
+          <nav className="hidden lg:flex items-center gap-9 text-black text-xl">
             {navLinks.map((link, idx) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative transition hover:text-black/70 ${
+                className={`relative transition hover:text-black/70 text-xl ${
                   idx === 0 ? "text-black" : "text-black/70"
                 }`}
-
               >
                 {link.name}
                 {idx === 0 && (
@@ -46,24 +41,21 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="btn-text hidden sm:inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm text-black shadow-sm transition hover:bg-black hover:text-white"
-
+              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-8 py-3.5 text-black shadow-sm transition hover:bg-black hover:text-white text-xl"
             >
               تحدث معي
               <span className="rotate-45">↑</span>
             </Link>
-
             <button
               type="button"
               onClick={toggleOpen}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black transition hover:bg-black hover:text-white lg:hidden"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-black transition hover:bg-black hover:text-white lg:hidden"
               aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
             >
-              {open ? <X size={20} /> : <Menu size={20} />}
+              {open ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </Container>

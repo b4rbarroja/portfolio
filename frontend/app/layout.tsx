@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Lateef, Alexandria } from "next/font/google";
+import { Mirza, Alexandria } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-const lateef = Lateef({
+const lateef = Mirza({
   weight: ["400", "500", "600", "700"],
   subsets: ["arabic"],
   variable: "--font-primary",

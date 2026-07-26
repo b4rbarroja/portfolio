@@ -25,32 +25,31 @@ export default function About() {
     >
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10 items-center">
         <div className="order-2 lg:order-1 text-center lg:text-right">
-          <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold">
-            <span >{t.label}</span>
+          <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-xl">
+            <span>{t.label}</span>
             <span className="text-black/40">✦</span>
           </div>
 
-          <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl text-black mb-6" >
+          <h1 className="text-6xl md:text-7xl font-bold text-black mb-6 leading-tight">
             {t.titleLine1}
             <br />
             {t.titleLine2}
           </h1>
 
-          <p className="body-text text-black/50 text-base md:text-lg mb-8 max-w-lg mx-auto lg:mx-0" >
+          <p className="text-black/50 text-xl md:text-2xl mb-8 max-w-lg mx-auto lg:mx-0">
             {t.paragraph}
           </p>
 
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-12">
             <Link href="/contact">
-              <button className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2" >
+              <button className="text-xl bg-black text-white px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
                 <span>{t.contactBtn}</span>
                 <span className="-rotate-45">→</span>
               </button>
             </Link>
             <Link
               href="/projects"
-              className="text-black font-medium underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all"
-
+              className="text-black font-medium text-xl underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all"
             >
               {t.viewWork}
             </Link>
@@ -58,19 +57,19 @@ export default function About() {
 
           <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <Code2 className="w-5 h-5 text-blue-500" strokeWidth={2} />
-              <h2 className="text-xl md:text-2xl font-bold text-black">+15</h2>
-              <p className="text-black/40 text-xs" >{t.stat1}</p>
+              <Code2 className="w-6 h-6 text-blue-500" strokeWidth={2} />
+              <h2 className="text-6xl font-bold text-black">+15</h2>
+              <p className="text-black/40 text-xl">{t.stat1}</p>
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <User className="w-5 h-5 text-blue-500" strokeWidth={2} />
-              <h2 className="text-xl md:text-2xl font-bold text-black">+3</h2>
-              <p className="text-black/40 text-xs" >{t.stat2}</p>
+              <User className="w-6 h-6 text-blue-500" strokeWidth={2} />
+              <h2 className="text-6xl font-bold text-black">+3</h2>
+              <p className="text-black/40 text-xl">{t.stat2}</p>
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <Zap className="w-5 h-5 text-amber-500" strokeWidth={2} fill="currentColor" />
-              <h2 className="text-xl md:text-2xl font-bold text-black">100%</h2>
-              <p className="text-black/40 text-xs" >{t.stat3}</p>
+              <Zap className="w-6 h-6 text-amber-500" strokeWidth={2} fill="currentColor" />
+              <h2 className="text-6xl font-bold text-black">100%</h2>
+              <p className="text-black/40 text-xl">{t.stat3}</p>
             </div>
           </div>
         </div>
@@ -138,7 +137,7 @@ export default function About() {
 
             <div className="absolute -bottom-4 right-1/2 translate-x-1/2 lg:right-8 lg:translate-x-0 bg-black rounded-full px-5 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
               <Code2 className="w-4 h-4 text-white" strokeWidth={2} />
-              <span className="text-white text-xs sm:text-sm font-medium" >{t.badge}</span>
+              <span className="text-white text-sm sm:text-base font-medium">{t.badge}</span>
             </div>
           </div>
         </div>
