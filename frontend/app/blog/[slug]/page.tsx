@@ -121,7 +121,7 @@ export default function BlogPost({
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm font-medium mb-6"
- 
+
             >
               <ArrowLeft size={16} />
               <span>{t.backToBlog}</span>
@@ -156,7 +156,7 @@ export default function BlogPost({
           )}
 
           <div className="max-w-3xl mx-auto" dir="auto">
-            <div className="prose prose-lg max-w-none text-black/60">
+            <div className="prose prose-lg max-w-none text-black/60" dir="auto">
               {content ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {content}
