@@ -25,7 +25,7 @@ export default function About() {
     >
       <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10 items-center">
         <div className="order-2 lg:order-1 text-center lg:text-right">
-          <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-xl">
+          <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-4xl">
             <span>{t.label}</span>
             <span className="text-black/40">✦</span>
           </div>
@@ -44,7 +44,7 @@ export default function About() {
             <Link href="/contact">
               <button className="text-xl bg-black text-white px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
                 <span>{t.contactBtn}</span>
-                <span className="-rotate-45">→</span>
+
               </button>
             </Link>
             <Link
@@ -57,18 +57,15 @@ export default function About() {
 
           <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <Code2 className="w-6 h-6 text-blue-500" strokeWidth={2} />
-              <h2 className="text-6xl font-bold text-black">+15</h2>
+              <h2 className="text-4xl font-bold text-black">+5</h2>
               <p className="text-black/40 text-xl">{t.stat1}</p>
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <User className="w-6 h-6 text-blue-500" strokeWidth={2} />
-              <h2 className="text-6xl font-bold text-black">+3</h2>
+              <h2 className="text-4xl font-bold text-black">-</h2>
               <p className="text-black/40 text-xl">{t.stat2}</p>
             </div>
             <div className="flex flex-col items-center lg:items-end gap-2">
-              <Zap className="w-6 h-6 text-amber-500" strokeWidth={2} fill="currentColor" />
-              <h2 className="text-6xl font-bold text-black">100%</h2>
+              <h2 className="text-4xl font-bold text-black">100%</h2>
               <p className="text-black/40 text-xl">{t.stat3}</p>
             </div>
           </div>
@@ -137,7 +134,7 @@ export default function About() {
 
             <div className="absolute -bottom-4 right-1/2 translate-x-1/2 lg:right-8 lg:translate-x-0 bg-black rounded-full px-5 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
               <Code2 className="w-4 h-4 text-white" strokeWidth={2} />
-              <span className="text-white text-sm sm:text-base font-medium">{t.badge}</span>
+              <span className="text-white text-lg sm:text-base font-medium">{t.badge}</span>
             </div>
           </div>
         </div>

@@ -141,7 +141,7 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4 mt-10">
               <Link href="/projects">
                 <button className="text-xl bg-black text-white px-11 py-5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-                  <span className="rotate-45">↑</span>
+
                   استعرض المشاريع
                 </button>
               </Link>
@@ -154,15 +154,15 @@ export default function Hero() {
 
             <div className="grid grid-cols-3 gap-8 mt-14">
               <div>
-                <h2 className="text-6xl font-bold">100%</h2>
+                <h2 className="text-4xl font-bold">100%</h2>
                 <p className="text-black/50 text-xl">التزام بالجودة</p>
               </div>
               <div>
-                <h2 className="text-6xl font-bold">3+</h2>
+                <h2 className="text-4xl font-bold">-</h2>
                 <p className="text-black/50 text-xl">سنوات خبرة</p>
               </div>
               <div>
-                <h2 className="text-6xl font-bold">15+</h2>
+                <h2 className="text-4xl font-bold">+5</h2>
                 <p className="text-black/50 text-xl">مشروع مكتمل</p>
               </div>
             </div>

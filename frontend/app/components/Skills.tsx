@@ -51,10 +51,10 @@ export default function Skills() {
                     className="w-9 h-9 sm:w-10 sm:h-10"
                   />
                   <div className="flex flex-col gap-1">
-                    <p className="text-black font-semibold text-lg">
+                    <p className="text-black font-semibold text-2xl">
                       {skill.name}
                     </p>
-                    <p className="text-black/40 text-sm">{skill.desc}</p>
+                    <p className="text-black/40 text-xl">{skill.desc}</p>
                   </div>
                 </div>
               </div>

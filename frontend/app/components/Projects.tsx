@@ -59,7 +59,6 @@ export default function Projects() {
             href="/projects"
             className="text-black font-medium text-xl hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
           >
-            <span className="rotate-180">←</span>
             <span>{arabicText.viewAll}</span>
           </a>
         </div>

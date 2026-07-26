@@ -55,7 +55,6 @@ export default function Articles() {
             href="/blog"
             className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-lg font-medium text-black transition hover:bg-black hover:text-white"
           >
-            <span className="rotate-180">←</span>
             <span>{t.viewAll}</span>
           </a>
         </div>
@@ -101,7 +100,6 @@ export default function Articles() {
             <p className="text-black/50 text-lg leading-relaxed">{t.ctaDesc}</p>
             <Link href="/contact">
               <button className="text-xl mt-2 bg-black hover:bg-black/80 active:bg-black/80 text-white px-6 py-3 rounded-full w-fit transition-all flex items-center gap-2">
-                <span className="rotate-180">←</span>
                 <span>{t.ctaButton}</span>
               </button>
             </Link>
