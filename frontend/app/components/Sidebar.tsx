@@ -50,12 +50,13 @@ export default function Sidebar({
         </button>
         <Link href="#" onClick={onClose} className="flex justify-center w-full px-6">
           <Image
-            src="/jabr2.png"
-            alt="Logo"
-            width={130}
-            height={48}
-            className="w-auto h-12 object-contain"
+            src="/logoJabr.png"
+            alt="جبر"
+            width={160}
+            height={96}
+            className="w-auto h-24 object-contain"
             priority
+            quality={100}
           />
         </Link>
         <nav className="nav-text flex flex-col items-center gap-6 text-black/60">

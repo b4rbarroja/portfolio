@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import Container from "./Container";
@@ -25,11 +26,15 @@ export default function Navbar() {
       >
         <Container className="flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-black" >
-            جبر
-            </span>
-            <span className="text-black font-mono text-lg">{"</>"}</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-black" />
+            <Image
+              src="/logoJabr.png"
+              alt="جبر"
+              width={120}
+              height={80}
+              className="w-auto h-20 object-contain"
+              priority
+              quality={100}
+            />
           </Link>
 
           <nav className="nav-text hidden lg:flex items-center gap-8 text-sm text-black">

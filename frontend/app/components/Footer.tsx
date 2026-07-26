@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Container from "./Container";
 
@@ -43,9 +44,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-3 text-black">
-              <span className="text-black/30">✦</span>
-              <span className="text-2xl font-bold" >جبر</span>
-              <span className="font-mono text-lg">{"</>"}</span>
+              <Image
+                src="/logoJabr.png"
+                alt="جبر"
+                width={120}
+                height={80}
+                className="w-auto h-20 object-contain"
+                quality={100}
+              />
             </div>
             <p className="text-black/50 text-sm leading-relaxed mb-6 max-w-xs" >
               {t.tagline}
