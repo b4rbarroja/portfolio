@@ -1,107 +1,119 @@
 "use client";
 
-import { Outfit } from "next/font/google";
 import Link from "next/link";
-import { posts as localPosts } from "../data/posts";
 import { useEffect, useState } from "react";
-import { authFetch } from "@/app/lib/authFetch";
-
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
+import Container from "../components/Container";
 
 interface Blog {
   id: string;
   title: string;
   slug: string;
   description: string;
-  descriptionShort?: string;
+  descriptionShort: string;
+  excerpt?: string;
+  readTime?: string;
+  date?: string;
   image?: string;
   type: string;
   published: boolean;
-  createdAt: string;
 }
 
+const categoryMap: Record<string, string> = {
+  "Web Development": "تطوير ويب",
+  "Best Practices": "أفضل الممارسات",
+  CSS: "CSS",
+  TypeScript: "TypeScript",
+  Backend: "الخلفية",
+};
+
+const t = {
+  label: "✦ المدونة",
+  title: "كل المقالات",
+  subtitle: "أفكار، شروحات، وملاحظات من رحلتي في التطوير",
+  backToHome: "العودة إلى الرئيسية",
+  readTime: "دقائق قراءة",
+};
+
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [posts, setPosts] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    authFetch("/api/blogs", { cache: "no-store" })
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        setPosts(Array.isArray(data) ? data.filter((p: Blog) => p.published) : []);
       })
-      .then((data) => setBlogs(Array.isArray(data) ? data : []))
-      .catch((err) => {
-        console.error("Failed to fetch blogs:", err);
-        setBlogs([]);
-      });
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
-
-      <section
-        className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}
-      >
-        <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white">Blog</h1>
-          <p className="text-gray-400 mt-1">Thoughts, tutorials and notes</p>
-        </div>
-
-        {blogs.length === 0 ? (
-          <div className="text-center py-20 text-gray-500">
-            Not Found rn babe
+    <main className="relative min-h-screen">
+      <section className={`py-16 sm:py-20 lg:py-24`}>
+        <Container>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+            <div>
+              <p className="text-black/40 text-sm mb-1" >{t.label}</p>
+              <h1 className="section-title text-3xl md:text-5xl text-black flex items-center gap-2" >
+                <span>{t.title}</span>
+                <span className="text-black/30">✦</span>
+              </h1>
+              <p className="body-text text-black/50 mt-2" >{t.subtitle}</p>
+            </div>
+            <Link
+              href="/"
+              className="text-black font-medium text-sm hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+ 
+            >
+              <span>←</span>
+              <span>{t.backToHome}</span>
+            </Link>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog) => {
-              const local = localPosts.find((p) => p.slug === blog.slug);
-              return (
-                <Link key={blog.slug} href={`/blog/${blog.slug}`}>
-                  <div className="group rounded-2xl overflow-hidden border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 cursor-pointer h-full flex flex-col">
-                    <div className="relative w-full h-44 overflow-hidden bg-white/5">
-                      <img
-                        src={blog.image || "/placeholder.png"}
-                        alt={local?.title || blog.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <span className="absolute bottom-3 left-3 bg-white/95 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
-                        {local?.category || blog.type}
-                      </span>
-                    </div>
 
-                    <div className="bg-[#0d1420] p-5 flex-1 flex flex-col">
-                      <h3 className="text-white font-semibold text-base leading-snug mb-2 line-clamp-2">
-                        {local?.title || blog.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
-                        {local?.excerpt ||
-                          blog.descriptionShort ||
-                          blog.description}
-                      </p>
-                      <p className="text-gray-500 text-xs mt-auto">
-                        {blog.createdAt
-                          ? new Date(blog.createdAt).toLocaleDateString(
-                              "en-US",
-                              {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              },
-                            )
-                          : ""}
-                      </p>
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-2xl border border-black/10 bg-white h-72 animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group rounded-2xl overflow-hidden border border-black/10 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5 bg-white"
+                >
+                  <div className="relative w-full h-44">
+                    <img
+                      src={post.image || ""}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute bottom-3 right-3 bg-white/95 text-black text-xs font-medium px-3 py-1 rounded-full border border-black/10" >
+                      {categoryMap[post.type] || post.type}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h2 className="text-black font-semibold text-base leading-snug mb-2 line-clamp-2" >
+                      {post.title}
+                    </h2>
+                    <p className="text-black/60 text-sm leading-relaxed mb-4 line-clamp-3" >
+                      {post.excerpt || post.descriptionShort || post.description}
+                    </p>
+                    <div className="flex items-center justify-between text-black/40 text-xs">
+                      <span className="flex items-center gap-1" >
+                        {post.readTime && <span>{post.readTime}</span>}
+                      </span>
+                      <span>{post.date}</span>
                     </div>
                   </div>
                 </Link>
-              );
-            })}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </Container>
       </section>
     </main>
   );

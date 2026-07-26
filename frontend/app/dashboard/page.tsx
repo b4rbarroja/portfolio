@@ -38,44 +38,35 @@ const links = [
 
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-[#080b14] text-white">
-      {/* subtle background glow, matches hero atmosphere */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute top-1/3 -left-40 h-[400px] w-[400px] rounded-full bg-cyan-500/10 blur-[120px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-6xl px-6 py-20">
-        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-emerald-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+    <main className="min-h-screen bg-[#f8f9fa] text-black">
+      <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 text-xs text-black/50">
+          <span className="h-1.5 w-1.5 rounded-full bg-black/30" />
           لوحة التحكم
         </div>
 
-        <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
-          مرحبًا بك في{" "}
-          <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
-            لوحة التحكم
-          </span>
-        </h1>
-        <p className="mt-4 max-w-xl text-white/50">
-          اختر أحد الأقسام أدناه للانتقال إليه وإدارة محتواه.
-        </p>
+          <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl text-black" >
+              مرحبًا بك في لوحة التحكم
+          </h1>
+          <p className="mt-4 max-w-xl text-black/50" >
+              اختر أحد الأقسام أدناه للانتقال إليه وإدارة محتواه.
+          </p>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 hover:bg-white/[0.06]"
+              className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/30 hover:shadow-lg"
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 text-white shadow-lg shadow-blue-500/20">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-black text-white shadow-lg">
                 {item.icon}
               </div>
-              <h2 className="text-lg font-bold text-white">{item.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-white/45">
-                {item.description}
-              </p>
-              <div className="mt-6 flex items-center gap-1 text-sm font-medium text-blue-400">
+                    <h2 className="text-lg font-bold text-black" >{item.title}</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-black/50" >
+                        {item.description}
+                    </p>
+              <div className="mt-6 flex items-center gap-1 text-sm font-medium text-black/60">
                 عرض
                 <svg
                   width="16"

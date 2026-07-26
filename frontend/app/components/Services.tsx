@@ -1,37 +1,31 @@
 "use client";
-
-import { Outfit } from "next/font/google";
 import { Code2, Smartphone, ShoppingCart, Palette } from "lucide-react";
-
-const outfit = Outfit({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-});
+import Container from "./Container";
 
 const services = [
   {
     icon: Code2,
-    title: "Web Development",
+    title: "تطوير الويب",
     description:
-      "Build responsive and dynamic websites using the latest web technologies.",
+      "أبني مواقع وتطبيقات ويب سريعة ومستجابة باستخدام أحدث التقنيات.",
   },
   {
     icon: Smartphone,
-    title: "Responsive Design",
+    title: "تصميم متجاوب",
     description:
-      "Pixel-perfect layouts that look and work great on any screen size.",
+      "تصاميم عصرية وتجربة مستخدم مثالية على جميع الأجهزة.",
   },
   {
     icon: ShoppingCart,
-    title: "E-commerce Solutions",
+    title: "حلول التجارة الإلكترونية",
     description:
-      "Custom online stores built to convert visitors into paying customers.",
+      "متاجر إلكترونية متكاملة تساعدك على تحويل الزوار إلى عملاء.",
   },
   {
     icon: Palette,
-    title: "UI/UX Design",
+    title: "تصميم واجهات وتجربة مستخدم",
     description:
-      "Clean, intuitive interfaces designed around your users' needs.",
+      "واجهات نظيفة وبديهية تركز على احتياجات المستخدم وتحقق أهدافك.",
   },
 ];
 
@@ -39,33 +33,34 @@ export default function Services() {
   return (
     <section
       id="services"
-      className={`flex flex-col justify-center items-center sm:pt-1 pb-20  ${outfit.className}`}
+      className={`flex flex-col justify-center items-center py-16 sm:py-20 lg:py-24`}
     >
-      <div className="flex justify-center items-center flex-col text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-semibold text-white">
-          What I Do
-        </h2>
-        <p className="text-gray-400 mt-3 max-w-md">
-          I help businesses and individuals turn their ideas into reality
-        </p>
-      </div>
+      <Container>
+        <div className="flex justify-center items-center flex-col text-center mb-12 w-full max-w-3xl">
+          <span className="text-black/30 text-lg mb-2">+</span>
+          <h2 className="section-title text-2xl md:text-3xl text-black mb-4" >
+            ما أقدمه
+          </h2>
+          <div className="w-full border-t border-dashed border-black/10" />
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 w-full max-w-6xl border-t border-r border-black/10">
         {services.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
-            className="bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 rounded-2xl flex flex-col items-start gap-4 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5"
+            className="border-l border-b border-black/10 p-8 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:bg-black/[0.02] bg-white"
           >
-            <div className="bg-gradient-to-r from-blue-600 to-cyan-400 p-3 rounded-xl">
-              <Icon className="w-6 h-6 text-white" />
+            <div className="w-14 h-14 rounded-full border border-black/10 flex items-center justify-center">
+              <Icon className="w-6 h-6 text-black" strokeWidth={1.5} />
             </div>
-            <h3 className="text-white font-medium text-lg">{title}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <h3 className="text-black font-semibold text-base" >{title}</h3>
+            <p className="text-black/50 text-sm leading-relaxed" >
               {description}
             </p>
           </div>
         ))}
       </div>
+      </Container>
     </section>
   );
 }

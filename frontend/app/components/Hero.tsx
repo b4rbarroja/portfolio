@@ -1,137 +1,168 @@
 "use client";
 
 import Link from "next/link";
-import { Outfit } from "next/font/google";
-import Image from "next/image";
+import Container from "./Container";
 
-const outfit = Outfit({
-  weight: ["400", "600"],
-  subsets: ["latin"],
-});
+function HeroSVG() {
+  return (
+    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-4xl mx-auto" style={{ overflow: "visible" }}>
+      <defs>
+        <pattern id="grid" x="0" y="0" width="40" height="35" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.5" fill="#111" opacity="0.1" />
+        </pattern>
+      </defs>
+      <style>
+        {`
+          @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+          @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+          @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+          @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+          @keyframes dash { to{stroke-dashoffset:-20} }
+          @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
+          .fa { animation:floatA 6s ease-in-out infinite }
+          .fb { animation:floatB 4.5s ease-in-out infinite }
+          .fc { animation:floatC 5s ease-in-out infinite }
+          .blink { animation:blink 1.2s step-end infinite }
+          .dash { animation:dash 2s linear infinite }
+          .pulse { animation:pulse 3s ease-in-out infinite }
+        `}
+      </style>
 
-const orbitIcons = [
-  { src: "/html.png", angle: 0 },
-  { src: "/css.png", angle: 40 },
-  { src: "/tailwind2.png", angle: 80 },
-  { src: "/react.png", angle: 120 },
-  { src: "/next.png", angle: 160 },
-  { src: "/node.png", angle: 200 },
-  { src: "/prisma.png", angle: 240 },
-  { src: "/postgres.png", angle: 280 },
-  { src: "/ts.png", angle: 320 },
-];
+      <rect width="800" height="500" fill="url(#grid)" />
+
+      <g className="fa">
+        <rect x="190" y="80" width="420" height="280" rx="16" stroke="#333" strokeWidth="1.5" />
+        <rect x="190" y="80" width="420" height="42" rx="16" stroke="#333" strokeWidth="1.5" />
+        <rect x="190" y="105" width="420" height="17" fill="#111" fillOpacity="0.02" />
+        <clipPath id="browserBottom"><rect x="190" y="122" width="420" height="238" rx="0" /></clipPath>
+        <g clipPath="url(#browserBottom)">
+          <circle cx="216" cy="101" r="5" fill="#777" />
+          <circle cx="236" cy="101" r="5" fill="#777" />
+          <circle cx="256" cy="101" r="5" fill="#777" />
+
+          <rect x="220" y="145" width="60" height="4" rx="2" fill="#777" />
+          <rect x="220" y="163" width="120" height="4" rx="2" fill="#777" />
+          <rect x="240" y="181" width="80" height="4" rx="2" fill="#777" />
+          <rect x="240" y="199" width="140" height="4" rx="2" fill="#333" />
+
+          <text x="220" y="255" fontFamily="monospace" fontSize="30" fontWeight="700" fill="#4F46E5">{`{ }`}</text>
+
+          <rect x="220" y="285" width="100" height="4" rx="2" fill="#777" />
+          <rect x="220" y="305" width="10" height="20" rx="2" fill="#4F46E5" className="blink" />
+
+          <rect x="440" y="145" width="140" height="80" rx="8" stroke="#333" strokeWidth="1" fill="none" />
+          <rect x="455" y="165" width="50" height="4" rx="2" fill="#777" />
+          <rect x="455" y="183" width="90" height="4" rx="2" fill="#777" />
+          <rect x="455" y="201" width="70" height="4" rx="2" fill="#777" />
+
+          <path d="M 440 320 L 465 302 L 490 306 L 515 284 L 540 292 L 565 270" stroke="#4F46E5" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="565" cy="270" r="4" fill="#4F46E5" />
+        </g>
+      </g>
+
+      <g className="fb" style={{ transformOrigin: "100px 200px" }}>
+        <line x1="80" y1="160" x2="170" y2="210" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="170" y1="210" x2="80" y2="290" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="80" y1="290" x2="170" y2="350" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="80" y1="160" x2="80" y2="290" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <circle cx="80" cy="160" r="6" fill="#111" />
+        <circle cx="170" cy="210" r="6" fill="#4F46E5" className="pulse" />
+        <circle cx="80" cy="290" r="6" fill="#333" />
+        <circle cx="170" cy="350" r="6" fill="#111" />
+      </g>
+
+      <g className="fc" style={{ transformOrigin: "720px 260px" }}>
+        <line x1="630" y1="170" x2="710" y2="210" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="710" y1="210" x2="630" y2="310" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <line x1="630" y1="170" x2="630" y2="310" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
+        <circle cx="630" cy="170" r="6" fill="#111" />
+        <circle cx="710" cy="210" r="6" fill="#4F46E5" className="pulse" />
+        <circle cx="630" cy="310" r="6" fill="#333" />
+      </g>
+
+      <path d="M 180 430 C 280 400, 380 450, 500 420 S 620 440, 680 410" stroke="#777" strokeWidth="0.75" fill="none" strokeDasharray="8 4" className="dash" />
+      <path d="M 80 455 C 240 425, 350 480, 520 450 S 650 470, 750 440" stroke="#333" strokeWidth="0.5" fill="none" />
+
+      <g>
+        <path d="M 50 100 l 4 8 l 8 4 l -8 4 l -4 8 l -4 -8 l -8 -4 l 8 -4 Z" fill="#4F46E5" className="pulse" />
+        <path d="M 740 80 l 3 6 l 6 3 l -6 3 l -3 6 l -3 -6 l -6 -3 l 6 -3 Z" fill="#111" />
+        <path d="M 660 370 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 Z" fill="#4F46E5" className="pulse" />
+        <path d="M 120 390 l 2 4 l 4 2 l -4 2 l -2 4 l -2 -4 l -4 -2 l 4 -2 Z" fill="#777" />
+      </g>
+
+      <text x="640" y="430" fontFamily="monospace" fontSize="14" fill="#777" opacity="0.4">&lt;/&gt;</text>
+      <text x="130" y="115" fontFamily="monospace" fontSize="12" fill="#777" opacity="0.35">&lt;/&gt;</text>
+
+      <circle cx="350" cy="410" r="3" fill="#4F46E5" opacity="0.25" />
+      <circle cx="490" cy="390" r="2" fill="#333" opacity="0.35" />
+      <circle cx="590" cy="430" r="4" fill="#111" opacity="0.12" />
+
+      <rect x="660" y="140" width="36" height="22" rx="4" stroke="#777" strokeWidth="1" fill="none" className="fc" opacity="0.5" />
+      <rect x="105" y="350" width="28" height="28" rx="6" stroke="#333" strokeWidth="1" fill="none" className="fa" opacity="0.4" />
+    </svg>
+  );
+}
 
 export default function Hero() {
   return (
-    <section
-      className={`relative flex items-start text-white ${outfit.className}`}
-    >
-      <div className="w-full pt-5 md:pt-11 pb-16">
-        <div className="flex justify-center md:hidden mb-6">
-        </div>
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 xl:gap-24">
-          {/* Left */}
-          <div className="w-full md:w-1/2 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-              <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 blur-[2px] animate-ping"></span>
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-green-400"></span>
-              </span>
-              <p className="text-green-400 text-sm">Available for freelance</p>
+    <section className="relative flex items-start">
+      <Container className="py-16 sm:py-20 lg:py-24">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center justify-center gap-2 mb-4 text-black/40 text-sm">
+            <span>مطور ويب متكامل</span>
+            <span>✦</span>
+          </div>
+
+          <h1 className="hero-title text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-4xl mx-auto">
+            أبني منتجات رقمية
+            <br />
+            <span className="relative inline-block">
+              تدفع الأعمال إلى الأمام.
+            </span>
+          </h1>
+
+          <p className="body-text mt-6 text-black/60 max-w-lg mx-auto">
+            أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
+            تساعد العلامات التجارية على النمو.
+          </p>
+
+          <div className="flex flex-wrap gap-4 mt-8 justify-center">
+            <Link href="/contact">
+              <button className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                <span className="rotate-45">↑</span>
+                استعرض المشاريع
+              </button>
+            </Link>
+            <Link href="/projects">
+              <button className="btn-text border border-black/15 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
+                تحدث عن مشروعك
+              </button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-3 gap-6 mt-10">
+            <div>
+              <div className="flex justify-center mb-1 text-black">⚡</div>
+              <h2 className="text-2xl font-bold">100%</h2>
+              <p className="text-black/50 text-sm">التزام بالجودة</p>
             </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight">
-              Building Digital{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
-                Products
-              </span>{" "}
-              That Drive Business.
-            </h1>
-
-            <p className="mt-6 text-gray-400 max-w-md mx-auto md:mx-0">
-              I design and build scalable web applications, e-commerce platforms
-              and custom software for ambitious brands.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
-              <Link href="/contact">
-                <button className="bg-gradient-to-r from-blue-600 to-blue-400 px-6 py-3 rounded-full shadow-[0_0_25px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_35px_rgba(59,130,246,0.7)]">
-                  Start Project
-                </button>
-              </Link>
-
-              <Link href="/projects">
-                <button className="border border-white/20 px-6 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:scale-105 active:scale-95 active:bg-white active:text-black active:border-white">
-                  See Projects 
-                </button>
-              </Link>
+            <div>
+              <div className="flex justify-center mb-1 text-black">👥</div>
+              <h2 className="text-2xl font-bold">3+</h2>
+              <p className="text-black/50 text-sm">سنوات خبرة</p>
             </div>
-
-            <div className="flex items-center justify-center md:justify-start gap-2 mt-6 text-yellow-400">
-              {"★★★★★"}
-              <span className="text-gray-400 text-sm ml-2">
-                Trusted by businesses
-              </span>
-            </div>
-
-            <div className="grid grid-cols-3 gap-8 mt-8 text-center md:text-left">
-              <div>
-                <h2 className="text-2xl font-bold">15+</h2>
-                <p className="text-gray-400 text-sm">Projects Completed</p>
-              </div>
-
-              <div>
-                <h2 className="text-2xl font-bold">3+</h2>
-                <p className="text-gray-400 text-sm">Years Experience</p>
-              </div>
-
-              <div>
-                <h2 className="text-2xl font-bold">100%</h2>
-                <p className="text-gray-400 text-sm">Commitment</p>
-              </div>
+            <div>
+              <div className="flex justify-center mb-1 text-black">{"</>"}</div>
+              <h2 className="text-2xl font-bold">15+</h2>
+              <p className="text-black/50 text-sm">مشروع مكتمل</p>
             </div>
           </div>
 
-          {/* Right */}
-          <div className="w-full md:w-1/2 flex justify-center pt-7 sm:pt-10">
-            <div className="relative w-full max-w-[220px] sm:max-w-[340px] lg:max-w-[460px] aspect-square flex items-center justify-center">
-              <div className="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full z-0" />
-
-              <Image
-                src="/mbg.png"
-                alt="web development"
-                width={300}
-                height={300}
-                className="relative z-10 w-[60%] sm:w-[65%]"
-                priority
-              />
-
-              <div className="absolute inset-0 animate-spin-slow">
-                {orbitIcons.map((icon) => (
-                  <div
-                    key={icon.src}
-                    className="absolute inset-0"
-                    style={{ transform: `rotate(${icon.angle}deg)` }}
-                  >
-                    <div
-                      className="absolute top-0 left-1/2 bg-white/5 backdrop-blur-sm rounded-full p-0.5 sm:p-1 md:p-1.5 lg:p-2 border border-white/10"
-                      style={{
-                        transform: `translate(-50%, -50%) rotate(-${icon.angle}deg)`,
-                      }}
-                    >
-                      <img
-                        src={icon.src}
-                        alt=""
-                        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="mt-12 w-full">
+            <HeroSVG />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,26 +1,49 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
-import { Outfit } from "next/font/google";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { posts as localPosts } from "../../data/posts";
-import { authFetch } from "@/app/lib/authFetch";
-
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
+import Container from "@/app/components/Container";
 
 interface Blog {
   id: string;
   title: string;
   slug: string;
   description: string;
-  descriptionShort?: string;
+  descriptionShort: string;
+  content?: string;
+  excerpt?: string;
+  readTime?: string;
+  date?: string;
   image?: string;
   type: string;
-  createdAt: string;
+  published: boolean;
+}
+
+const categoryMap: Record<string, string> = {
+  "Web Development": "تطوير ويب",
+  "Best Practices": "أفضل الممارسات",
+  CSS: "CSS",
+  TypeScript: "TypeScript",
+  Backend: "الخلفية",
+};
+
+const t = {
+  backToBlog: "العودة إلى المدونة",
+  nextArticle: "✦ المقال التالي",
+  readTime: "دقائق قراءة",
+  by: "بقلم",
+  author: "جبر",
+};
+
+function parseContent(content?: string): string[] {
+  if (!content) return [];
+  try {
+    const parsed = JSON.parse(content);
+    return Array.isArray(parsed) ? parsed : [content];
+  } catch {
+    return [];
+  }
 }
 
 export default function BlogPost({
@@ -29,119 +52,141 @@ export default function BlogPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-
   const [post, setPost] = useState<Blog | null>(null);
+  const [posts, setPosts] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await authFetch(`/api/blogs/${encodeURIComponent(slug)}`);
-        if (!res.ok) {
-          setPost(null);
-          return;
-        }
-        const data = await res.json();
-        setPost(data);
-      } catch {
-        setPost(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPost();
+    Promise.all([
+      fetch(`/api/blogs/${encodeURIComponent(slug)}`).then((r) => r.json()),
+      fetch("/api/blogs").then((r) => r.json()),
+    ])
+      .then(([postData, allPosts]) => {
+        setPost(postData);
+        setPosts(Array.isArray(allPosts) ? allPosts.filter((p: Blog) => p.published) : []);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, [slug]);
 
-  const local = localPosts.find((p) => p.slug === slug);
+  const currentIndex = posts.findIndex((p) => p.slug === slug);
+  const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
 
   if (loading) {
     return (
-      <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen flex items-center justify-center">
-        <p className="text-gray-400">Loading article...</p>
+      <main className="relative min-h-screen">
+        <section className={`min-h-screen flex items-center justify-center`}>
+          <div className="text-black/40" >جاري التحميل...</div>
+        </section>
       </main>
     );
   }
 
   if (!post) {
     return (
-      <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
-        <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
-        <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
-
+      <main className="relative min-h-screen">
         <section
-          className={`relative min-h-screen flex flex-col items-center justify-center px-6 ${outfit.className}`}
+          className={`min-h-screen flex flex-col items-center justify-center px-6`}
         >
-          <h1 className="text-4xl font-bold text-white mb-4">Post Not Found</h1>
-          <p className="text-gray-400 mb-8">
-            The blog post you are looking for does not exist.
+          <span className="text-black/20 text-6xl mb-6">✦</span>
+          <h1 className="text-4xl font-bold text-black mb-4" >
+            المقال غير موجود
+          </h1>
+          <p className="text-black/40 mb-8" >
+            المقال الذي تبحث عنه غير موجود.
           </p>
           <Link
             href="/blog"
-            className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-          >
-            ← Back to Blog
+            className="btn-text bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+
+>
+            <span>←</span>
+            <span>العودة إلى المدونة</span>
           </Link>
         </section>
       </main>
     );
   }
 
+  const content = parseContent(post.content);
+
   return (
-    <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
-
-      <section
-        className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}
-      >
-        <article className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 text-gray-400 text-sm mb-4">
-            <span className="bg-white/10 text-blue-400 text-xs font-medium px-3 py-1 rounded-full">
-              {local?.category || post.type}
-            </span>
-            <span>
-              {post.createdAt
-                ? new Date(post.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })
-                : ""}
-            </span>
-            {local?.readTime && <span>&middot; {local.readTime}</span>}
-          </div>
-
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            {local?.title || post.title}
-          </h1>
-
-          <div className="mb-10">
+    <main className="relative min-h-screen">
+      <article className={`py-16 sm:py-20 lg:py-24`}>
+        <Container>
+          <div className="mb-8 max-w-3xl mx-auto">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium"
+              className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm font-medium mb-6"
+ 
             >
               <ArrowLeft size={16} />
-              Back to Blog
+              <span>{t.backToBlog}</span>
             </Link>
+
+            <div className="flex flex-wrap items-center gap-3 text-black/40 text-sm mb-3">
+              <span className="border border-black/10 text-black/60 text-xs font-medium px-3 py-1 rounded-full bg-white" >
+                {categoryMap[post.type] || post.type}
+              </span>
+              {post.date && <span>{post.date}</span>}
+              {post.readTime && <span>&middot; {post.readTime} {t.readTime}</span>}
+            </div>
+
+            <h1 className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black mb-4" >
+              {post.title}
+            </h1>
+
+            <div className="flex items-center gap-2 text-black/40 text-sm" >
+              <span>{t.by}</span>
+              <span className="font-medium text-black/60">{t.author}</span>
+            </div>
           </div>
 
           {post.image && (
-            <div className="rounded-2xl overflow-hidden mb-10 border border-white/5">
+            <div className="rounded-2xl overflow-hidden mb-10 border border-black/10 max-w-3xl mx-auto">
               <img
                 src={post.image}
-                alt={local?.title || post.title}
+                alt={post.title}
                 className="w-full h-auto object-cover"
               />
             </div>
           )}
 
-          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed whitespace-pre-line">
-            {local?.content
-              ? local.content.map((p, i) => <p key={i}>{p}</p>)
-              : post.description}
+          <div className="max-w-3xl mx-auto">
+            <div className="body-text space-y-6 text-black/60 text-base md:text-lg">
+              {content.length > 0 ? (
+                content.map((paragraph, i) => (
+                  <p key={i} >{paragraph}</p>
+                ))
+              ) : (
+                <p >{post.description}</p>
+              )}
+            </div>
           </div>
-        </article>
-      </section>
+
+          {nextPost && (
+            <div className="border-t border-black/10 pt-12 mt-16 max-w-3xl mx-auto">
+              <p className="text-black/30 text-sm mb-4" >{t.nextArticle}</p>
+              <Link
+                href={`/blog/${nextPost.slug}`}
+                className="group flex items-center justify-between rounded-2xl border border-black/10 p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 bg-white"
+              >
+                <div>
+                  <h3 className="text-black font-bold text-xl" >
+                    {nextPost.title}
+                  </h3>
+                  <p className="text-black/50 text-sm mt-1 line-clamp-2" >
+                    {nextPost.excerpt || nextPost.descriptionShort || nextPost.description}
+                  </p>
+                </div>
+                <span className="text-black text-2xl transition-transform group-hover:translate-x-1 shrink-0">
+                  ←
+                </span>
+              </Link>
+            </div>
+          )}
+        </Container>
+      </article>
     </main>
   );
 }

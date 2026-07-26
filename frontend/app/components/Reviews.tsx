@@ -1,74 +1,108 @@
-import { Outfit } from "next/font/google";
-
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
+"use client";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Container from "./Container";
 
 const testimonials = [
   {
     quote:
-      "Jabr is an amazing developer. He delivered exactly what we needed and more, highly recommended!",
-    name: "Ahmed Salah",
-    role: "CEO, Brandio",
+      "جابر مطور رائع، ساعدنا في تحويل فكرتنا إلى منتج حقيقي. التواصل والاحترافية وجودة الكود فاقت توقعاتنا.",
+    name: "أحمد صلاح",
+    role: "الرئيس التنفيذي - EcomZone",
     initials: "AS",
   },
   {
     quote:
-      "Professional, fast, and very skilled. He understood the project perfectly and built a clean solution.",
-    name: "Mona Mostafa",
-    role: "Founder, Shopio",
+      "فهم متطلبات المشروع بدقة وسلّم في الوقت المحدد. الكود نظيف وسهل التوسعة، وسأعمل معه مرة أخرى بالتأكيد.",
+    name: "محمد مصطفى",
+    role: "المؤسس - TaskFlow",
     initials: "MM",
   },
   {
     quote:
-      "Great communication and top-notch code quality. Will definitely work with him again.",
-    name: "Omar Khaled",
-    role: "Product Manager",
+      "تجربة ممتازة من البداية للنهاية، كان متجاوباً ومتمكناً تقنياً. أنصح بالتعامل معه لأي مشروع بدون تردد.",
+    name: "عمر خالد",
+    role: "مدير المنتج - StudyHub",
     initials: "OK",
   },
 ];
 
 export default function Testimonials() {
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 3;
+
+  const handlePrev = () => {
+    setStartIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+
+  const handleNext = () => {
+    setStartIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
+
   return (
-    <section className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}>
-      <div className="w-full max-w-7xl mx-auto">
-        {/* Header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-10">
-          What Clients Say
-        </h2>
+    <section
+      className={`py-16 sm:py-20 lg:py-24`}
+    >
+      <Container>
+        <div className="flex flex-col items-center text-center mb-12 gap-2">
+          <span className="text-black/30 text-lg">✦</span>
+          <h2 className="section-title text-2xl md:text-4xl text-black" >
+            ما يقوله العملاء
+          </h2>
+          <p className="text-black/50" >آراء العملاء الذين عملت معهم</p>
+        </div>
 
-        {/* Testimonials grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="bg-[#0d1420] border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-white/20 hover:-translate-y-1 active:border-white/20 active:-translate-y-0.5"
-            >
-              {/* Quote mark */}
-              <span className="text-blue-400 text-4xl font-bold leading-none">
-                &ldquo;
-              </span>
+        <div className="relative flex items-center gap-4">
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 items-center justify-center rounded-full border border-black/10 text-black transition hover:bg-black hover:text-white active:bg-black active:text-white"
+            aria-label="السابق"
+          >
+            <ArrowLeft size={18} />
+          </button>
 
-              {/* Quote text */}
-              <p className="text-gray-300 text-sm leading-relaxed mt-2 mb-6">
-                {t.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs font-semibold">
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-white text-sm font-semibold">{t.name}</p>
-                  <p className="text-gray-500 text-xs">{t.role}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className="rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5"
+              >
+                <span className="text-black/20 text-4xl font-bold leading-none">
+                  &rdquo;
+                </span>
+                <p className="text-black/70 text-sm leading-relaxed mt-2 mb-6" >
+                  {t.quote}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white text-xs font-semibold">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <p className="text-black text-sm font-semibold" >
+                      {t.name}
+                    </p>
+                    <p className="text-black/40 text-xs" >{t.role}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleNext}
+            className="hidden sm:flex flex-shrink-0 w-11 h-11 items-center justify-center rounded-full border border-black/10 text-black transition hover:bg-black hover:text-white active:bg-black active:text-white"
+            aria-label="التالي"
+          >
+            <ArrowRight size={18} />
+          </button>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

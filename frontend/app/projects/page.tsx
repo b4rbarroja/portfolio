@@ -1,97 +1,118 @@
 "use client";
 
-import { Outfit } from "next/font/google";
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { authFetch } from "@/app/lib/authFetch";
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
+import { useEffect, useState } from "react";
+import Container from "../components/Container";
 
 interface Project {
-  id: string;
+  id: number;
   title: string;
   slug: string;
   description: string;
   descriptionShort: string;
+  fullDescription?: string;
+  problem?: string;
+  solution?: string;
+  tags?: string;
   image?: string;
   githubUrl?: string;
+  repoUrl?: string;
   liveUrl?: string;
   featured: boolean;
   published: boolean;
-  createdAt: string;
-  updatedAt: string;
+}
+
+function parseTags(tags?: string): string[] {
+  if (!tags) return [];
+  try {
+    return JSON.parse(tags) as string[];
+  } catch {
+    return [];
+  }
 }
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await authFetch("/api/projects");
-        if (!res.ok) {
-          console.error("Failed to fetch projects: HTTP", res.status);
-          setProjects([]);
-          return;
-        }
-        const data = await res.json();
-        setProjects(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Error fetching projects:", error);
-        setProjects([]);
-      }
-    };
-
-    fetchData();
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        setProjects(Array.isArray(data) ? data.filter((p: Project) => p.published) : []);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
-
-      <section
-        className={`relative px-4 sm:px-6 md:px-12 lg:px-20 pt-8 md:pt-12 pb-16 ${outfit.className}`}
-      >
-        <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-white">
-            Projects
-          </h1>
-          <p className="text-gray-400 mt-1">
-            Some of the things I&apos;ve built
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+    <main className="relative min-h-screen">
+      <section className={`py-16 sm:py-20 lg:py-24`}>
+        <Container>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
+            <div>
+              <p className="text-black/40 text-sm mb-1" >✦ أعمالي</p>
+              <h1 className="section-title text-3xl md:text-5xl text-black flex items-center gap-2" >
+                <span>جميع المشاريع</span>
+                <span className="text-black/30">✦</span>
+              </h1>
+              <p className="body-text text-black/50 mt-2" >بعض من المشاريع التي قمت ببنائها</p>
+            </div>
             <Link
-              key={project.title}
-              href={`/projects/${project.slug}`}
-              className="group rounded-2xl overflow-hidden border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 block"
+              href="/"
+              className="text-black font-medium text-sm hover:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
+ 
             >
-              <div className="relative w-full h-44 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <span className="absolute bottom-3 left-3 bg-white/95 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
-                  {project.id}
-                </span>
-              </div>
-              <div className="bg-[#0d1420] p-5">
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">
-                  {project.descriptionShort || project.description}
-                </p>
-              </div>
+              <span>←</span>
+              <span>العودة إلى الرئيسية</span>
             </Link>
-          ))}
-        </div>
+          </div>
+
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-2xl border border-black/10 bg-white h-80 animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project) => (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className="group rounded-2xl overflow-hidden border border-black/10 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5 bg-white"
+                >
+                  <div className="relative w-full h-44">
+                    <img
+                      src={project.image || ""}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h2 className="text-black font-semibold text-lg mb-2" >
+                      {project.title}
+                    </h2>
+                    <p className="text-black/50 text-sm mb-4 leading-relaxed line-clamp-2" >
+                      {project.descriptionShort || project.description}
+                    </p>
+                    <div className="flex flex-wrap justify-end gap-2">
+                      {parseTags(project.tags).map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs text-black/60 bg-black/5 px-3 py-1.5 rounded-full"
+ 
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </Container>
       </section>
     </main>
   );

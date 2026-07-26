@@ -28,25 +28,26 @@ export default function DashboardLayout({
     router.replace("/login");
   };
 
-  // While we check localStorage (or right before the redirect happens),
-  // show nothing instead of flashing the protected content.
   if (!checked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#020617]">
-        <Loader2 className="w-6 h-6 text-blue-400 animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <Loader2 className="w-6 h-6 text-black/40 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#020617]">
-      <div className="flex items-center justify-end px-4 sm:px-6 md:px-12 lg:px-20 py-4 border-b border-white/10">
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-red-400 transition-colors"
-        >
-          <LogOut className="w-4 h-4" />
-          Logout
+    <div className={`min-h-screen bg-[#f8f9fa]`}>
+      <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-20 py-4 border-b border-black/5">
+          <a href="/dashboard" className="text-sm font-semibold text-black/60 hover:text-black transition-colors" >
+            لوحة التحكم
+          </a>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-sm text-black/40 hover:text-red-500 transition-colors"
+ 
+          >
+            تسجيل الخروج
         </button>
       </div>
       {children}

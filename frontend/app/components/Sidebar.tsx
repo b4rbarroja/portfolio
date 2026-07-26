@@ -1,20 +1,15 @@
 "use client";
 import { useCallback } from "react";
-import { Outfit } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 
-const outfit = Outfit({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-});
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Blog", href: "/blog" },
-  { name: "Projects", href: "/projects" },
-  { name: "Services", href: "/#services" },
-  { name: "Contact", href: "/contact" },
+  { name: "الرئيسية", href: "/" },
+  { name: "المدونة", href: "/blog" },
+  { name: "المشاريع", href: "/projects" },
+  { name: "الخدمات", href: "/#services" },
+  { name: "التواصل", href: "/contact" },
 ];
 
 export default function Sidebar({
@@ -42,13 +37,13 @@ export default function Sidebar({
   return (
     <>
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-linear-to-b from-[#020617] via-[#0B1120] to-[#020617] border-r border-white/5 flex flex-col items-center py-8 gap-10 transition-transform duration-300 lg:hidden ${
-          open ? "translate-x-0" : "-translate-x-full"
-        } ${outfit.className}`}
+        className={`fixed inset-y-0 right-0 z-50 w-64 bg-white border-l border-black/10 flex flex-col items-center py-8 gap-10 transition-transform duration-300 lg:hidden border-black/10 ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <button
           onClick={onClose}
-          className="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white p-1 transition-colors"
+          className="lg:hidden absolute top-4 left-4 text-black/40 hover:text-black p-1 transition-colors"
           aria-label="Close menu"
         >
           <X size={22} />
@@ -63,15 +58,15 @@ export default function Sidebar({
             priority
           />
         </Link>
-        <nav className="flex flex-col items-center gap-6 text-gray-300">
+        <nav className="nav-text flex flex-col items-center gap-6 text-black/60">
           {navLinks.map(({ name, href }) => (
             <Link
               key={name}
               href={href}
               onClick={(e) => handleNav(e, href)}
-              className="relative cursor-pointer hover:text-white active:text-white transition
+              className="relative cursor-pointer hover:text-black active:text-black transition
                 after:content-[''] after:absolute after:left-0 after:bottom-[-6px]
-                after:w-0 after:h-[2px] after:bg-linear-to-r after:from-blue-500 after:to-cyan-400
+                after:w-0 after:h-[2px] after:bg-black
                 after:transition-all after:duration-300
                 hover:after:w-full active:after:w-full"
             >
@@ -82,14 +77,14 @@ export default function Sidebar({
         <Link href="/contact">
           <button
             onClick={onClose}
-            className="bg-linear-to-r from-blue-600 to-blue-400 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] hover:scale-105 hover:from-blue-500 hover:to-cyan-400 active:scale-95 active:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+            className="btn-text bg-black text-white px-5 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Let&rsquo;s Talk →
           </button>
         </Link>
       </aside>
       {open && (
-        <div className="fixed inset-0 z-40 bg-black/50 lg:hidden" onClick={onClose} />
+        <div className="fixed inset-0 z-40 bg-black/20 lg:hidden" onClick={onClose} />
       )}
     </>
   );

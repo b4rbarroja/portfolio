@@ -1,152 +1,71 @@
 import Image from "next/image";
-import { Outfit } from "next/font/google";
-const outfit = Outfit({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-});
+import Container from "./Container";
+
+const skills = [
+  { src: "/html.png", name: "HTML5", desc: "لغة ترميز" },
+  { src: "/css2.svg", name: "CSS3", desc: "تصميم" },
+  { src: "/js.png", name: "JavaScript", desc: "لغة برمجة" },
+  { src: "/ts.png", name: "TypeScript", desc: "لغة برمجة" },
+  { src: "/react.png", name: "React", desc: "مكتبة واجهات" },
+  { src: "/next.png", name: "Next.js", desc: "إطار عمل" },
+  { src: "/node.png", name: "Node.js", desc: "بيئة تشغيل" },
+  { src: "/ex.png", name: "Express.js", desc: "إطار عمل ويب" },
+  { src: "/postgres.png", name: "PostgreSQL", desc: "قاعدة بيانات" },
+  { src: "/prisma.png", name: "Prisma", desc: "ORM" },
+  { src: "/git.png", name: "Git", desc: "نظام تحكم" },
+  { src: "/tailwind2.png", name: "Tailwind CSS", desc: "إطار عمل CSS" },
+];
+
 export default function Skills() {
   return (
     <section
       id="skills"
-      className={` bg-white/[0.03] mb-10 sm:mb-16 lg:mb-20 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-center items-center gap-6 ${outfit.className}`}
+      className={`py-16 sm:py-20 lg:py-24 flex flex-col justify-center items-center gap-10`}
     >
-      <div className="flex justify-center items-center flex-col text-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-white">
-          Technology Stack
-        </h2>
-        <p className="text-gray-400 mt-2 text-sm">
-          Tools and technologies I work with
-        </p>
-      </div>
-
-      <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-8 sm:gap-x-14 sm:gap-y-10 md:gap-x-16 md:gap-y-12">
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/html.png"
-            alt="HTML"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">HTML</p>
-        </div>
-
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/css2.svg"
-            alt="CSS"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">CSS</p>
-        </div>
-
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/js.png"
-            alt="JS"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">JS</p>
-        </div>
-
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/tailwind2.png"
-            alt="Tailwind CSS"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">
-            Tailwind CSS
+      <Container className="flex flex-col justify-center items-center gap-10">
+        <div className="flex justify-center items-center flex-col text-center gap-3 max-w-lg">
+          <span className="text-black/30 text-lg">✦</span>
+          <h2 className="section-title text-2xl md:text-4xl text-black" >
+            التقنيات التي أستخدمها
+          </h2>
+          <p className="body-text text-black/50 text-sm" >
+            أدوات وتقنيات حديثة أستخدمها لبناء حلول رقمية عالية الجودة.
           </p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/react.png"
-            alt="React"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">React</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/next.png"
-            alt="Next.js"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">Next.js</p>
+          <div className="w-10 border-t border-dashed border-black/10 mt-1" />
         </div>
 
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/ts.png"
-            alt="TypeScript"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">TypeScript</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/node.png"
-            alt="Node.js"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">Node.js</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 brightness-0 invert opacity-60 hover:opacity-100 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/ex.png"
-            alt="Express.js"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">Express.js</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/postgres.png"
-            alt="PostgreSQL"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">PostgreSQL</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/prisma.png"
-            alt="Prisma"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">Prisma</p>
-        </div>
-        <div className="flex justify-center items-center flex-col gap-2 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 active:grayscale-0 active:opacity-100 transition-all duration-300">
-          <Image
-            src="/git.png"
-            alt="Git"
-            width={40}
-            height={40}
-            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14"
-          />
-          <p className="text-[11px] sm:text-[12px] text-gray-400">Git</p>
-        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-0 gap-y-10 w-full max-w-6xl">
+        {skills.map((skill, idx) => {
+          const isLastInRow =
+            (idx + 1) % 6 === 0 || idx === skills.length - 1;
+          return (
+            <div key={skill.name} className="relative flex justify-center">
+              {!isLastInRow && (
+                <div className="hidden lg:block absolute top-[60px] right-0 -translate-x-1/2 w-full border-t border-dashed border-black/10 -z-10">
+                  <span className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 w-1 h-1 rounded-full bg-black/20" />
+                </div>
+              )}
+
+              <div className="flex flex-col items-center text-center gap-3 border border-black/10 rounded-t-full rounded-b-2xl px-6 pt-8 pb-6 w-full max-w-[180px] transition-all duration-300 hover:border-black/25 hover:-translate-y-1 bg-white">
+                <Image
+                  src={skill.src}
+                  alt={skill.name}
+                  width={40}
+                  height={40}
+                  className="w-9 h-9 sm:w-10 sm:h-10"
+                />
+                <div className="flex flex-col gap-1">
+                  <p className="text-black font-semibold text-sm" >
+                    {skill.name}
+                  </p>
+                  <p className="text-black/40 text-xs" >{skill.desc}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
+      </Container>
     </section>
   );
 }

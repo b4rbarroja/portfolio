@@ -1,103 +1,115 @@
-import { Outfit } from "next/font/google";
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
-const projects = [
-  {
-    title: "EcomZone",
-    category: "E-commerce",
-    description:
-      "A modern e-commerce platform with payment integration and dashboard.",
-    tags: ["Next.js", "Tailwind", "Stripe"],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-  },
-  {
-    title: "TaskFlow",
-    category: "SaaS",
-    description:
-      "A productivity SaaS app for teams to manage tasks and projects efficiently.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    image:
-      "https://images.unsplash.com/photo-1658863025658-4a259cc68fc9?q=80&w=1325&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-  {
-    title: "StudyHub",
-    category: "Education",
-    description:
-      "An online learning platform with courses, quizzes and certificates.",
-    tags: ["Next.js", "MongoDB", "Tailwind"],
-    image:
-      "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  },
-];
+"use client";
+import { useEffect, useState } from "react";
+import Container from "./Container";
+
+interface Project {
+  title: string;
+  slug: string;
+  description: string;
+  descriptionShort: string;
+  tags?: string;
+  image?: string;
+  featured: boolean;
+  published: boolean;
+}
+
+function parseTags(tags?: string): string[] {
+  if (!tags) return [];
+  try {
+    return JSON.parse(tags) as string[];
+  } catch {
+    return [];
+  }
+}
+
+const arabicText = {
+  sectionLabel: "أعمالي المختارة",
+  title: "مشاريع مميزة",
+  subtitle: "بعض من المشاريع التي قمت ببنائها",
+  viewAll: "عرض جميع المشاريع",
+};
+
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
+        const all = Array.isArray(data) ? data.filter((p: Project) => p.published) : [];
+        const featured = all.filter((p: Project) => p.featured);
+        setProjects(featured.length > 0 ? featured.slice(0, 3) : all.slice(0, 3));
+      })
+      .catch(console.error);
+  }, []);
+
   return (
-    <section
-      id="projects"
-      className={`px-4 sm:px-6 md:px-16 py-12 sm:py-16 ${outfit.className}`}
-    >
-      <div className="w-full max-w-7xl mx-auto">
-        {/* Header */}
+    <section id="projects" className={" py-16 sm:py-20 lg:py-24"}>
+      <Container>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">
-              Featured Projects
+            <p className="text-black/40 text-sm mb-1" >{arabicText.sectionLabel}</p>
+            <h2 className="section-title text-2xl md:text-4xl text-black flex items-center gap-2" >
+              <span>{arabicText.title}</span>
+              <span className="text-black/30">✦</span>
             </h2>
-            <p className="text-gray-400 mt-1">
-              Some of the projects I&apos;ve built
-            </p>
+            <p className="text-black/50 mt-1" >{arabicText.subtitle}</p>
           </div>
           <a
             href="/projects"
-            className="text-blue-400 font-medium text-sm hover:text-blue-300 active:text-blue-300 transition-colors whitespace-nowrap"
+            className="text-black font-medium text-sm hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
           >
-            View All Projects →
+            <span className="rotate-180">←</span>
+            <span>{arabicText.viewAll}</span>
           </a>
         </div>
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.35)] border border-white/5 transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:bg-white/[0.06] active:border-white/20 active:-translate-y-0.5 "
-            >
-              {/* Image with category badge */}
-              <div className="relative w-full h-44">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute bottom-3 left-3 bg-white/95 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">
-                  {project.category}
-                </span>
-              </div>
-              {/* Content */}
-              <div className="bg-[#0d1420] p-5">
-                <h3 className="text-white font-semibold text-lg mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs text-gray-300 bg-white/10 px-3 py-1.5 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+
+        {projects.length === 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="rounded-2xl border border-black/10 bg-white h-64 animate-pulse" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <a
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="rounded-2xl overflow-hidden border border-black/10 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 active:border-black/20 active:-translate-y-0.5 block"
+              >
+                <div className="relative w-full h-44">
+                  <img
+                    src={project.image || ""}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+                <div className="bg-white p-5">
+                  <h3 className="text-black font-semibold text-lg mb-2" >{project.title}</h3>
+                  <p className="text-black/50 text-sm mb-4 leading-relaxed" >
+                    {project.descriptionShort || project.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-black -rotate-45">↗</span>
+                    <div className="flex flex-wrap justify-end gap-2">
+                      {parseTags(project.tags).slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs text-black/60 bg-black/5 px-3 py-1.5 rounded-full"
+ 
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+      </Container>
     </section>
   );
 }

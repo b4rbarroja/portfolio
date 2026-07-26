@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["arabic"],
+  variable: "--font-primary",
 });
 
 export const metadata: Metadata = {
-  title: "Jabr-Dev",
+  title: "جبر",
   description: "Make your Ideas alive and pulsing !",
 };
 
@@ -26,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full w-full antialiased`}
+      lang="ar"
+      dir="rtl"
+      suppressHydrationWarning
+      className={`${ibmPlexSansArabic.variable} h-full w-full antialiased`}
     >
-      <body className="min-h-full w-full flex flex-col overflow-x-hidden">
+      <body className="min-h-full w-full flex flex-col overflow-x-hidden bg-surface font-sans">
         <div className="flex-1 flex flex-col">
           <Navbar />
           {children}

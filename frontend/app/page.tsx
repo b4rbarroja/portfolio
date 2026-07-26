@@ -1,5 +1,4 @@
 import Hero from "./components/Hero";
-import Container from "./components/Container";
 import Skills from "./components/Skills";
 import Services from "./components/Services";
 import About from "./components/About";
@@ -9,44 +8,14 @@ import Blogs from "./components/Blogs";
 
 export default function Home() {
   return (
-    <main className="relative bg-gradient-to-br from-[#020617] via-[#0B1120] to-[#020617] text-white min-h-screen">
-      {/* 🔵 Global Glow Effects */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-500/20 blur-[120px] rounded-full top-[-100px] right-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-cyan-400/10 blur-[100px] rounded-full bottom-[-100px] left-[-100px]" />
+    <main className="relative min-h-screen">
 
-      {/* Hero */}
-      <Container>
-        <Hero />
-      </Container>
-
-      {/* Services */}
-      <Container>
-        <Services />
-      </Container>
-
-      {/* Skills */}
-      <Container>
-        <Skills />
-      </Container>
-
-      <Container>
-        <About />
-      </Container>
-
-      {/* Projects */}
-      <Container>
-        <Projects />
-      </Container>
-
-      {/* Reviews */}
-      <Container>
-        <Reviews />
-      </Container>
-
-      {/* Blogs */}
-      <Container>
-        <Blogs />
-      </Container>
+      <Hero />
+      <Services />
+      <Skills />
+      <About />
+      <Projects />
+      <Blogs />
     </main>
   );
 }
