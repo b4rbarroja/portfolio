@@ -155,7 +155,7 @@ export default function BlogPost({
             </div>
           )}
 
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto" dir="auto">
             <div className="prose prose-lg max-w-none text-black/60">
               {content ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>

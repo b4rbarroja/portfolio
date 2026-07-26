@@ -4,7 +4,7 @@ interface LogoProps {
 
 export default function Logo({ className = "" }: LogoProps) {
   return (
-    <span className={`logo-font text-3xl font-bold tracking-tight ${className}`}>
+    <span className={`logo-font text-4xl font-bold tracking-tight ${className}`}>
       جبر
     </span>
   );
