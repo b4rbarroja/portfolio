@@ -49,7 +49,7 @@ export default function Sidebar({
           <X size={22} />
         </button>
         <Link href="#" onClick={onClose} className="flex justify-center w-full px-6">
-          <Logo className="text-4xl" />
+          <Logo />
         </Link>
         <nav className="nav-text flex flex-col items-center gap-6 text-black/60">
           {navLinks.map(({ name, href }) => (

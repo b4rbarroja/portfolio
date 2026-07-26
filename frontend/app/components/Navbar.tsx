@@ -25,7 +25,7 @@ export default function Navbar() {
         className={`sticky top-0 z-40 w-full backdrop-blur-md border-b border-black/10`}
       >
         <Container className="flex h-20 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center">
             <Logo />
           </Link>
 
