@@ -11,20 +11,14 @@ const quickLinks = [
   { name: "تواصل معي", href: "/contact" },
 ];
 
-const services = [
-  "تطوير الويب",
-  "التجارة الإلكترونية",
-  "المنصات التعليمية",
-  "لوحات التحكم & SaaS",
-  "واجهات برمجة التطبيقات",
-];
+const services = ["الواجهات الأمامية", "الواجهات الخلفية", "الخدمات الأخرى"];
 
 const t = {
-  tagline: "نبني منتجات رقمية تصنع فرقاً حقيقياً.",
+  tagline:  "حول فكرتك إلى واقع تراه عيناك.",
   quickLinksTitle: "روابط سريعة",
   servicesTitle: "خدماتي",
   contactTitle: "تواصل معي",
-  location: "منوفية، مصر",
+  location: "المنوفية، مصر.",
   rights: "جميع الحقوق محفوظة.",
   madeWith: "صنع بكل شغف",
 };
@@ -51,7 +45,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/m7mdjbr"
+                href="https://github.com/b4rbarroja"
                 aria-label="GitHub"
                 className="text-black/60 hover:text-white active:text-white transition-colors bg-black/5 hover:bg-black p-2.5 rounded-full"
               >
@@ -69,7 +63,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:m7mdjbr1426@gmail.com"
+                href="mailto:me7midd@gmail.com"
                 aria-label="Email"
                 className="text-black/60 hover:text-white active:text-white transition-colors bg-black/5 hover:bg-black p-2.5 rounded-full"
               >

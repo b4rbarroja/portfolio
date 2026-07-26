@@ -7,10 +7,8 @@ import { Reveal } from "./Reveal";
 
 const t = {
   label: "عني",
-  titleLine1: "مطور يحب الكود النظيف",
-  titleLine2: "والتصاميم الراقية.",
-  paragraph:
-    "أنا مطور ويب شغوف بتحويل الأفكار المعقدة إلى حلول رقمية أنيقة وفعالة. أركز على كتابة كود نظيف، تجربة مستخدم مميزة، وتصاميم حديثة تعكس هوية العلامة التجارية.",
+  titleLine1: "مطور ويب متكامل جمع بين الشكل والأداء.",
+  paragraph:"شغوف بتحويل تلك الأفكار الحرة التي ببالك إلى واقع تعيشه بأحدث تقنية.",
   contactBtn: "تواصل معي",
   viewWork: "استعرض أعمالي",
   stat1: "مشروع مكتمل",
@@ -84,10 +82,7 @@ export default function About() {
                 <h2 className="text-3xl md:text-4xl font-bold text-black">+5</h2>
                 <p className="text-black/40 text-sm md:text-base">{t.stat1}</p>
               </div>
-              <div className="flex flex-col items-center lg:items-end gap-2">
-                <h2 className="text-3xl md:text-4xl font-bold text-black">-</h2>
-                <p className="text-black/40 text-sm md:text-base">{t.stat2}</p>
-              </div>
+
               <div className="flex flex-col items-center lg:items-end gap-2">
                 <h2 className="text-3xl md:text-4xl font-bold text-black">100%</h2>
                 <p className="text-black/40 text-sm md:text-base">{t.stat3}</p>
@@ -120,7 +115,7 @@ export default function About() {
                         alt={item.name}
                         width={40}
                         height={40}
-                        className="w-1/2 h-1/2 object-contain grayscale contrast-125 brightness-[0.35] opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:brightness-0"
+                        className="w-1/2 h-1/2 object-contain   transition-all duration-300 "
                       />
 
                       <div className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-black px-3 py-1 text-[11px] text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">

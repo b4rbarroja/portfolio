@@ -130,18 +130,15 @@ export default function Hero() {
 
             <Reveal delay={100}>
               <h1 className="text-4xl md:text-6xl font-bold max-w-xl leading-tight">
-                أبني منتجات رقمية
+                حول فكرتك إلى واقع تراه عيناك
                 <br />
-                <span className="relative inline-block">
-                  تدفع الأعمال إلى الأمام.
-                </span>
+
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="text-base md:text-lg mt-8 text-black/60 max-w-lg">
-                أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
-                تساعد العلامات التجارية على النمو.
+                مبرمج يسعى لتطوير الأفكار لتصبح رأي العين حية!
               </p>
             </Reveal>
 
@@ -150,12 +147,12 @@ export default function Hero() {
                 <Link href="/projects">
                   <button className="text-sm md:text-base bg-black text-white px-11 py-5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
 
-                    استعرض المشاريع
+                    ألق نظرة على مشاريعي
                   </button>
                 </Link>
                 <Link href="/contact">
                   <button className="text-sm md:text-base border border-black/15 px-11 py-5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
-                    تحدث عن مشروعك
+                    أخبرني بفكرتك
                   </button>
                 </Link>
               </div>
@@ -167,10 +164,7 @@ export default function Hero() {
                   <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
                   <p className="text-black/50 text-sm md:text-base">التزام بالجودة</p>
                 </div>
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">-</h2>
-                  <p className="text-black/50 text-sm md:text-base">سنوات خبرة</p>
-                </div>
+
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold">+5</h2>
                   <p className="text-black/50 text-sm md:text-base">مشروع مكتمل</p>

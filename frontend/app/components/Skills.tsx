@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Container from "./Container";
 import { Reveal } from "./Reveal";
+
 const skills = [
   { src: "/html.png", name: "HTML5", desc: "لغة ترميز" },
   { src: "/css2.svg", name: "CSS3", desc: "تصميم" },
@@ -15,6 +16,7 @@ const skills = [
   { src: "/git.png", name: "Git", desc: "نظام تحكم" },
   { src: "/tailwind2.png", name: "Tailwind CSS", desc: "إطار عمل CSS" },
 ];
+
 export default function Skills() {
   return (
     <section
@@ -34,37 +36,29 @@ export default function Skills() {
             <div className="w-10 border-t border-dashed border-black/10 mt-1" />
           </div>
         </Reveal>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-0 gap-y-10 w-full max-w-6xl">
-          {skills.map((skill, idx) => {
-            const isLastInRow =
-              (idx + 1) % 6 === 0 || idx === skills.length - 1;
-            return (
-              <Reveal key={skill.name} delay={idx * 80}>
-                <div className="relative flex justify-center">
-                  {!isLastInRow && (
-                    <div className="hidden lg:block absolute top-[60px] right-0 -translate-x-1/2 w-full border-t border-dashed border-black/10 -z-10">
-                      <span className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 w-1 h-1 rounded-full bg-black/20" />
-                    </div>
-                  )}
-                  <div className="flex flex-col items-center text-center gap-3 border border-black/10 rounded-t-full rounded-b-2xl px-6 pt-8 pb-6 w-full max-w-[180px] transition-all duration-300 hover:border-black/25 hover:-translate-y-1 bg-white">
-                    <Image
-                      src={skill.src}
-                      alt={skill.name}
-                      width={40}
-                      height={40}
-                      className="w-9 h-9 sm:w-10 sm:h-10"
-                    />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-black font-semibold text-xl md:text-2xl">
-                        {skill.name}
-                      </p>
-                      <p className="text-black/40 text-sm md:text-base">{skill.desc}</p>
-                    </div>
-                  </div>
+
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-y-10 gap-x-4 w-full max-w-6xl">
+          {skills.map((skill, idx) => (
+            <Reveal key={skill.name} delay={idx * 80}>
+              <div className="group flex flex-col items-center text-center gap-3">
+                <Image
+                  src={skill.src}
+                  alt={skill.name}
+                  width={56}
+                  height={56}
+                  className="w-12 h-12 sm:w-14 sm:h-14 transition-all duration-300 group-hover:scale-105"
+                />
+                <div className="flex flex-col gap-1">
+                  <p className="text-black font-semibold text-base md:text-lg">
+                    {skill.name}
+                  </p>
+                  <p className="text-black/40 text-xs md:text-sm">
+                    {skill.desc}
+                  </p>
                 </div>
-              </Reveal>
-            );
-          })}
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Container>
     </section>
