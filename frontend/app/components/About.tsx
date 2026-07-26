@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Code2, User, Zap } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const t = {
@@ -17,6 +18,20 @@ const t = {
   stat3: "التزام بالجودة",
   badge: "أكتب اليوم ما يصنع الفرق غداً",
 };
+
+// Curated subset — the most recognizable icons across the stack (markup, styling,
+// language, framework, backend, database) rather than all twelve, so the grid
+// stays legible instead of crowded.
+const stack = [
+  { src: "/html.png", name: "HTML5", desc: "لغة ترميز" },
+  { src: "/css2.svg", name: "CSS3", desc: "تصميم" },
+  { src: "/js.png", name: "JavaScript", desc: "لغة برمجة" },
+  { src: "/ts.png", name: "TypeScript", desc: "لغة برمجة" },
+  { src: "/react.png", name: "React", desc: "مكتبة واجهات" },
+  { src: "/next.png", name: "Next.js", desc: "إطار عمل" },
+  { src: "/node.png", name: "Node.js", desc: "بيئة تشغيل" },
+  { src: "/postgres.png", name: "PostgreSQL", desc: "قاعدة بيانات" },
+];
 
 export default function About() {
   return (
@@ -52,7 +67,6 @@ export default function About() {
               <Link href="/contact">
                 <button className="text-xl bg-black text-white px-7 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
                   <span>{t.contactBtn}</span>
-
                 </button>
               </Link>
               <Link
@@ -92,57 +106,33 @@ export default function About() {
 
           <Reveal delay={200} duration={800}>
             <div className="relative w-full max-w-[480px]">
-              <svg
-                viewBox="0 0 480 420"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-full h-auto"
-              >
-                <circle cx="240" cy="210" r="180" fill="black" fillOpacity="0.03" />
-                <circle cx="240" cy="210" r="180" stroke="black" strokeOpacity="0.08" strokeWidth="1" strokeDasharray="4 6" />
+              <div className="relative rounded-[28px] border border-black/10 bg-black/[0.02] p-6 sm:p-8">
+                <div className="grid grid-cols-4 gap-3 sm:gap-4">
+                  {stack.map((item, i) => (
+                    <div
+                      key={item.name}
+                      title={item.name}
+                      className="group relative aspect-square rounded-2xl border border-black/10 bg-white flex items-center justify-center animate-[stackFloat_5s_ease-in-out_infinite] transition-transform duration-300 hover:scale-110 hover:border-black/30 hover:z-10"
+                      style={{ animationDelay: `${i * 0.35}s` }}
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={40}
+                        height={40}
+                        className="w-1/2 h-1/2 object-contain grayscale contrast-125 brightness-[0.35] opacity-80 transition-all duration-300 group-hover:opacity-100 group-hover:brightness-0"
+                      />
 
-                <rect x="90" y="80" width="300" height="200" rx="14" stroke="black" strokeWidth="2.5" />
-                <line x1="90" y1="118" x2="390" y2="118" stroke="black" strokeWidth="2.5" />
-                <circle cx="108" cy="99" r="4" fill="black" />
-                <circle cx="122" cy="99" r="4" fill="black" fillOpacity="0.4" />
-                <circle cx="136" cy="99" r="4" fill="black" fillOpacity="0.2" />
-
-                <text
-                  x="240"
-                  y="215"
-                  textAnchor="middle"
-                  fontFamily="monospace"
-                  fontSize="56"
-                  fontWeight="700"
-                  fill="black"
-                >
-                  {"</>"}
-                </text>
-
-                <line x1="115" y1="145" x2="175" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-                <line x1="115" y1="245" x2="150" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-                <line x1="305" y1="145" x2="365" y2="145" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-                <line x1="330" y1="245" x2="365" y2="245" stroke="black" strokeOpacity="0.25" strokeWidth="4" strokeLinecap="round" />
-
-                <path d="M60 280 L420 280 L400 300 L80 300 Z" stroke="black" strokeWidth="2.5" strokeLinejoin="round" />
-                <line x1="215" y1="290" x2="265" y2="290" stroke="black" strokeWidth="2.5" strokeLinecap="round" />
-
-                <g>
-                  <rect x="20" y="150" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
-                  <text x="43" y="179" textAnchor="middle" fontFamily="monospace" fontWeight="700" fontSize="16" fill="black">{"{ }"}</text>
-                </g>
-                <g>
-                  <rect x="405" y="60" width="46" height="46" rx="12" stroke="black" strokeWidth="2" />
-                  <path d="M420 83 l7 -7 M420 83 l7 7 M436 76 l7 7 M436 90 l-7 -7" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                </g>
-                <g>
-                  <circle cx="425" cy="330" r="24" stroke="black" strokeWidth="2" />
-                  <path d="M418 330 l5 5 l10 -10" stroke="black" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                </g>
-
-                <path d="M35 60 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z" fill="black" fillOpacity="0.15" />
-                <path d="M455 220 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z" fill="black" fillOpacity="0.2" />
-              </svg>
+                      <div className="pointer-events-none absolute -bottom-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-black px-3 py-1 text-[11px] text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+                        {item.name}
+                        <span className="block text-center text-white/50 text-[10px]">
+                          {item.desc}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               <div className="absolute -bottom-4 right-1/2 translate-x-1/2 lg:right-8 lg:translate-x-0 bg-black rounded-full px-5 py-2.5 shadow-xl flex items-center gap-2 whitespace-nowrap">
                 <Code2 className="w-4 h-4 text-white" strokeWidth={2} />
@@ -152,6 +142,23 @@ export default function About() {
           </Reveal>
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes stackFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [style*="stackFloat"] {
+            animation: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
