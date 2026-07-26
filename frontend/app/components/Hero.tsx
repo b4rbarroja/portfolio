@@ -1,105 +1,156 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import Container from "./Container";
 
-function HeroSVG() {
+function HeroVisual() {
   return (
-    <svg viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-4xl mx-auto" style={{ overflow: "visible" }}>
-      <defs>
-        <pattern id="grid" x="0" y="0" width="40" height="35" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1.5" fill="#111" opacity="0.1" />
-        </pattern>
-      </defs>
+    <div className="relative flex items-center justify-center w-full max-w-lg mx-auto min-h-[420px]">
       <style>
         {`
-          @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-          @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-          @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-          @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-          @keyframes dash { to{stroke-dashoffset:-20} }
-          @keyframes pulse { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
-          .fa { animation:floatA 6s ease-in-out infinite }
-          .fb { animation:floatB 4.5s ease-in-out infinite }
-          .fc { animation:floatC 5s ease-in-out infinite }
-          .blink { animation:blink 1.2s step-end infinite }
-          .dash { animation:dash 2s linear infinite }
-          .pulse { animation:pulse 3s ease-in-out infinite }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-16px); }
+          }
+          @keyframes ring-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          @keyframes ring-spin-reverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+          }
+          @keyframes ring-glow {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.6; }
+          }
+          @keyframes code-orbit {
+            0% { transform: rotate(0deg) translateX(170px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
+          }
+          @keyframes code-orbit-rev {
+            0% { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+            100% { transform: rotate(-360deg) translateX(140px) rotate(360deg); }
+          }
+          @keyframes code-orbit-outer {
+            0% { transform: rotate(0deg) translateX(210px) rotate(0deg); }
+            100% { transform: rotate(-360deg) translateX(210px) rotate(360deg); }
+          }
+          @keyframes dash-spin {
+            to { stroke-dashoffset: -200; }
+          }
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+          @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.15; }
+            100% { transform: scale(1); opacity: 0.3; }
+          }
+          @keyframes terminal-type {
+            from { width: 0; }
+            to { width: 100%; }
+          }
+          .img-float { animation: float 6s ease-in-out infinite; }
+          .ring-spin { animation: ring-spin 8s linear infinite; }
+          .ring-spin-rev { animation: ring-spin-reverse 12s linear infinite; }
+          .ring-glow { animation: ring-glow 3s ease-in-out infinite; }
+          .code-orbit { animation: code-orbit 16s linear infinite; }
+          .code-orbit-rev { animation: code-orbit-rev 20s linear infinite; }
+          .code-orbit-outer { animation: code-orbit-outer 24s linear infinite; }
+          .dash-spin { animation: dash-spin 3s linear infinite; }
+          .blink { animation: blink 1s step-end infinite; }
+          .pulse-ring { animation: pulse-ring 4s ease-in-out infinite; }
+          .typing {
+            overflow: hidden; white-space: nowrap; border-right: 2px solid #4F46E5;
+            width: 0; animation: terminal-type 2s steps(18) 0.5s forwards, blink 0.8s step-end infinite 2.5s;
+          }
         `}
       </style>
 
-      <rect width="800" height="500" fill="url(#grid)" />
+      {/* Background grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-50"
+        style={{ backgroundImage: "radial-gradient(circle, rgba(79,70,229,0.06) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+      />
 
-      <g className="fa">
-        <rect x="190" y="80" width="420" height="280" rx="16" stroke="#333" strokeWidth="1.5" />
-        <rect x="190" y="80" width="420" height="42" rx="16" stroke="#333" strokeWidth="1.5" />
-        <rect x="190" y="105" width="420" height="17" fill="#111" fillOpacity="0.02" />
-        <clipPath id="browserBottom"><rect x="190" y="122" width="420" height="238" rx="0" /></clipPath>
-        <g clipPath="url(#browserBottom)">
-          <circle cx="216" cy="101" r="5" fill="#777" />
-          <circle cx="236" cy="101" r="5" fill="#777" />
-          <circle cx="256" cy="101" r="5" fill="#777" />
+      {/* Animated code rings */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: "visible" }}>
+        <defs>
+          <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#4F46E5" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#7C3AED" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#4F46E5" stopOpacity="0.4" />
+          </linearGradient>
+          <linearGradient id="ring2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#4F46E5" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+        {/* Ring 1 - outer dashed */}
+        <circle cx="50%" cy="50%" r="130" fill="none" stroke="url(#ring1)" strokeWidth="1" strokeDasharray="6 8" className="ring-spin ring-glow" />
+        {/* Ring 2 - inner dashed */}
+        <circle cx="50%" cy="50%" r="100" fill="none" stroke="url(#ring2)" strokeWidth="1" strokeDasharray="4 10" className="ring-spin-rev ring-glow" style={{ animationDelay: "0.5s" }} />
+        {/* Ring 3 - pulsing faint */}
+        <circle cx="50%" cy="50%" r="160" fill="none" stroke="#4F46E5" strokeWidth="0.5" strokeDasharray="2 14" className="ring-spin" opacity="0.15" style={{ animationDirection: "reverse", animationDuration: "20s" }} />
+      </svg>
 
-          <rect x="220" y="145" width="60" height="4" rx="2" fill="#777" />
-          <rect x="220" y="163" width="120" height="4" rx="2" fill="#777" />
-          <rect x="240" y="181" width="80" height="4" rx="2" fill="#777" />
-          <rect x="240" y="199" width="140" height="4" rx="2" fill="#333" />
+      {/* Orbiting code labels on rings */}
+      <div className="absolute w-0 h-0 code-orbit pointer-events-none select-none z-10">
+        <div className="relative -left-7 -top-3 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-md text-indigo-600 font-mono text-[10px] font-bold shadow-sm border border-indigo-200/50">
+          {"<dev />"}
+        </div>
+      </div>
+      <div className="absolute w-0 h-0 code-orbit-rev pointer-events-none select-none z-10">
+        <div className="relative -left-5 -top-3 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-md text-purple-600 font-mono text-[10px] font-bold shadow-sm border border-purple-200/50">
+          {"{code}"}
+        </div>
+      </div>
+      <div className="absolute w-0 h-0 code-orbit-outer pointer-events-none select-none z-10">
+        <div className="relative -left-6 -top-3 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-md text-indigo-500 font-mono text-[10px] font-bold shadow-sm border border-indigo-200/50">
+          {"<script>"}
+        </div>
+      </div>
 
-          <text x="220" y="255" fontFamily="monospace" fontSize="30" fontWeight="700" fill="#4F46E5">{`{ }`}</text>
+      {/* Circular image */}
+      <div className="img-float relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
+        {/* Outer glow ring */}
+        <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-indigo-500/20 blur-xl pulse-ring" />
 
-          <rect x="220" y="285" width="100" height="4" rx="2" fill="#777" />
-          <rect x="220" y="305" width="10" height="20" rx="2" fill="#4F46E5" className="blink" />
+        {/* Image */}
+        <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/20 shadow-xl">
+          <Image
+            src="/personal.png"
+            alt="Personal"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
 
-          <rect x="440" y="145" width="140" height="80" rx="8" stroke="#333" strokeWidth="1" fill="none" />
-          <rect x="455" y="165" width="50" height="4" rx="2" fill="#777" />
-          <rect x="455" y="183" width="90" height="4" rx="2" fill="#777" />
-          <rect x="455" y="201" width="70" height="4" rx="2" fill="#777" />
+        {/* Code badge at bottom of circle */}
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 z-10 whitespace-nowrap">
+          <span className="text-emerald-400 font-mono text-[10px]">$ </span>
+          <span className="text-white/80 font-mono text-[10px] typing">building cool stuff...</span>
+        </div>
+      </div>
 
-          <path d="M 440 320 L 465 302 L 490 306 L 515 284 L 540 292 L 565 270" stroke="#4F46E5" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="565" cy="270" r="4" fill="#4F46E5" />
-        </g>
-      </g>
-
-      <g className="fb" style={{ transformOrigin: "100px 200px" }}>
-        <line x1="80" y1="160" x2="170" y2="210" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="170" y1="210" x2="80" y2="290" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="80" y1="290" x2="170" y2="350" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="80" y1="160" x2="80" y2="290" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx="80" cy="160" r="6" fill="#111" />
-        <circle cx="170" cy="210" r="6" fill="#4F46E5" className="pulse" />
-        <circle cx="80" cy="290" r="6" fill="#333" />
-        <circle cx="170" cy="350" r="6" fill="#111" />
-      </g>
-
-      <g className="fc" style={{ transformOrigin: "720px 260px" }}>
-        <line x1="630" y1="170" x2="710" y2="210" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="710" y1="210" x2="630" y2="310" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <line x1="630" y1="170" x2="630" y2="310" stroke="#333" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx="630" cy="170" r="6" fill="#111" />
-        <circle cx="710" cy="210" r="6" fill="#4F46E5" className="pulse" />
-        <circle cx="630" cy="310" r="6" fill="#333" />
-      </g>
-
-      <path d="M 180 430 C 280 400, 380 450, 500 420 S 620 440, 680 410" stroke="#777" strokeWidth="0.75" fill="none" strokeDasharray="8 4" className="dash" />
-      <path d="M 80 455 C 240 425, 350 480, 520 450 S 650 470, 750 440" stroke="#333" strokeWidth="0.5" fill="none" />
-
-      <g>
-        <path d="M 50 100 l 4 8 l 8 4 l -8 4 l -4 8 l -4 -8 l -8 -4 l 8 -4 Z" fill="#4F46E5" className="pulse" />
-        <path d="M 740 80 l 3 6 l 6 3 l -6 3 l -3 6 l -3 -6 l -6 -3 l 6 -3 Z" fill="#111" />
-        <path d="M 660 370 l 2 5 l 5 2 l -5 2 l -2 5 l -2 -5 l -5 -2 l 5 -2 Z" fill="#4F46E5" className="pulse" />
-        <path d="M 120 390 l 2 4 l 4 2 l -4 2 l -2 4 l -2 -4 l -4 -2 l 4 -2 Z" fill="#777" />
-      </g>
-
-      <text x="640" y="430" fontFamily="monospace" fontSize="14" fill="#777" opacity="0.4">&lt;/&gt;</text>
-      <text x="130" y="115" fontFamily="monospace" fontSize="12" fill="#777" opacity="0.35">&lt;/&gt;</text>
-
-      <circle cx="350" cy="410" r="3" fill="#4F46E5" opacity="0.25" />
-      <circle cx="490" cy="390" r="2" fill="#333" opacity="0.35" />
-      <circle cx="590" cy="430" r="4" fill="#111" opacity="0.12" />
-
-      <rect x="660" y="140" width="36" height="22" rx="4" stroke="#777" strokeWidth="1" fill="none" className="fc" opacity="0.5" />
-      <rect x="105" y="350" width="28" height="28" rx="6" stroke="#333" strokeWidth="1" fill="none" className="fa" opacity="0.4" />
-    </svg>
+      {/* Floating code dust */}
+      <div className="absolute top-[12%] left-[8%] text-indigo-400/20 font-mono text-[10px] select-none pointer-events-none" style={{ animation: "float 7s ease-in-out infinite 1s" }}>
+        {"</>"}
+      </div>
+      <div className="absolute bottom-[18%] right-[6%] text-purple-400/20 font-mono text-[10px] select-none pointer-events-none" style={{ animation: "float 9s ease-in-out infinite 2s" }}>
+        {"{ }"}
+      </div>
+      <div className="absolute top-[30%] right-[10%] text-indigo-400/15 font-mono text-[9px] select-none pointer-events-none" style={{ animation: "float 8s ease-in-out infinite 0.5s" }}>
+        {"npm i"}
+      </div>
+      <div className="absolute bottom-[35%] left-[5%] text-purple-400/15 font-mono text-[9px] select-none pointer-events-none" style={{ animation: "float 10s ease-in-out infinite 1.5s" }}>
+        {"yarn"}
+      </div>
+    </div>
   );
 }
 
@@ -161,7 +212,7 @@ export default function Hero() {
           </div>
 
           <div className="order-2 lg:order-2">
-            <HeroSVG />
+            <HeroVisual />
           </div>
         </div>
       </Container>
