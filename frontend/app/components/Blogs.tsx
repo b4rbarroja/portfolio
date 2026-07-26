@@ -53,12 +53,12 @@ export default function Articles() {
               </h2>
               <p className="text-black/50 text-xl mt-1">{t.subtitle}</p>
             </div>
-            <a
+            <Link
               href="/blog"
               className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-lg font-medium text-black transition hover:bg-black hover:text-white"
             >
               <span>{t.viewAll}</span>
-            </a>
+            </Link>
           </div>
         </Reveal>
 

@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import { Mirza, Alexandria } from "next/font/google";
+import { thmanyahSans, thmanyahSerifDisplay, thmanyahSerifText } from "@/lib/fonts";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-const lateef = Mirza({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["arabic"],
-  variable: "--font-primary",
-});
-
-const alexandria = Alexandria({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["arabic"],
-  variable: "--font-logo",
-});
 
 export const metadata: Metadata = {
   title: "جبر — معرض الأعمال",
@@ -31,9 +19,9 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       suppressHydrationWarning
-      className={`${lateef.variable} ${alexandria.variable} h-full w-full antialiased`}
+      className={`${thmanyahSans.variable} ${thmanyahSerifDisplay.variable} ${thmanyahSerifText.variable} h-full w-full antialiased`}
     >
-      <body className="min-h-full w-full flex flex-col overflow-x-hidden bg-surface font-sans">
+      <body className="min-h-full w-full flex flex-col overflow-x-hidden bg-surface font-thmanyah-sans">
         <div className="flex-1 flex flex-col">
           <Navbar />
           {children}

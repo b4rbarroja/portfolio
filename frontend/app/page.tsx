@@ -8,7 +8,6 @@ import Blogs from "./components/Blogs";
 export default function Home() {
   return (
     <main className="relative min-h-screen">
-
       <Hero />
       <Services />
       <Skills />

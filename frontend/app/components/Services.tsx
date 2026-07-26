@@ -1,7 +1,7 @@
 "use client";
 import { Code2, Smartphone, ShoppingCart, Palette } from "lucide-react";
 import Container from "./Container";
-import { Reveal, StaggerReveal } from "./Reveal";
+import { Reveal } from "./Reveal";
 const services = [
   {
     icon: Code2,

@@ -72,7 +72,7 @@ function HeroVisual() {
         </div>
 
         {/* Skill icons orbiting around the square image */}
-        {orbitIcons.map((icon, idx) => (
+        {orbitIcons.map((icon) => (
           <div
             key={icon.src}
             className="icon-float absolute z-10"

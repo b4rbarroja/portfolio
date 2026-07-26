@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Container from "./Container";
 import { Reveal } from "./Reveal";
 
@@ -57,12 +58,12 @@ export default function Projects() {
               </h2>
               <p className="text-black/50 text-2xl mt-1">{arabicText.subtitle}</p>
             </div>
-            <a
+            <Link
               href="/projects"
               className="text-black font-medium text-xl hover:text-black/60 active:text-black/60 transition-colors whitespace-nowrap flex items-center gap-1"
             >
               <span>{arabicText.viewAll}</span>
-            </a>
+            </Link>
           </div>
         </Reveal>
 

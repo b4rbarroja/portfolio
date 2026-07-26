@@ -20,24 +20,31 @@ html {
     --color-surface: #ffffff;
     --color-background: var(--background);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-primary), "IBM Plex Sans Arabic", "Alexandria", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-mono: var(--font-primary), "IBM Plex Sans Arabic", "Alexandria", monospace;
-    --font-logo: "Alexandria", sans-serif;
+    --font-thmanyah-sans: var(--font-thmanyah-sans);
+    --font-thmanyah-serif-display: var(--font-thmanyah-serif-display);
+    --font-thmanyah-serif-text: var(--font-thmanyah-serif-text);
+    --font-sans: var(--font-thmanyah-sans), "IBM Plex Sans Arabic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: var(--font-thmanyah-sans), "IBM Plex Sans Arabic", monospace;
 }
 
 body {
     background: var(--surface);
     color: #000000;
-    font-family: var(--font-sans);
+    font-family: var(--font-thmanyah-sans), "IBM Plex Sans Arabic", sans-serif;
     font-size: 25px;
     width: 100%;
     overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-thmanyah-serif-display), serif;
+}
+
+p {
+    font-family: var(--font-thmanyah-serif-text), serif;
+}
+
 @layer utilities {
-  .logo-font {
-    font-family: var(--font-logo);
-  }
 }
 
 @keyframes spin-slow {
