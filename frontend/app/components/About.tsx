@@ -30,7 +30,7 @@ const stack = [
   { src: "/react.png", name: "React", desc: "مكتبة واجهات" },
   { src: "/next.png", name: "Next.js", desc: "إطار عمل" },
   { src: "/node.png", name: "Node.js", desc: "بيئة تشغيل" },
-  { src: "/postgres.png", name: "PostgreSQL", desc: "قاعدة بيانات" },
+  { src: "/tailwind2.png", name: "Tailwind CSS", desc: "إطار عمل CSS" },
 ];
 
 export default function About() {
