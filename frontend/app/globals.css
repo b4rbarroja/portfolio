@@ -63,3 +63,9 @@ body {
     scroll-behavior: auto !important;
   }
 }
+.prose pre,
+.prose code {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: isolate;
+}
