@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Mada, Alexandria } from "next/font/google";
+import { Lateef, Alexandria } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
-const mada = Mada({
+const lateef = Lateef({
   weight: ["400", "500", "600", "700"],
   subsets: ["arabic"],
   variable: "--font-primary",
@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       suppressHydrationWarning
-      className={`${mada.variable} ${alexandria.variable} h-full w-full antialiased`}
+      className={`${lateef.variable} ${alexandria.variable} h-full w-full antialiased`}
     >
       <body className="min-h-full w-full flex flex-col overflow-x-hidden bg-surface font-sans">
         <div className="flex-1 flex flex-col">
