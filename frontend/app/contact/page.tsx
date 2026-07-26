@@ -57,7 +57,7 @@ export default function ContactPage() {
                       setForm({ ...form, name: e.target.value })
                     }
                     required
- 
+
                     placeholder="اسمك الكريم"
                     className="w-full border border-black/10 rounded-xl px-4 py-3 text-black outline-none focus:border-black/30 transition-colors bg-white placeholder:text-black/20"
                   />
@@ -74,7 +74,7 @@ export default function ContactPage() {
                       setForm({ ...form, email: e.target.value })
                     }
                     required
- 
+
                     placeholder="بريدك الإلكتروني"
                     className="w-full border border-black/10 rounded-xl px-4 py-3 text-black outline-none focus:border-black/30 transition-colors bg-white placeholder:text-black/20"
                   />
@@ -91,7 +91,7 @@ export default function ContactPage() {
                       setForm({ ...form, message: e.target.value })
                     }
                     required
- 
+
                     placeholder="اكتب رسالتك هنا..."
                     className="w-full border border-black/10 rounded-xl px-4 py-3 text-black outline-none focus:border-black/30 transition-colors resize-none bg-white placeholder:text-black/20"
                   />
@@ -100,7 +100,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === "loading" || status === "success"}
- 
+
                   className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === "loading" && <span>جاري الإرسال...</span>}
@@ -137,7 +137,7 @@ export default function ContactPage() {
                     <span>الهاتف</span>
                   </h3>
                   <p className="text-black/60 text-sm">
-                    +20 100 656 0891
+                    ٠٨٩١ ٦٥٦ ١٠٠ ٢٠+
                   </p>
                 </div>
 

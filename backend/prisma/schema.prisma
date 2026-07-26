@@ -14,10 +14,16 @@ model Project {
   slug             String   @unique
   description      String
   descriptionShort String
+  fullDescription  String?
+  problem          String?
+  solution         String?
+  tags             String?
   image            String?
   githubUrl        String?
+  repoUrl          String?
   liveUrl          String?
   featured         Boolean  @default(false)
+  published        Boolean  @default(false)
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 }
@@ -26,8 +32,12 @@ model Blog {
   id               String   @id @default(cuid())
   title            String
   slug             String   @unique
-  description       String
+  description      String
   descriptionShort String
+  content          String?
+  excerpt          String?
+  readTime         String?
+  date             String?
   image            String?
   type             String
   published        Boolean  @default(true)
@@ -36,16 +46,18 @@ model Blog {
 }
 
 model Contact {
-  id String @id @default(cuid())
-  name String
-  email String
-  subject String
-  message String
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model User {
   id        String   @id @default(cuid())
+  name      String?
   email     String   @unique
   password  String
   role      String   @default("admin")

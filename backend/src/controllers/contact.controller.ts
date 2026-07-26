@@ -6,7 +6,6 @@ type ContactParams = {
   id: string;
 };
 
-// GET all contacts
 export const getContacts = async (
   req: Request,
   res: Response
@@ -20,7 +19,6 @@ export const getContacts = async (
   res.json(contacts);
 };
 
-// POST create contact
 export const createContact = async (
   req: Request,
   res: Response
@@ -41,7 +39,6 @@ export const createContact = async (
   res.status(201).json(contact);
 };
 
-// DELETE contact
 export const deleteContact = async (
   req: Request<ContactParams>,
   res: Response
@@ -58,4 +55,26 @@ export const deleteContact = async (
     message: "Contact deleted successfully",
     contact,
   });
+};
+
+export const markContactRead = async (
+  req: Request<ContactParams>,
+  res: Response
+) => {
+  const { id } = req.params;
+
+  const contact = await prisma.contact.findUnique({
+    where: { id },
+  });
+
+  if (!contact) {
+    return res.status(404).json({ message: "Contact not found" });
+  }
+
+  const updated = await prisma.contact.update({
+    where: { id },
+    data: { read: !contact.read },
+  });
+
+  res.json(updated);
 };

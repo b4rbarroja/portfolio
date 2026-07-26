@@ -17,9 +17,16 @@ export const blogSchema = z.object({
     .string()
     .min(10, "Short description is too short"),
 
+  content: z.string().optional(),
+
+  excerpt: z.string().optional(),
+
+  readTime: z.string().optional(),
+
+  date: z.string().optional(),
+
   image: z
     .string()
-    .url("Image must be a valid URL")
     .optional(),
 
   type: z

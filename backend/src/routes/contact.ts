@@ -3,6 +3,7 @@ import {
   createContact,
   deleteContact,
   getContacts,
+  markContactRead,
 } from "../controllers/contact.controller.ts";
 import authMiddleware from "../middleware/authMiddleware.ts";
 
@@ -12,13 +13,9 @@ type ContactParams = {
   id: string;
 };
 
-// GET all contacts
 router.get("/", authMiddleware, getContacts);
-
-// POST create contact
 router.post("/", createContact);
-
-// DELETE contact
+router.patch<ContactParams>("/:id/read", authMiddleware, markContactRead);
 router.delete<ContactParams>("/:id", authMiddleware, deleteContact);
 
 export default router;

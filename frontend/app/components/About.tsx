@@ -50,7 +50,7 @@ export default function About() {
             <Link
               href="/projects"
               className="text-black font-medium underline underline-offset-4 decoration-black/30 hover:decoration-black transition-all"
- 
+
             >
               {t.viewWork}
             </Link>

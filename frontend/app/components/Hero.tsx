@@ -105,60 +105,62 @@ function HeroSVG() {
 
 export default function Hero() {
   return (
-    <section className="relative flex items-start">
+    <section className="relative overflow-hidden">
       <Container className="py-16 sm:py-20 lg:py-24">
-        <div className="flex flex-col items-center text-center">
-          <div className="flex items-center justify-center gap-2 mb-4 text-black/40 text-sm">
-            <span>مطور ويب متكامل</span>
-            <span>✦</span>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="order-1 lg:order-1">
+            <div className="flex items-center gap-2 mb-4 text-black/40 text-sm">
+              <span>✦</span>
+              <span>مطور ويب متكامل</span>
+            </div>
+
+            <h1 className="hero-title text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-xl">
+              أبني منتجات رقمية
+              <br />
+              <span className="relative inline-block">
+                تدفع الأعمال إلى الأمام.
+              </span>
+            </h1>
+
+            <p className="body-text mt-6 text-black/60 max-w-lg">
+              أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
+              تساعد العلامات التجارية على النمو.
+            </p>
+
+            <div className="flex flex-wrap gap-4 mt-8">
+              <Link href="/projects">
+                <button className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                  <span className="rotate-45">↑</span>
+                  استعرض المشاريع
+                </button>
+              </Link>
+              <Link href="/contact">
+                <button className="btn-text border border-black/15 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
+                  تحدث عن مشروعك
+                </button>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-3 gap-6 mt-10">
+              <div>
+                <div className="mb-1 text-black">⚡</div>
+                <h2 className="text-2xl font-bold">100%</h2>
+                <p className="text-black/50 text-sm">التزام بالجودة</p>
+              </div>
+              <div>
+                <div className="mb-1 text-black">👥</div>
+                <h2 className="text-2xl font-bold">3+</h2>
+                <p className="text-black/50 text-sm">سنوات خبرة</p>
+              </div>
+              <div>
+                <div className="mb-1 text-black">{"</>"}</div>
+                <h2 className="text-2xl font-bold">15+</h2>
+                <p className="text-black/50 text-sm">مشروع مكتمل</p>
+              </div>
+            </div>
           </div>
 
-          <h1 className="hero-title text-3xl sm:text-5xl lg:text-6xl xl:text-7xl max-w-4xl mx-auto">
-            أبني منتجات رقمية
-            <br />
-            <span className="relative inline-block">
-              تدفع الأعمال إلى الأمام.
-            </span>
-          </h1>
-
-          <p className="body-text mt-6 text-black/60 max-w-lg mx-auto">
-            أصمم وأطور تطبيقات ويب حديثة، متاجر إلكترونية، ومنصات مخصصة
-            تساعد العلامات التجارية على النمو.
-          </p>
-
-          <div className="flex flex-wrap gap-4 mt-8 justify-center">
-            <Link href="/contact">
-              <button className="btn-text bg-black text-white px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-                <span className="rotate-45">↑</span>
-                استعرض المشاريع
-              </button>
-            </Link>
-            <Link href="/projects">
-              <button className="btn-text border border-black/15 px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95">
-                تحدث عن مشروعك
-              </button>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-3 gap-6 mt-10">
-            <div>
-              <div className="flex justify-center mb-1 text-black">⚡</div>
-              <h2 className="text-2xl font-bold">100%</h2>
-              <p className="text-black/50 text-sm">التزام بالجودة</p>
-            </div>
-            <div>
-              <div className="flex justify-center mb-1 text-black">👥</div>
-              <h2 className="text-2xl font-bold">3+</h2>
-              <p className="text-black/50 text-sm">سنوات خبرة</p>
-            </div>
-            <div>
-              <div className="flex justify-center mb-1 text-black">{"</>"}</div>
-              <h2 className="text-2xl font-bold">15+</h2>
-              <p className="text-black/50 text-sm">مشروع مكتمل</p>
-            </div>
-          </div>
-
-          <div className="mt-12 w-full">
+          <div className="order-2 lg:order-2">
             <HeroSVG />
           </div>
         </div>
