@@ -44,10 +44,10 @@ export default function Services() {
             <div className="w-full border-t border-dashed border-black/10" />
           </div>
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 w-full max-w-6xl border-t border-r border-black/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 w-full max-w-6xl  border-t border-r border-black/10">
           {services.map(({ icon: Icon, title, description }, index) => (
             <Reveal key={title} delay={index * 100}>
-              <div className="border-l border-b border-black/10 p-8 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:bg-black/[0.02] bg-white">
+              <div className="border-l  border-black/10 p-8 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:bg-black/[0.02] bg-white">
                 <div className="w-20 h-20 rounded-full border border-black/10 flex items-center justify-center">
                   <Icon className="w-9 h-9 text-black" strokeWidth={1.5} />
                 </div>
