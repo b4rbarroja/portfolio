@@ -2,6 +2,7 @@
 import { Palette, Server, Smartphone, Zap, MapPin } from "lucide-react";
 import Container from "./Container";
 import { Reveal } from "./Reveal";
+import Link from "next/link";
 
 const journey = [
   {
@@ -96,7 +97,7 @@ export default function Services() {
             {journey.map(({ icon: Icon, title, description, x, y }) => (
               <div
                 key={title}
-                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center gap-2 sm:gap-3 w-[150px] sm:w-[210px] md:w-[260px]"
+                className="absolute mt-5 ml-3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center gap-2 sm:gap-3 w-[150px] sm:w-[210px] md:w-[260px]"
                 style={{ left: `${x}%`, top: `${y}%` }}
               >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border border-black/10 bg-white flex items-center justify-center shadow-sm">
@@ -115,18 +116,9 @@ export default function Services() {
 
             {/* finish marker + treasure (the CTA) */}
             <div
-              className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3"
+              className="absolute  -ranslate-x-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3"
               style={{ left: "22%", top: "96%" }}
             >
-              <a
-                href="#contact"
-                className="whitespace-nowrap px-4 py-2 sm:px-7 sm:py-3 rounded-full bg-black text-white text-xs sm:text-sm md:text-base font-medium hover:bg-black/80 transition-colors"
-              >
-                تواصل معنا لإنشاء مشروعك
-              </a>
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold text-black leading-none select-none">
-                ×
-              </span>
             </div>
           </div>
         </Reveal>
