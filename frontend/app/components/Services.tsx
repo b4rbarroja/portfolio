@@ -97,7 +97,7 @@ export default function Services() {
             {journey.map(({ icon: Icon, title, description, x, y }) => (
               <div
                 key={title}
-                className="absolute mt-11 ml-3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center gap-2 sm:gap-3 w-[150px] sm:w-[210px] md:w-[260px]"
+                className="absolute mt-9 ml-3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center gap-2 sm:gap-3 w-[150px] sm:w-[210px] md:w-[260px]"
                 style={{ left: `${x}%`, top: `${y}%` }}
               >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border border-black/10 bg-white flex items-center justify-center shadow-sm">
