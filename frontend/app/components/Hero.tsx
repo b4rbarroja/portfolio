@@ -169,6 +169,11 @@ export default function Hero() {
                   <h2 className="text-3xl md:text-4xl font-bold">+5</h2>
                   <p className="text-black/50 text-sm md:text-base">مشروع مكتمل</p>
                 </div>
+
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
+                  <p className="text-black/50 text-sm md:text-base">رضا العملاء</p>
+                </div>
               </div>
             </Reveal>
           </div>

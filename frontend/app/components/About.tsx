@@ -12,7 +12,7 @@ const t = {
   contactBtn: "تواصل معي",
   viewWork: "استعرض أعمالي",
   stat1: "مشروع مكتمل",
-  stat2: "سنوات خبرة",
+  stat2: "رضا العملاء",
   stat3: "التزام بالجودة",
   badge: "أكتب اليوم ما يصنع الفرق غداً",
 };
@@ -78,14 +78,21 @@ export default function About() {
           <Reveal delay={400}>
             <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
               <div className="flex flex-col items-center lg:items-end gap-2">
+                <h2 className="text-3xl md:text-4xl font-bold text-black">100%</h2>
+                <p className="text-black/40 text-sm md:text-base">{t.stat3}</p>
+              </div>
+
+              <div className="flex flex-col items-center lg:items-end gap-2">
                 <h2 className="text-3xl md:text-4xl font-bold text-black">+5</h2>
                 <p className="text-black/40 text-sm md:text-base">{t.stat1}</p>
               </div>
 
               <div className="flex flex-col items-center lg:items-end gap-2">
-                <h2 className="text-3xl md:text-4xl font-bold text-black">100%</h2>
-                <p className="text-black/40 text-sm md:text-base">{t.stat3}</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-black">100% </h2>
+                <p className="text-black/40 text-sm md:text-base">{t.stat2}</p>
               </div>
+
+
             </div>
           </Reveal>
         </div>
