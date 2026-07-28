@@ -1,8 +1,5 @@
-import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-
 export async function authFetch(
   url: string,
-  router: AppRouterInstance,
   options: RequestInit = {}
 ) {
   const token = localStorage.getItem("token");
@@ -12,11 +9,14 @@ export async function authFetch(
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
 
-  const res = await fetch(url, { ...options, headers });
+  const res = await fetch(url, {
+    ...options,
+    headers,
+  });
 
   if (res.status === 401) {
     localStorage.removeItem("token");
-    router.replace("/login");
+    window.location.replace("/login");
     throw new Error("Unauthorized");
   }
 
