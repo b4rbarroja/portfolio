@@ -28,7 +28,12 @@ interface Project {
 function parseTags(tags?: string): string[] {
   if (!tags) return [];
   try {
-    return JSON.parse(tags) as string[];
+    let parsed = JSON.parse(tags);
+    while (typeof parsed === "string") {
+      try { parsed = JSON.parse(parsed); } catch { break; }
+    }
+    if (Array.isArray(parsed)) return parsed;
+    return [];
   } catch {
     return [];
   }

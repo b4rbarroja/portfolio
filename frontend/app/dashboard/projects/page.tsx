@@ -24,8 +24,25 @@ interface Project {
 
 export default function DashboardProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [edit, setEdit] = useState(false);
 
   const [formData, setFormData] = useState({
+    title: "",
+    slug: "",
+    description: "",
+    descriptionShort: "",
+    fullDescription: "",
+    problem: "",
+    solution: "",
+    tags: "",
+    image: "",
+    githubUrl: "",
+    repoUrl: "",
+    liveUrl: "",
+    featured: false,
+    published: true,
+  });
+  const [editFormData, setEditFormData] = useState({
     title: "",
     slug: "",
     description: "",
@@ -73,6 +90,56 @@ export default function DashboardProjectsPage() {
       setFormData((prev) => ({ ...prev, [name]: checked }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleEditChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const { checked } = e.target as HTMLInputElement;
+      setEditFormData((prev) => ({ ...prev, [name]: checked }));
+    } else {
+      setEditFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleEditSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const payload = {
+      ...editFormData,
+      tags: editFormData.tags
+        ? JSON.stringify(editFormData.tags.split(",").map((t) => t.trim()).filter(Boolean))
+        : undefined,
+    };
+    try {
+      const res = await authFetch(`/api/projects/${encodeURIComponent(editFormData.slug)}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(`فشل التعديل: ${data.message || "حدث خطأ ما"}`);
+        return;
+      }
+
+      setProjects((prev) =>
+        prev.map((project) => (project.slug === data.slug ? data : project)),
+      );
+
+      setEdit(false);
+      alert("تم تعديل المشروع بنجاح!");
+    } catch (error) {
+      console.error("Error updating project:", error);
+      alert("حدث خطأ في الاتصال بالسيرفر أثناء التعديل");
     }
   };
 
@@ -156,10 +223,34 @@ export default function DashboardProjectsPage() {
     }
   };
 
+  const handleEdit = async (slug: string) => {
+    const res = await fetch(`/api/projects/${encodeURIComponent(slug)}`);
+    const data = await res.json();
+    setEdit(true);
+    setEditFormData({
+      ...data,
+      tags: (() => {
+        if (!data.tags) return "";
+        try {
+          const parsed = JSON.parse(data.tags);
+          if (Array.isArray(parsed)) return parsed.join(", ");
+          return data.tags;
+        } catch {
+          return data.tags;
+        }
+      })(),
+    });
+  };
+
   const parseTags = (tags?: string) => {
     if (!tags) return [];
     try {
-      return JSON.parse(tags) as string[];
+      let parsed = JSON.parse(tags);
+      while (typeof parsed === "string") {
+        try { parsed = JSON.parse(parsed); } catch { break; }
+      }
+      if (Array.isArray(parsed)) return parsed;
+      return [];
     } catch {
       return [];
     }
@@ -190,7 +281,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 عنوان المشروع (Title)
               </label>
-              <input 
+              <input
                 type="text"
                 name="title"
                 value={formData.title}
@@ -205,7 +296,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 المعرف الفريد (Slug)
               </label>
-              <input 
+              <input
                 type="text"
                 name="slug"
                 value={formData.slug}
@@ -220,7 +311,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 رابط الصورة (Image URL)
               </label>
-              <input 
+              <input
                 type="url"
                 name="image"
                 value={formData.image}
@@ -234,7 +325,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 رابط GitHub
               </label>
-              <input 
+              <input
                 type="url"
                 name="githubUrl"
                 value={formData.githubUrl}
@@ -248,7 +339,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 رابط المستودع (Repo URL)
               </label>
-              <input 
+              <input
                 type="url"
                 name="repoUrl"
                 value={formData.repoUrl}
@@ -262,7 +353,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 رابط الموقع المباشر (Live URL)
               </label>
-              <input 
+              <input
                 type="url"
                 name="liveUrl"
                 value={formData.liveUrl}
@@ -276,7 +367,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوسوم (Tags) - مفصولة بفواصل
               </label>
-              <input 
+              <input
                 type="text"
                 name="tags"
                 value={formData.tags}
@@ -290,7 +381,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوصف القصير (Description Short)
               </label>
-              <input 
+              <input
                 type="text"
                 name="descriptionShort"
                 value={formData.descriptionShort}
@@ -305,7 +396,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوصف الكامل (Description)
               </label>
-              <textarea 
+              <textarea
                 name="description"
                 rows={3}
                 value={formData.description}
@@ -320,7 +411,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوصف المطول (Full Description) - يدعم Markdown
               </label>
-              <textarea 
+              <textarea
                 name="fullDescription"
                 rows={6}
                 value={formData.fullDescription}
@@ -334,7 +425,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 المشكلة (Problem) - تدعم Markdown
               </label>
-              <textarea 
+              <textarea
                 name="problem"
                 rows={5}
                 value={formData.problem}
@@ -348,7 +439,7 @@ export default function DashboardProjectsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الحل (Solution) - يدعم Markdown
               </label>
-              <textarea 
+              <textarea
                 name="solution"
                 rows={5}
                 value={formData.solution}
@@ -359,7 +450,7 @@ export default function DashboardProjectsPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              <input 
+              <input
                 type="checkbox"
                 id="featured"
                 name="featured"
@@ -367,7 +458,7 @@ export default function DashboardProjectsPage() {
                 onChange={handleChange}
                 className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
               />
-              <label 
+              <label
                 htmlFor="featured"
                 className="cursor-pointer text-sm text-black/80"
               >
@@ -376,7 +467,7 @@ export default function DashboardProjectsPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              <input 
+              <input
                 type="checkbox"
                 id="published"
                 name="published"
@@ -384,7 +475,7 @@ export default function DashboardProjectsPage() {
                 onChange={handleChange}
                 className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
               />
-              <label 
+              <label
                 htmlFor="published"
                 className="cursor-pointer text-sm text-black/80"
               >
@@ -396,7 +487,6 @@ export default function DashboardProjectsPage() {
               <button
                 type="submit"
                 className="w-full rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-[0.99]"
- 
               >
                 إضافة المشروع
               </button>
@@ -470,16 +560,250 @@ export default function DashboardProjectsPage() {
                   {project.published ? "منشور" : "مسودة"}
                 </span>
               </div>
-              <button
-                type="button"
-                onClick={() => handleDelete(project.slug)}
-                className="mt-4 rounded-xl border border-red-500/20 bg-red-50 py-2 text-xs font-semibold text-red-500 transition-all hover:bg-red-500 hover:text-white"
- 
-              >
-                حذف المشروع
-              </button>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleEdit(project.slug)}
+                  className="rounded-xl border border-black/10 bg-black/5 py-2 text-xs font-semibold text-black/70 transition-all hover:bg-black hover:text-white"
+                >
+                  تعديل المشروع
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(project.slug)}
+                  className="rounded-xl border border-red-500/20 bg-red-50 py-2 text-xs font-semibold text-red-500 transition-all hover:bg-red-500 hover:text-white"
+                >
+                  حذف المشروع
+                </button>
+              </div>
             </div>
           ))}
+
+          {edit && (
+            <form onSubmit={handleEditSubmit} className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  عنوان المشروع (Title)
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  value={editFormData.title}
+                  onChange={handleEditChange}
+                  placeholder="أدخل عنوان المشروع..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  المعرف الفريد (Slug)
+                </label>
+                <input
+                  type="text"
+                  name="slug"
+                  value={editFormData.slug}
+                  onChange={handleEditChange}
+                  placeholder="my-awesome-project"
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  رابط الصورة (Image URL)
+                </label>
+                <input
+                  type="url"
+                  name="image"
+                  value={editFormData.image}
+                  onChange={handleEditChange}
+                  placeholder="https://example.com/image.png"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  رابط GitHub
+                </label>
+                <input
+                  type="url"
+                  name="githubUrl"
+                  value={editFormData.githubUrl}
+                  onChange={handleEditChange}
+                  placeholder="https://github.com/user/repo"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  رابط المستودع (Repo URL)
+                </label>
+                <input
+                  type="url"
+                  name="repoUrl"
+                  value={editFormData.repoUrl}
+                  onChange={handleEditChange}
+                  placeholder="https://github.com/user/repo"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  رابط الموقع المباشر (Live URL)
+                </label>
+                <input
+                  type="url"
+                  name="liveUrl"
+                  value={editFormData.liveUrl}
+                  onChange={handleEditChange}
+                  placeholder="https://myproject.com"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوسوم (Tags) - مفصولة بفواصل
+                </label>
+                <input
+                  type="text"
+                  name="tags"
+                  value={editFormData.tags}
+                  onChange={handleEditChange}
+                  placeholder="Next.js, Stripe, Tailwind"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوصف القصير (Description Short)
+                </label>
+                <input
+                  type="text"
+                  name="descriptionShort"
+                  value={editFormData.descriptionShort}
+                  onChange={handleEditChange}
+                  placeholder="وصف مختصر للظهور في الكروت..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوصف الكامل (Description)
+                </label>
+                <textarea
+                  name="description"
+                  rows={3}
+                  value={editFormData.description}
+                  onChange={handleEditChange}
+                  placeholder="تفاصيل المشروع والوصف الشامل..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوصف المطول (Full Description) - يدعم Markdown
+                </label>
+                <textarea
+                  name="fullDescription"
+                  rows={6}
+                  value={editFormData.fullDescription}
+                  onChange={handleEditChange}
+                  placeholder="وصف تفصيلي طويل للمشروع... يمكنك استخدام Markdown للتنسيق"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  المشكلة (Problem) - تدعم Markdown
+                </label>
+                <textarea
+                  name="problem"
+                  rows={5}
+                  value={editFormData.problem}
+                  onChange={handleEditChange}
+                  placeholder="ما المشكلة التي يحلها هذا المشروع؟ يمكنك استخدام Markdown"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الحل (Solution) - يدعم Markdown
+                </label>
+                <textarea
+                  name="solution"
+                  rows={5}
+                  value={editFormData.solution}
+                  onChange={handleEditChange}
+                  placeholder="كيف قام المشروع بحل المشكلة؟ يمكنك استخدام Markdown"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={editFormData.featured}
+                  onChange={handleEditChange}
+                  className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
+                />
+                <label
+                  htmlFor="featured"
+                  className="cursor-pointer text-sm text-black/80"
+                >
+                  مشروع مميز (Featured)
+                </label>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id="published"
+                  name="published"
+                  checked={editFormData.published}
+                  onChange={handleEditChange}
+                  className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
+                />
+                <label
+                  htmlFor="published"
+                  className="cursor-pointer text-sm text-black/80"
+                >
+                  نشر المشروع مباشرة (Published)
+                </label>
+              </div>
+
+              <div className="sm:col-span-2 flex gap-3">
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-[0.99]"
+                >
+                  حفظ التعديلات
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEdit(false)}
+                  className="w-full rounded-xl border border-black/10 py-3 text-sm font-semibold text-black transition-all hover:bg-black/5"
+                >
+                  إلغاء
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </main>

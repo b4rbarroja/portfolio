@@ -21,8 +21,22 @@ interface Blog {
 
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [edit, setEdit] = useState(false);
 
   const [formData, setFormData] = useState({
+    title: "",
+    slug: "",
+    description: "",
+    descriptionShort: "",
+    content: "",
+    excerpt: "",
+    readTime: "",
+    date: "",
+    image: "",
+    type: "",
+    published: true,
+  });
+  const [editFormData, setEditFormData] = useState({
     title: "",
     slug: "",
     description: "",
@@ -67,6 +81,82 @@ export default function BlogsPage() {
       setFormData((prev) => ({ ...prev, [name]: checked }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleEditChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const { checked } = e.target as HTMLInputElement;
+      setEditFormData((prev) => ({ ...prev, [name]: checked }));
+    } else {
+      setEditFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleEdit = async (slug: string) => {
+    try {
+      const res = await authFetch(`/api/blogs/${encodeURIComponent(slug)}`);
+      if (!res.ok) {
+        console.error("Failed to fetch blog: HTTP", res.status);
+        return;
+      }
+      const data = await res.json();
+      setEdit(true);
+      setEditFormData({
+        title: data.title || "",
+        slug: data.slug || "",
+        description: data.description || "",
+        descriptionShort: data.descriptionShort || "",
+        content: data.content || "",
+        excerpt: data.excerpt || "",
+        readTime: data.readTime || "",
+        date: data.date || "",
+        image: data.image || "",
+        type: data.type || "",
+        published: data.published ?? true,
+      });
+    } catch (error) {
+      console.error("Error fetching blog:", error);
+    }
+  };
+
+  const handleEditSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const payload = {
+        ...editFormData,
+        content: editFormData.content || undefined,
+      };
+
+      const res = await authFetch(`/api/blogs/${encodeURIComponent(editFormData.slug)}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(`فشل التعديل: ${data.message || "حدث خطأ ما"}`);
+        return;
+      }
+
+      setBlogs((prev) =>
+        prev.map((blog) => (blog.slug === data.slug ? data : blog)),
+      );
+
+      setEdit(false);
+      alert("تم تعديل المقال بنجاح!");
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      alert("حدث خطأ في الاتصال بالسيرفر أثناء التعديل");
     }
   };
 
@@ -172,7 +262,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 عنوان المقال (Title)
               </label>
-              <input 
+              <input
                 type="text"
                 name="title"
                 value={formData.title}
@@ -187,7 +277,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 المعرف الفريد (Slug)
               </label>
-              <input 
+              <input
                 type="text"
                 name="slug"
                 value={formData.slug}
@@ -202,7 +292,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 التصنيف (Type)
               </label>
-              <input 
+              <input
                 type="text"
                 name="type"
                 value={formData.type}
@@ -217,7 +307,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 رابط الصورة (Image URL)
               </label>
-              <input 
+              <input
                 type="url"
                 name="image"
                 value={formData.image}
@@ -231,7 +321,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 وقت القراءة (Read Time)
               </label>
-              <input 
+              <input
                 type="text"
                 name="readTime"
                 value={formData.readTime}
@@ -245,7 +335,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 التاريخ (Date)
               </label>
-              <input 
+              <input
                 type="text"
                 name="date"
                 value={formData.date}
@@ -259,7 +349,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 المقدمة (Excerpt)
               </label>
-              <input 
+              <input
                 type="text"
                 name="excerpt"
                 value={formData.excerpt}
@@ -273,7 +363,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوصف القصير (Description Short)
               </label>
-              <input 
+              <input
                 type="text"
                 name="descriptionShort"
                 value={formData.descriptionShort}
@@ -288,7 +378,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 الوصف الكامل (Description)
               </label>
-              <textarea 
+              <textarea
                 name="description"
                 rows={3}
                 value={formData.description}
@@ -303,7 +393,7 @@ export default function BlogsPage() {
               <label className="mb-2 block text-xs text-black/60">
                 المحتوى (Content) - يدعم Markdown
               </label>
-              <textarea 
+              <textarea
                 name="content"
                 rows={10}
                 value={formData.content}
@@ -314,7 +404,7 @@ export default function BlogsPage() {
             </div>
 
             <div className="flex items-center gap-2 sm:col-span-2">
-              <input 
+              <input
                 type="checkbox"
                 id="published"
                 name="published"
@@ -322,7 +412,7 @@ export default function BlogsPage() {
                 onChange={handleChange}
                 className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
               />
-              <label 
+              <label
                 htmlFor="published"
                 className="cursor-pointer text-sm text-black/80"
               >
@@ -334,7 +424,7 @@ export default function BlogsPage() {
               <button
                 type="submit"
                 className="w-full rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-[0.99]"
- 
+
               >
                 إضافة المقال
               </button>
@@ -378,16 +468,210 @@ export default function BlogsPage() {
                     : "")}
                 </span>
               </div>
-              <button
-                type="button"
-                onClick={() => handleDelete(blog.slug)}
-                className="mt-4 rounded-xl border border-red-500/20 bg-red-50 py-2 text-xs font-semibold text-red-500 transition-all hover:bg-red-500 hover:text-white"
- 
-              >
-                حذف المقال
-              </button>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleEdit(blog.slug)}
+                  className="rounded-xl border border-black/10 bg-black/5 py-2 text-xs font-semibold text-black/70 transition-all hover:bg-black hover:text-white"
+                >
+                  تعديل المقال
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(blog.slug)}
+                  className="rounded-xl border border-red-500/20 bg-red-50 py-2 text-xs font-semibold text-red-500 transition-all hover:bg-red-500 hover:text-white"
+                >
+                  حذف المقال
+                </button>
+              </div>
             </div>
           ))}
+
+          {edit && (
+            <form onSubmit={handleEditSubmit} className="grid gap-4 sm:grid-cols-2 rounded-2xl border border-black/10 bg-white p-6">
+              <div className="sm:col-span-2">
+                <h2 className="mb-2 text-xl font-bold text-black">تعديل المقال</h2>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  عنوان المقال (Title)
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  value={editFormData.title}
+                  onChange={handleEditChange}
+                  placeholder="أدخل عنوان المقال..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  المعرف الفريد (Slug)
+                </label>
+                <input
+                  type="text"
+                  name="slug"
+                  value={editFormData.slug}
+                  onChange={handleEditChange}
+                  placeholder="react-nextjs-guide"
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  التصنيف (Type)
+                </label>
+                <input
+                  type="text"
+                  name="type"
+                  value={editFormData.type}
+                  onChange={handleEditChange}
+                  placeholder="Web Development"
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  رابط الصورة (Image URL)
+                </label>
+                <input
+                  type="url"
+                  name="image"
+                  value={editFormData.image}
+                  onChange={handleEditChange}
+                  placeholder="https://example.com/image.png"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  وقت القراءة (Read Time)
+                </label>
+                <input
+                  type="text"
+                  name="readTime"
+                  value={editFormData.readTime}
+                  onChange={handleEditChange}
+                  placeholder="5 دقائق"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs text-black/60">
+                  التاريخ (Date)
+                </label>
+                <input
+                  type="text"
+                  name="date"
+                  value={editFormData.date}
+                  onChange={handleEditChange}
+                  placeholder="15 يونيو 2025"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  المقدمة (Excerpt)
+                </label>
+                <input
+                  type="text"
+                  name="excerpt"
+                  value={editFormData.excerpt}
+                  onChange={handleEditChange}
+                  placeholder="نص قصير يظهر في معاينة المقال..."
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوصف القصير (Description Short)
+                </label>
+                <input
+                  type="text"
+                  name="descriptionShort"
+                  value={editFormData.descriptionShort}
+                  onChange={handleEditChange}
+                  placeholder="وصف مختصر للظهور في الكروت..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  الوصف الكامل (Description)
+                </label>
+                <textarea
+                  name="description"
+                  rows={3}
+                  value={editFormData.description}
+                  onChange={handleEditChange}
+                  placeholder="تفاصيل المقال والوصف الشامل..."
+                  required
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="mb-2 block text-xs text-black/60">
+                  المحتوى (Content) - يدعم Markdown
+                </label>
+                <textarea
+                  name="content"
+                  rows={10}
+                  value={editFormData.content}
+                  onChange={handleEditChange}
+                  placeholder="اكتب محتوى المقال هنا... يمكنك استخدام Markdown للتنسيق"
+                  className="w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder-black/30 focus:border-black/30 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="flex items-center gap-2 sm:col-span-2">
+                <input
+                  type="checkbox"
+                  id="edit-published"
+                  name="published"
+                  checked={editFormData.published}
+                  onChange={handleEditChange}
+                  className="h-4 w-4 rounded border-black/10 text-black focus:ring-0"
+                />
+                <label
+                  htmlFor="edit-published"
+                  className="cursor-pointer text-sm text-black/80"
+                >
+                  نشر المقال مباشرة (Published)
+                </label>
+              </div>
+
+              <div className="sm:col-span-2 flex gap-3">
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-black py-3 text-sm font-semibold text-white transition-all hover:opacity-80 active:scale-[0.99]"
+                >
+                  حفظ التعديلات
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEdit(false)}
+                  className="w-full rounded-xl border border-black/10 py-3 text-sm font-semibold text-black transition-all hover:bg-black/5"
+                >
+                  إلغاء
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     </main>
