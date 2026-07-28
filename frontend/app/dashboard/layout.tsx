@@ -11,7 +11,7 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const [checked, setChecked] = useState(false);
-
+  const oneHour = 1000 * 60 * 60;
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -19,7 +19,6 @@ export default function DashboardLayout({
       router.replace("/login");
       return;
     }
-
     setChecked(true);
   }, [router]);
 
@@ -45,7 +44,7 @@ export default function DashboardLayout({
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 text-sm text-black/40 hover:text-red-500 transition-colors"
- 
+
           >
             تسجيل الخروج
         </button>
