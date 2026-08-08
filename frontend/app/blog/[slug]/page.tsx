@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Container from "@/app/components/Container";
+import type { Metadata } from "next";
 
 interface Blog {
   id: string;
@@ -49,6 +50,76 @@ function parseContent(content?: string): string {
   }
 }
 
+// ✅ دي الدالة اللي بتعمل الـ Metadata اللي بتظهر في واتساب وتويتر وغيره
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  try {
+    // بنجيب بيانات المقال من الـ API
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://lingucode.vercel.app";
+    const res = await fetch(`${baseUrl}/api/blogs/${encodeURIComponent(slug)}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return {
+        title: "المقال غير موجود",
+        description: "المقال الذي تبحث عنه غير موجود.",
+      };
+    }
+
+    const post: Blog = await res.json();
+
+    const title = post.title || "مقال";
+    const description = post.descriptionShort || post.description || post.excerpt || "";
+    const url = `${baseUrl}/blog/${post.slug}`;
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: url,
+      },
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName: "Lingucode",
+        locale: "ar_AR",
+        type: "article",
+        images: post.image
+          ? [
+              {
+                url: post.image,
+                width: 1200,
+                height: 630,
+                alt: post.title,
+              },
+            ]
+          : undefined,
+        ...(post.date && {
+          publishedTime: post.date,
+        }),
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: post.image ? [post.image] : undefined,
+      },
+    };
+  } catch (error) {
+    return {
+      title: "مقال",
+      description: "مقال من مدونة Lingucode",
+    };
+  }
+}
+
 export default function BlogPost({
   params,
 }: {
@@ -66,7 +137,9 @@ export default function BlogPost({
     ])
       .then(([postData, allPosts]) => {
         setPost(postData);
-        setPosts(Array.isArray(allPosts) ? allPosts.filter((p: Blog) => p.published) : []);
+        setPosts(
+          Array.isArray(allPosts) ? allPosts.filter((p: Blog) => p.published) : []
+        );
       })
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -78,8 +151,8 @@ export default function BlogPost({
   if (loading) {
     return (
       <main className="relative min-h-screen">
-        <section className={`min-h-screen flex items-center justify-center`}>
-          <div className="text-black/40" >جاري التحميل...</div>
+        <section className="min-h-screen flex items-center justify-center">
+          <div className="text-black/40">جاري التحميل...</div>
         </section>
       </main>
     );
@@ -88,21 +161,18 @@ export default function BlogPost({
   if (!post) {
     return (
       <main className="relative min-h-screen">
-        <section
-          className={`min-h-screen flex flex-col items-center justify-center px-6`}
-        >
+        <section className="min-h-screen flex flex-col items-center justify-center px-6">
           <span className="text-black/20 text-6xl mb-6">✦</span>
-          <h1 className="text-3xl md:text-4xl font-bold text-black mb-4" >
+          <h1 className="text-3xl md:text-4xl font-bold text-black mb-4">
             المقال غير موجود
           </h1>
-          <p className="text-black/40 text-base md:text-lg mb-8" >
+          <p className="text-black/40 text-base md:text-lg mb-8">
             المقال الذي تبحث عنه غير موجود.
           </p>
           <Link
             href="/blog"
             className="text-sm md:text-base bg-black text-white px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
-
->
+          >
             <span>←</span>
             <span>العودة إلى المدونة</span>
           </Link>
@@ -115,31 +185,34 @@ export default function BlogPost({
 
   return (
     <main className="relative min-h-screen">
-      <article className={`py-16 sm:py-20 lg:py-24`} dir="auto">
+      <article className="py-16 sm:py-20 lg:py-24" dir="auto">
         <Container>
           <div className="mb-8 max-w-3xl mx-auto">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm md:text-base font-medium mb-6"
-
             >
               <ArrowLeft size={16} />
               <span>{t.backToBlog}</span>
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 text-black/40 text-sm md:text-base mb-3">
-              <span className="border border-black/10 text-black/60 text-xs font-medium px-3 py-1 rounded-full bg-white" >
+              <span className="border border-black/10 text-black/60 text-xs font-medium px-3 py-1 rounded-full bg-white">
                 {categoryMap[post.type] || post.type}
               </span>
               {post.date && <span>{post.date}</span>}
-              {post.readTime && <span>&middot; {post.readTime} {t.readTime}</span>}
+              {post.readTime && (
+                <span>
+                  &middot; {post.readTime} {t.readTime}
+                </span>
+              )}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4" >
+            <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-2 text-black/40 text-sm md:text-base" >
+            <div className="flex items-center gap-2 text-black/40 text-sm md:text-base">
               <span>{t.by}</span>
               <span className="font-medium text-black/60">{t.author}</span>
             </div>
@@ -162,24 +235,28 @@ export default function BlogPost({
                   {content}
                 </ReactMarkdown>
               ) : (
-                <p >{post.description}</p>
+                <p>{post.description}</p>
               )}
             </div>
           </div>
 
           {nextPost && (
             <div className="border-t border-black/10 pt-12 mt-16 max-w-3xl mx-auto">
-              <p className="text-black/30 text-sm md:text-base mb-4" >{t.nextArticle}</p>
+              <p className="text-black/30 text-sm md:text-base mb-4">
+                {t.nextArticle}
+              </p>
               <Link
                 href={`/blog/${nextPost.slug}`}
                 className="group flex items-center justify-between rounded-2xl border border-black/10 p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 bg-white"
               >
                 <div>
-                  <h3 className="text-black font-bold text-xl md:text-2xl" >
+                  <h3 className="text-black font-bold text-xl md:text-2xl">
                     {nextPost.title}
                   </h3>
-                  <p className="text-black/50 text-sm md:text-base mt-1 line-clamp-2" >
-                    {nextPost.excerpt || nextPost.descriptionShort || nextPost.description}
+                  <p className="text-black/50 text-sm md:text-base mt-1 line-clamp-2">
+                    {nextPost.excerpt ||
+                      nextPost.descriptionShort ||
+                      nextPost.description}
                   </p>
                 </div>
                 <span className="text-black text-2xl transition-transform group-hover:translate-x-1 shrink-0">
