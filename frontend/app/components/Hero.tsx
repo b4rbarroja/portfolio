@@ -51,8 +51,13 @@ function HeroVisual() {
       </style>
 
       {/* Background grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-50"
-        style={{ backgroundImage: "radial-gradient(circle, rgba(79,70,229,0.06) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-50"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(79,70,229,0.06) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
       />
 
       {/* Square image with skill icons orbiting around it */}
@@ -63,7 +68,7 @@ function HeroVisual() {
         {/* Square profile image */}
         <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/20 shadow-2xl">
           <Image
-            src="/lapvector.png"
+            src="/personal.png"
             alt="Personal"
             fill
             className="object-cover"
@@ -100,15 +105,23 @@ function HeroVisual() {
         {/* Code badge at bottom of square */}
         <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10 z-20 whitespace-nowrap">
           <span className="text-emerald-400 font-mono text-sm">$ </span>
-          <span className="text-white/80 font-mono text-sm typing">building cool stuff...</span>
+          <span className="text-white/80 font-mono text-sm typing">
+            building cool stuff...
+          </span>
         </div>
       </div>
 
       {/* Floating code dust */}
-      <div className="absolute top-[8%] left-[4%] text-indigo-400/20 font-mono text-sm select-none pointer-events-none" style={{ animation: "float 7s ease-in-out infinite 1s" }}>
+      <div
+        className="absolute top-[8%] left-[4%] text-indigo-400/20 font-mono text-sm select-none pointer-events-none"
+        style={{ animation: "float 7s ease-in-out infinite 1s" }}
+      >
         {"</>"}
       </div>
-      <div className="absolute bottom-[12%] right-[2%] text-purple-400/20 font-mono text-sm select-none pointer-events-none" style={{ animation: "float 9s ease-in-out infinite 2s" }}>
+      <div
+        className="absolute bottom-[12%] right-[2%] text-purple-400/20 font-mono text-sm select-none pointer-events-none"
+        style={{ animation: "float 9s ease-in-out infinite 2s" }}
+      >
         {"{ }"}
       </div>
     </div>
@@ -132,7 +145,6 @@ export default function Hero() {
               <h1 className="text-4xl md:text-6xl font-bold max-w-xl leading-tight">
                 حول فكرتك إلى واقع تراه عيناك
                 <br />
-
               </h1>
             </Reveal>
 
@@ -146,7 +158,6 @@ export default function Hero() {
               <div className="flex flex-wrap gap-4 mt-10">
                 <Link href="/projects">
                   <button className="text-sm md:text-base bg-black text-white px-11 py-5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
-
                     ألق نظرة على مشاريعي
                   </button>
                 </Link>
@@ -162,17 +173,23 @@ export default function Hero() {
               <div className="grid grid-cols-3 gap-8 mt-14">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
-                  <p className="text-black/50 text-sm md:text-base">التزام بالجودة</p>
+                  <p className="text-black/50 text-sm md:text-base">
+                    التزام بالجودة
+                  </p>
                 </div>
 
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold">+5</h2>
-                  <p className="text-black/50 text-sm md:text-base">مشروع مكتمل</p>
+                  <p className="text-black/50 text-sm md:text-base">
+                    مشروع مكتمل
+                  </p>
                 </div>
 
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
-                  <p className="text-black/50 text-sm md:text-base">رضا العملاء</p>
+                  <p className="text-black/50 text-sm md:text-base">
+                    رضا العملاء
+                  </p>
                 </div>
               </div>
             </Reveal>
