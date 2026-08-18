@@ -68,7 +68,7 @@ function HeroVisual() {
         {/* Square profile image */}
         <div className="relative w-full h-full rounded-[2rem] overflow-hidden border-2 border-white/20 shadow-2xl">
           <Image
-            src="/lapvector.png"
+            src="/jbr.jpg"
             alt="Personal"
             fill
             className="object-cover"
