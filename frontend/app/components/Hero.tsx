@@ -168,27 +168,48 @@ export default function Hero() {
               </div>
             </Reveal>
 
+            {/* البديل الجديد والمتناسق مع الهوية البصرية */}
             <Reveal delay={400}>
-              <div className="grid grid-cols-3 gap-8 mt-14">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
-                  <p className="text-black/50 text-sm md:text-base">
-                    التزام بالجودة
-                  </p>
+              <div className="mt-14 space-y-6">
+                {/* مؤشر التوفر المباشر بأسلوب مينيمال */}
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-30"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-black"></span>
+                  </span>
+                  <span className="text-sm md:text-base font-medium text-black/70">
+                    متاح حالياً للعمل على مشاريع جديدة
+                  </span>
                 </div>
 
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">+5</h2>
-                  <p className="text-black/50 text-sm md:text-base">
-                    مشروع مكتمل
-                  </p>
-                </div>
+                {/* شبكة القيمة بنفس خطوط وهيكلية العناوين وبدون حدود أو أيقونات */}
+                <div className="grid grid-cols-3 gap-6 pt-2">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-black mb-1">
+                      أداء فائق
+                    </h3>
+                    <p className="text-black/50 text-xs md:text-sm leading-relaxed">
+                      سرعة وسيو ممتاز
+                    </p>
+                  </div>
 
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">100%</h2>
-                  <p className="text-black/50 text-sm md:text-base">
-                    رضا العملاء
-                  </p>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-black mb-1">
+                      كود نظيف
+                    </h3>
+                    <p className="text-black/50 text-xs md:text-sm leading-relaxed">
+                      بنية قابلة للتوسع
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-black mb-1">
+                      تجربة سلسة
+                    </h3>
+                    <p className="text-black/50 text-xs md:text-sm leading-relaxed">
+                      متجاوب مع الشاشات
+                    </p>
+                  </div>
                 </div>
               </div>
             </Reveal>
