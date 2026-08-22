@@ -26,7 +26,6 @@ export default function Skills() {
       <Container className="flex flex-col justify-center items-center gap-10">
         <Reveal>
           <div className="flex justify-center items-center flex-col text-center gap-3 max-w-lg">
-            <span className="text-black/30 text-sm md:text-base">✦</span>
             <h2 className="text-3xl md:text-4xl font-bold text-black">
               التقنيات التي أستخدمها
             </h2>

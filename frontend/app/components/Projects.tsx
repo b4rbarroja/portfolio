@@ -59,7 +59,6 @@ export default function Projects() {
               <p className="text-black/40 text-sm md:text-base mb-1">{arabicText.sectionLabel}</p>
               <h2 className="text-3xl md:text-4xl font-bold text-black flex items-center gap-2">
                 <span>{arabicText.title}</span>
-                <span className="text-black/30">✦</span>
               </h2>
               <p className="text-black/50 text-base md:text-lg mt-1">{arabicText.subtitle}</p>
             </div>

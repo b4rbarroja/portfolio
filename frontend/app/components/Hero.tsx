@@ -136,7 +136,6 @@ export default function Hero() {
           <div className="order-1 lg:order-1">
             <Reveal delay={0}>
               <div className="flex items-center gap-2 mb-5 text-black/40 text-sm md:text-base">
-                <span>✦</span>
                 <span>مطور ويب متكامل</span>
               </div>
             </Reveal>

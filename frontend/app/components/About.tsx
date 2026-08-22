@@ -35,14 +35,13 @@ export default function About() {
   return (
     <section
       id="about"
-      className={" relative overflow-hidden bg-white px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 lg:py-24"}
+      className={" relative overflow-hidden bg-white px-4 sm:px-6 md:px-10 lg:px-14 py-16 sm:py-20 lg:py-24"}
     >
-      <div className="relative w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-10 items-center">
+      <div className="relative w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         <div className="order-2 lg:order-1 text-center lg:text-right">
           <Reveal delay={0}>
-            <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-sm md:text-base">
+              <div className="flex items-center justify-center lg:justify-end gap-2 mb-5 text-black font-semibold text-sm md:text-base">
               <span>{t.label}</span>
-              <span className="text-black/40">✦</span>
             </div>
           </Reveal>
 

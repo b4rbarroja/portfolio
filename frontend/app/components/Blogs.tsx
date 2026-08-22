@@ -49,7 +49,6 @@ export default function Articles() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-black flex items-center gap-2">
                 <span>{t.title}</span>
-                <span className="text-black/30">✦</span>
               </h2>
               <p className="text-black/50 text-base md:text-lg mt-1">{t.subtitle}</p>
             </div>
@@ -62,7 +61,7 @@ export default function Articles() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post, index) => (
             <Reveal key={post.slug} delay={index * 100}>
               <Link
@@ -97,7 +96,6 @@ export default function Articles() {
 
           <Reveal delay={posts.length * 100}>
             <div className="relative overflow-hidden bg-white border border-black/10 rounded-2xl p-6 flex flex-col items-center text-center justify-center gap-3">
-              <span className="absolute top-4 right-4 text-black/20 text-sm md:text-base">✦</span>
               <div className="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center text-3xl">
                 👥
               </div>

@@ -37,7 +37,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <p className="text-black/40 text-sm md:text-base mb-1">✦ تواصل</p>
+              <p className="text-black/40 text-sm md:text-base mb-1">تواصل</p>
               <h1 className="text-4xl md:text-6xl font-bold text-black mb-2">
                 تواصل معي
               </h1>
@@ -116,7 +116,6 @@ export default function ContactPage() {
               <div className="border border-black/10 rounded-2xl p-8 bg-white space-y-8">
                 <div>
                   <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                    <span className="text-black/30">✦</span>
                     <span>البريد الإلكتروني</span>
                   </h3>
                   <a
@@ -129,7 +128,6 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                    <span className="text-black/30">✦</span>
                     <span>الهاتف</span>
                   </h3>
                   <p className="text-black/60 text-base md:text-lg">
@@ -139,7 +137,6 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                    <span className="text-black/30">✦</span>
                     <span>الموقع</span>
                   </h3>
                   <p className="text-black/60 text-base md:text-lg">
@@ -149,7 +146,6 @@ export default function ContactPage() {
 
                 <div>
                   <h3 className="text-black font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                    <span className="text-black/30">✦</span>
                     <span>روابط التواصل</span>
                   </h3>
                   <div className="flex items-center gap-3">

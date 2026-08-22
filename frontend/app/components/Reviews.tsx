@@ -51,7 +51,6 @@ export default function Testimonials() {
       <Container>
         <Reveal>
           <div className="flex flex-col items-center text-center mb-12 gap-2">
-            <span className="text-black/30 text-sm md:text-base">✦</span>
             <h2 className="text-3xl md:text-4xl font-bold text-black" >
               ما يقوله العملاء
             </h2>

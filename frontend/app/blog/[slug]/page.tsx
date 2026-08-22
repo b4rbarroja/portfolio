@@ -32,7 +32,7 @@ const categoryMap: Record<string, string> = {
 
 const t = {
   backToBlog: "العودة إلى المدونة",
-  nextArticle: "✦ المقال التالي",
+  nextArticle: "المقال التالي",
   readTime: "دقائق قراءة",
   by: "بقلم",
   author: "جبر",
@@ -91,7 +91,6 @@ export default function BlogPost({
         <section
           className={`min-h-screen flex flex-col items-center justify-center px-6`}
         >
-          <span className="text-black/20 text-6xl mb-6">✦</span>
           <h1 className="text-3xl md:text-4xl font-bold text-black mb-4" >
             المقال غير موجود
           </h1>
@@ -117,7 +116,7 @@ export default function BlogPost({
     <main className="relative min-h-screen">
       <article className={`py-16 sm:py-20 lg:py-24`} dir="auto">
         <Container>
-          <div className="mb-8 max-w-3xl mx-auto">
+          <div className="mb-8 max-w-4xl mx-auto">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-black/40 hover:text-black transition-colors text-sm md:text-base font-medium mb-6"
@@ -146,7 +145,7 @@ export default function BlogPost({
           </div>
 
           {post.image && (
-            <div className="rounded-2xl overflow-hidden mb-10 border border-black/10 max-w-3xl mx-auto">
+            <div className="rounded-2xl overflow-hidden mb-10 border border-black/10 max-w-4xl mx-auto">
               <img
                 src={post.image}
                 alt={post.title}
@@ -155,7 +154,7 @@ export default function BlogPost({
             </div>
           )}
 
-          <div className="max-w-3xl mx-auto" dir="auto">
+          <div className="max-w-4xl mx-auto" dir="auto">
             <div className="prose prose-lg max-w-none text-black/60" dir="auto">
               {content ? (
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
@@ -168,7 +167,7 @@ export default function BlogPost({
           </div>
 
           {nextPost && (
-            <div className="border-t border-black/10 pt-12 mt-16 max-w-3xl mx-auto">
+            <div className="border-t border-black/10 pt-12 mt-16 max-w-4xl mx-auto">
               <p className="text-black/30 text-sm md:text-base mb-4" >{t.nextArticle}</p>
               <Link
                 href={`/blog/${nextPost.slug}`}

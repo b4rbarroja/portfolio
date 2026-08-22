@@ -56,10 +56,9 @@ export default function ProjectsPage() {
         <Container>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12">
             <div>
-              <p className="text-black/40 text-sm md:text-base mb-1" >✦ أعمالي</p>
+              <p className="text-black/40 text-sm md:text-base mb-1" >أعمالي</p>
               <h1 className="text-4xl md:text-5xl font-bold text-black flex items-center gap-2" >
                 <span>جميع المشاريع</span>
-                <span className="text-black/30">✦</span>
               </h1>
               <p className="text-black/50 text-base md:text-lg mt-2" >بعض من المشاريع التي قمت ببنائها</p>
             </div>

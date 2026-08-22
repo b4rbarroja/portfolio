@@ -27,7 +27,7 @@ const categoryMap: Record<string, string> = {
 };
 
 const t = {
-  label: "✦ المدونة",
+  label: "المدونة",
   title: "كل المقالات",
   subtitle: "أفكار، شروحات، وملاحظات من رحلتي في التطوير",
   backToHome: "العودة إلى الرئيسية",
@@ -37,6 +37,7 @@ const t = {
 export default function BlogPage() {
   const [posts, setPosts] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/blogs")
@@ -48,6 +49,9 @@ export default function BlogPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  const allTags = Array.from(new Set(posts.map((p) => p.type)));
+  const filtered = selectedTag ? posts.filter((p) => p.type === selectedTag) : posts;
+
   return (
     <main className="relative min-h-screen">
       <section className={`py-16 sm:py-20 lg:py-24`}>
@@ -57,7 +61,6 @@ export default function BlogPage() {
               <p className="text-black/40 text-sm md:text-base mb-1" >{t.label}</p>
               <h1 className="text-4xl md:text-5xl font-bold text-black flex items-center gap-2" >
                 <span>{t.title}</span>
-                <span className="text-black/30">✦</span>
               </h1>
               <p className="text-black/50 text-base md:text-lg mt-2" >{t.subtitle}</p>
             </div>
@@ -71,6 +74,34 @@ export default function BlogPage() {
             </Link>
           </div>
 
+          {allTags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-10">
+              <button
+                onClick={() => setSelectedTag(null)}
+                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
+                  selectedTag === null
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-black/60 border-black/10 hover:border-black/30"
+                }`}
+              >
+                الكل
+              </button>
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
+                    selectedTag === tag
+                      ? "bg-black text-white border-black"
+                      : "bg-white text-black/60 border-black/10 hover:border-black/30"
+                  }`}
+                >
+                  {categoryMap[tag] || tag}
+                </button>
+              ))}
+            </div>
+          )}
+
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3].map((i) => (
@@ -79,7 +110,7 @@ export default function BlogPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => (
+              {filtered.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}

@@ -35,9 +35,6 @@ export default function Navbar() {
                 }`}
               >
                 {link.name}
-                {idx === 0 && (
-                  <span className="absolute -bottom-2 right-0 left-0 h-[2px] bg-black rounded-full" />
-                )}
               </Link>
             ))}
           </nav>

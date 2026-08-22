@@ -81,7 +81,6 @@ export default function ProjectPage({
         <section
           className={`min-h-screen flex flex-col items-center justify-center px-6`}
         >
-          <span className="text-black/20 text-6xl mb-6">✦</span>
           <h1 className="text-3xl md:text-4xl font-bold text-black mb-4" >
             المشروع غير موجود
           </h1>
@@ -137,7 +136,6 @@ export default function ProjectPage({
           {tags.length > 0 && (
             <div className="mb-12">
               <h2 className="text-xl md:text-2xl font-bold text-black mb-4 flex items-center gap-2" >
-                <span className="text-black/30">✦</span>
                 <span>التقنيات المستخدمة</span>
               </h2>
               <div className="flex flex-wrap gap-2">
@@ -157,7 +155,6 @@ export default function ProjectPage({
           {project.fullDescription && (
             <div className="mb-12 max-w-3xl">
               <h2 className="text-xl md:text-2xl font-bold text-black mb-4 flex items-center gap-2" >
-                <span className="text-black/30">✦</span>
                 <span>عن المشروع</span>
               </h2>
               <div className="prose prose-lg max-w-none text-black/60">
@@ -172,7 +169,6 @@ export default function ProjectPage({
             {project.problem && (
               <div className="border border-black/10 rounded-2xl p-6 bg-white">
                 <h2 className="text-xl md:text-2xl font-bold text-black mb-3 flex items-center gap-2" >
-                  <span className="text-black/30">✦</span>
                   <span>المشكلة</span>
                 </h2>
                 <div className="prose prose-lg max-w-none text-black/60">
@@ -185,7 +181,6 @@ export default function ProjectPage({
             {project.solution && (
               <div className="border border-black/10 rounded-2xl p-6 bg-white">
                 <h2 className="text-xl md:text-2xl font-bold text-black mb-3 flex items-center gap-2" >
-                  <span className="text-black/30">✦</span>
                   <span>الحل</span>
                 </h2>
                 <div className="prose prose-lg max-w-none text-black/60">
@@ -227,7 +222,7 @@ export default function ProjectPage({
 
           {nextProject && (
             <div className="border-t border-black/10 pt-12">
-              <p className="text-black/30 text-sm md:text-base mb-4" >✦ المشروع التالي</p>
+              <p className="text-black/30 text-sm md:text-base mb-4" >المشروع التالي</p>
               <Link
                 href={`/projects/${nextProject.slug}`}
                 className="group flex items-center justify-between rounded-2xl border border-black/10 p-6 transition-all duration-300 hover:border-black/20 hover:-translate-y-1 bg-white"
